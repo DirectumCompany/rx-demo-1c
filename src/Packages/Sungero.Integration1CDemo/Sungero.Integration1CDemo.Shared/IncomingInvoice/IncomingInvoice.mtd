@@ -1,0 +1,146 @@
+{
+  "$type": "Sungero.Metadata.DocumentMetadata, Sungero.Content.Shared",
+  "NameGuid": "62f70f15-967a-4211-81ac-7c02aa3928b5",
+  "Name": "IncomingInvoice",
+  "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "e1fb41dc-e33a-4929-b10c-890e37112a04",
+      "Name": "Open1CEntitySungero",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_Open1CEntitySungero_large_e1fb41dce33a4929b10c890e37112a04.png",
+      "SmallIconName": "Action_Open1CEntitySungero_small_e1fb41dce33a4929b10c890e37112a04.png"
+    }
+  ],
+  "BaseGuid": "a523a263-bc00-40f9-810d-f582bae2205d",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "7322020b-3299-4fba-b9b0-4c995bd2e401",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "80d3ce1a-9a72-443a-8b6c-6c6eef0c8d0f",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
+  "IconResourcesKeys": [],
+  "LayeredFromGuid": "a523a263-bc00-40f9-810d-f582bae2205d",
+  "OpenCardByDefaultInCollection": true,
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
+      "Name": "Versions",
+      "EntityGuid": "2b4dd153-a8e7-413e-b6f7-882801069d72",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "15280407-331e-42f6-b263-041a495b66cd",
+      "Name": "Tracking",
+      "EntityGuid": "d7dcca37-1d80-4d18-90c8-3eed64f9498e",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ]
+    }
+  ],
+  "PublicConstants": [
+    {
+      "Name": "PaymentMarkKindClass",
+      "ParentClasses": [
+        "IncomingInvoice"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"Sungero.Integration1CDemo.Functions.IncomingInvoice\""
+    },
+    {
+      "Name": "PaymentMarkKindMethod",
+      "ParentClasses": [
+        "IncomingInvoice"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"GetPaymentMarkAsHtml\""
+    },
+    {
+      "Name": "PaymentMarkKindSid",
+      "ParentClasses": [
+        "IncomingInvoice"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"A89D9F46-9065-422A-B6CA-DED9D29EEDC7\""
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [
+    "HtmlStampTemplateForCertificateCustom",
+    "HtmlStampTemplateForSignatureCustom",
+    "HtmlMarkTemplatePayment",
+    "PaymentMarkName"
+  ],
+  "RibbonCardMetadata": {
+    "NameGuid": "da8e4adc-afdc-4ef8-96f8-d1989b34c51c",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "80dc75a0-fc36-4458-af25-6df2d455721c",
+        "Name": "Open1CEntitySungeroSungero",
+        "ActionGuid": "e1fb41dc-e33a-4929-b10c-890e37112a04",
+        "ButtonSize": "Large",
+        "Index": 2,
+        "ParentGuid": "2ed94346-ba89-4c52-9815-d18010d3a2ae"
+      }
+    ],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "0cb950b7-ca00-43b9-873f-7b774427b62f",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "DocumentMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 13
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 2
+    }
+  ]
+}
