@@ -8,17 +8,17 @@ namespace Sungero.Integration1CDemo.Constants
     /// <summary>
     /// Адрес веб-сервера 1С.
     /// </summary>
-    public const string ServiceUrl1C = "https://w1333w10/1C_Melnikov2";
+    public const string ServiceUrl1C = "https://w1250w10.comp.npo/1C_Kovalev";
     
     /// <summary>
     /// Имя пользователя 1С.
     /// </summary>
-    public const string UserName1C = "ИвановИИ";
+    public const string UserName1C = "admin";
 
     /// <summary>
     /// Пароль пользователя 1С.
     /// </summary>
-    public const string Password1C = "";
+    public const string Password1C = "11111";
 
     /// <summary>
     /// Идентификатор системы 1С.
@@ -34,6 +34,11 @@ namespace Sungero.Integration1CDemo.Constants
     /// Тип объекта системы 1C для контрагентов.
     /// </summary>
     public const string CounterpartyExtEntityType = "Контрагенты";    
+    
+    /// <summary>
+    /// Тип объекта системы 1C для контрагентов.
+    /// </summary>
+    public const string OutgoingInvoiceExtEntityType = "Документ.СчетНаОплатуПокупателю";    
     
     /// <summary>
     /// Часть пути запроса для создания входящего счета в 1С.
