@@ -41,6 +41,11 @@ namespace Sungero.Integration1CDemo.Constants
     public const string CounterpartyExtEntityType = "Контрагенты";
     
     /// <summary>
+    /// Тип объекта системы 1C для контрагентов.
+    /// </summary>
+    public const string OutgoingInvoiceExtEntityType = "Документ.СчетНаОплатуПокупателю";    
+    
+    /// <summary>
     /// Часть пути запроса для создания входящего счета в 1С.
     /// </summary>
     public const string CreatingIncInvoiceUrlPart1C = "/odata/standard.odata/Document_СчетНаОплатуПоставщика?$format=json&$expand=*";
