@@ -256,6 +256,55 @@ namespace Sungero.Integration1CDemo.Server
       return Integration1CExtensions.Connector1C.Get(GetDocflowParamsValue(Constants.Module.UserName1C), GetDocflowParamsValue(Constants.Module.Password1C));
     }
     
+    [Public]
+    public virtual bool SetInvoiceStatusToPaid(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
+    {
+      // Получить счет на оплату
+      var invoiceId = string.Empty;
+      var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
+      
+      if (invoiceExtEntityLink != null)
+      {
+        invoiceId = invoiceExtEntityLink.ExtEntityId;
+      }
+      else
+      {
+        Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: InvoiceForPayment is not sync to 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
+        return false;
+      }
+      
+      try
+      {
+        var connector1C = this.GetConnector1C();
+        
+        // Получить ИД организации в 1С.
+        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, outgoingInvoice.BusinessUnit?.TIN, outgoingInvoice.BusinessUnit?.TRRC);
+        
+        if (string.IsNullOrEmpty(businessUnit1CId))
+        {
+          Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: not found single business unit in 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
+          return false;
+        }
+        
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoiceId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var response = connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+        
+        return true;
+      }
+      catch(Exception ex)
+      {
+        Logger.ErrorFormat("Integration1C. Error while updating invoice 1C status to paid. OutgoingInvoice Id = {0}.", ex, outgoingInvoice.Id);
+        return false;
+      }
+    }
+    
     /// <summary>
     /// Получить значение параметра из docflow_params.
     /// </summary>
