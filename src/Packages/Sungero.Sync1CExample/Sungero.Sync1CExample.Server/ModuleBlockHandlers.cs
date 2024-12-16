@@ -7,23 +7,23 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
+
   partial class SetInvoiceStatusToPaidHandlers
   {
-
     public virtual void SetInvoiceStatusToPaidExecute()
     {
-      var attachment = _obj.Attachments.First();
-      
-      var outgoingInvoice = Contracts.OutgoingInvoices.As(attachment);
+      var outgoingInvoice = Contracts.OutgoingInvoices.As(_block.Document);
       if (outgoingInvoice != null && outgoingInvoice.LifeCycleState == Contracts.OutgoingInvoice.LifeCycleState.Paid)
       {
         var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetInvoiceStatusToPaid(outgoingInvoice);
         
         if (isSuccess)
-          Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Successfully updated the status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
+          Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Successfully updated status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
         else
-          Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Failed to update the status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={1}).", outgoingInvoice.Id);
+          Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Failed to update status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
       }
+      else
+        Logger.ErrorFormat("SetInvoiceStatusToPaidExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", outgoingInvoice.Id);
     }
   }
 }

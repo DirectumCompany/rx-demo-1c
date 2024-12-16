@@ -67,4 +67,7 @@
   <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c" xml:space="preserve">
     <value>Передача статуса исходящего счета в 1С</value>
   </data>
+  <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c_Property_4dcdd83899a145f191771a567dc01dce" xml:space="preserve">
+    <value>Документ</value>
+  </data>
 </root>
