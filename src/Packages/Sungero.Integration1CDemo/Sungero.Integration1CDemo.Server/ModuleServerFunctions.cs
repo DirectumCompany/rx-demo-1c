@@ -286,21 +286,49 @@ namespace Sungero.Integration1CDemo.Server
           return false;
         }
         
-        var statusContent = new {
-          Организация_Key = businessUnit1CId,
-          Документ = invoiceId,
-          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
-          Статус = "Оплачен",
-          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-        };
-        
-        var response = connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
-        
+        if (this.ObjectExistsIn1C(connector1C, businessUnit1CId, invoiceId))
+        {
+          var statusContent = new {
+            Статус = "Оплачен",
+            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+          };
+          
+          var url = string.Format("/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='StandardODATA.Document_СчетНаОплатуПокупателю')?$format=json", businessUnit1CId, invoiceId);
+          var response = connector1C.RunPatchRequest
+            (string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
+        }
+        else
+        {
+          var statusContent = new {
+            Организация_Key = businessUnit1CId,
+            Документ = invoiceId,
+            Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+            Статус = "Оплачен",
+            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+          };
+          
+          var response = connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+        }
         return true;
       }
       catch(Exception ex)
       {
         Logger.ErrorFormat("Integration1C. Error while updating invoice 1C status to paid. OutgoingInvoice Id = {0}.", ex, outgoingInvoice.Id);
+        return false;
+      }
+    }
+    
+    private bool ObjectExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoiceId)
+    {
+      try
+      {
+        var url = string.Format("/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key='{0}',Документ='{1}',Документ_Type='StandardODATA.Document_СчетНаОплатуПокупателю')", businessUnit1CId, invoiceId);
+        var response = connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
+        
+        return true;
+      }
+      catch
+      {
         return false;
       }
     }
