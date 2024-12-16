@@ -55,6 +55,31 @@ namespace Sungero.Integration1CExtensions
       return responseContent;
     }
 
+    /// <summary>
+    /// Выполнить PATCH-запрос к веб-сервису 1С.
+    /// </summary>
+    /// <param name="url">Адрес запроса.</param>
+    /// <param name="content">Данные.</param>
+    /// <returns>Результат запроса в виде строки.</returns>    
+    public string RunPatchRequest(string url, object content)
+    {
+      var jsonContent = JsonConvert.SerializeObject(content);
+      var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+      var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
+      {
+        Content = httpContent
+      };
+
+      var response = this.Client.SendAsync(request).Result;
+      var responseContent = response.Content.ReadAsStringAsync().Result;
+
+      if (!response.IsSuccessStatusCode)
+        throw new Exception($"Integration1C. Post request execution error. URL: {url}. Status code: {response.StatusCode}. Response content: {responseContent}.");
+
+      return responseContent;
+    }
+
     #endregion
 
     #region Конструктор
