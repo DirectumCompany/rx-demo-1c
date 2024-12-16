@@ -75,7 +75,7 @@ namespace Sungero.Integration1CExtensions
       var responseContent = response.Content.ReadAsStringAsync().Result;
 
       if (!response.IsSuccessStatusCode)
-        throw new Exception($"Integration1C. Post request execution error. URL: {url}. Status code: {response.StatusCode}. Response content: {responseContent}.");
+        throw new Exception($"Integration1C. Patch request execution error. URL: {url}. Status code: {response.StatusCode}. Response content: {responseContent}.");
 
       return responseContent;
     }
