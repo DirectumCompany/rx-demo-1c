@@ -112,6 +112,18 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult",
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
+    },
+    {
+      "Name": "SetInvoiceStatusToPaid",
+      "Parameters": [
+        {
+          "Name": "outgoingInvoice",
+          "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
+          "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [
