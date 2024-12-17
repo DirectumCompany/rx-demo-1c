@@ -8,22 +8,25 @@ namespace Sungero.Integration1CDemo.Constants
     /// <summary>
     /// Адрес веб-сервера 1С.
     /// </summary>
+    [Public]
     public const string ServiceUrl1C = "https://w1333w10/1C_Melnikov2";
     
     /// <summary>
     /// Имя пользователя 1С.
     /// </summary>
+    [Public]
     public const string UserName1C = "ИвановИИ";
 
     /// <summary>
     /// Пароль пользователя 1С.
     /// </summary>
+    [Public]
     public const string Password1C = "";
 
     /// <summary>
     /// Идентификатор системы 1С.
     /// </summary>
-    public const string ExtSystemId1C = "1C_Acc";    
+    public const string ExtSystemId1C = "1C_Acc";
     
     /// <summary>
     /// Тип объекта системы 1C для договоров.
@@ -60,5 +63,11 @@ namespace Sungero.Integration1CDemo.Constants
     /// Часть пути запроса для обращения к справочнику "Организации" в 1С.
     /// </summary>
     public const string GetBusinessUnitsUrlPart1C = "/odata/standard.odata/Catalog_Организации";
+    
+    /// <summary>
+    /// Часть пути запроса для первичной инициализации OData в 1С.
+    /// </summary>
+    [Public]
+    public const string UpdateListObjectsODataUrlPart1C = "/hs/handlers/UpdateListObjectsOData";
   }
 }

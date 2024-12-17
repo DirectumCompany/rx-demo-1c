@@ -50,6 +50,40 @@
     }
   ],
   "OrderedSpecialFolders": [],
+  "PublicConstants": [
+    {
+      "Name": "Password1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"11111\""
+    },
+    {
+      "Name": "ServiceUrl1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"https://w1306w10/1C_Pyrin\""
+    },
+    {
+      "Name": "UpdateListObjectsODataUrlPart1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"/hs/handlers/UpdateListObjectsOData\""
+    },
+    {
+      "Name": "UserName1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"admin\""
+    }
+  ],
   "PublicFunctions": [
     {
       "Name": "CreateIncomingInvoice1C",
