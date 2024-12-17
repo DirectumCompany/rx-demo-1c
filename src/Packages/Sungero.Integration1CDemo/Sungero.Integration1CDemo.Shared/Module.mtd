@@ -76,6 +76,14 @@
       "Value": "\"1CServiceAddress\""
     },
     {
+      "Name": "UpdateListObjectsODataUrlPart1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"/hs/handlers/UpdateListObjectsOData\""
+    },
+    {
       "Name": "UserName1C",
       "ParentClasses": [
         "Module"

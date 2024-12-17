@@ -65,5 +65,11 @@ namespace Sungero.Integration1CDemo.Constants
     /// Часть пути запроса для обращения к справочнику "Организации" в 1С.
     /// </summary>
     public const string GetBusinessUnitsUrlPart1C = "/odata/standard.odata/Catalog_Организации";
+    
+    /// <summary>
+    /// Часть пути запроса для первичной инициализации OData в 1С.
+    /// </summary>
+    [Public]
+    public const string UpdateListObjectsODataUrlPart1C = "/hs/handlers/UpdateListObjectsOData";
   }
 }

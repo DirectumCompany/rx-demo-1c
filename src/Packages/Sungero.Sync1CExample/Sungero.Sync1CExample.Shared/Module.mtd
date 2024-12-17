@@ -55,6 +55,9 @@
       "MinVersion": ""
     }
   ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -62,6 +65,13 @@
   "IsolatedAssemblyName": "Sungero.Sync1CExample.Isolated",
   "IsolatedNamespace": "Sungero.Sync1CExample.Isolated",
   "IsVisible": false,
+  "Libraries": [
+    {
+      "NameGuid": "8d509ddd-977e-47b6-8437-22ad44d427ab",
+      "Name": "Integration1CExtensions",
+      "Scope": "Both"
+    }
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.Sync1CExample",
