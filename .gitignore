@@ -32,8 +32,6 @@ _ConfigSettings.xml*
 
 *.nupkg
 *.diff
-*.csproj
-*.sln
 *.g.cs
 *.xaml
 *.xaml.cs
