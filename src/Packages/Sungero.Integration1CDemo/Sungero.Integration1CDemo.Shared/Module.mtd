@@ -57,7 +57,7 @@
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"11111\""
+      "Value": "\"\""
     },
     {
       "Name": "ServiceUrl1C",
@@ -65,7 +65,7 @@
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"https://w1306w10/1C_Pyrin\""
+      "Value": "\"https://w1333w10/1C_Melnikov2\""
     },
     {
       "Name": "UpdateListObjectsODataUrlPart1C",
@@ -81,7 +81,7 @@
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"admin\""
+      "Value": "\"ИвановИИ\""
     }
   ],
   "PublicFunctions": [
