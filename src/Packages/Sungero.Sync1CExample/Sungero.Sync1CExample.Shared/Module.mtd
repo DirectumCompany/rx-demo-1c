@@ -7,10 +7,10 @@
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "6b1a1d98-08ea-433d-876b-2f8b07cd408c",
-      "Name": "SetInvoiceStatusToPaid",
+      "Name": "SetInvoiceStatusToPaid1C",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
-        "SetInvoiceStatusToPaidExecute"
+        "SetInvoiceStatusToPaid1CExecute"
       ],
       "ProcessStagesDisplayMode": "Hide",
       "Properties": [

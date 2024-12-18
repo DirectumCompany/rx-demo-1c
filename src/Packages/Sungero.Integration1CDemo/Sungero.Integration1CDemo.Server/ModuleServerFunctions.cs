@@ -263,7 +263,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <remarks>Для счёта будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
     /// <returns>true - успешно. false - не успешно.</returns>
     [Public]
-    public virtual bool SetInvoiceStatusToPaid(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
+    public virtual bool SetInvoiceStatusToPaid1C(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
     {
       // Получить счет на оплату
       var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
@@ -288,7 +288,7 @@ namespace Sungero.Integration1CDemo.Server
           return false;
         }
         
-        if (this.ObjectExistsIn1C(connector1C, businessUnit1CId, invoiceId))
+        if (this.InvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoiceId))
         {
           var statusContent = new {
             Статус = "Оплачен",
@@ -321,7 +321,14 @@ namespace Sungero.Integration1CDemo.Server
       }
     }
     
-    private bool ObjectExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoiceId)
+    /// <summary>
+    /// Проверить существует ли статус для счёта на оплату в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">ID исходящего счёта.</param>
+    /// <returns>true - существует. false - не существует.</returns>
+    private bool InvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoiceId)
     {
       try
       {
