@@ -13,6 +13,7 @@ namespace Sungero.ContractsExample.Server
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
       CreateApprovalCreateIncInvoice1CStage();
+      InsertDocflowParams();
     }
     
     /// <summary>
@@ -28,6 +29,15 @@ namespace Sungero.ContractsExample.Server
       stage.Name = Sungero.ContractsExample.Resources.ApprovalCreateIncInvoice1CStageName;
       stage.TimeoutInHours = 4;
       stage.Save();
-    }    
+    }
+
+    /// <summary>
+    /// Добавить параметры в docflow_params
+    /// </summary>
+    public void InsertDocflowParams()
+    {
+      var keys = new List<string> { "1CServiceAddress", "Username", "Password", "1CSystemId" };
+      keys.ForEach(k =>  Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(k, string.Empty));
+    }
   }
 }
