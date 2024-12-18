@@ -8,22 +8,25 @@ namespace Sungero.Integration1CDemo.Constants
     /// <summary>
     /// Адрес веб-сервера 1С.
     /// </summary>
+    [Public]
     public const string ServiceUrl1C = "https://w1333w10/1C_Melnikov2";
     
     /// <summary>
     /// Имя пользователя 1С.
     /// </summary>
+    [Public]
     public const string UserName1C = "ИвановИИ";
 
     /// <summary>
     /// Пароль пользователя 1С.
     /// </summary>
+    [Public]
     public const string Password1C = "";
 
     /// <summary>
     /// Идентификатор системы 1С.
     /// </summary>
-    public const string ExtSystemId1C = "1C_Acc";    
+    public const string ExtSystemId1C = "1C_Acc";
     
     /// <summary>
     /// Тип объекта системы 1C для договоров.
@@ -31,9 +34,14 @@ namespace Sungero.Integration1CDemo.Constants
     public const string ContractsExtEntityType = "ДоговорыКонтрагентов";
     
     /// <summary>
+    /// Тип объекта системы 1C для счетов на оплату покупателю.
+    /// </summary>
+    public const string InvoiceForPaymentEntityType = "СчетНаОплатуПокупателю";
+    
+    /// <summary>
     /// Тип объекта системы 1C для контрагентов.
     /// </summary>
-    public const string CounterpartyExtEntityType = "Контрагенты";    
+    public const string CounterpartyExtEntityType = "Контрагенты";
     
     /// <summary>
     /// Часть пути запроса для создания входящего счета в 1С.
@@ -46,8 +54,20 @@ namespace Sungero.Integration1CDemo.Constants
     public const string CreatingPaymentTermUrlPart1C = "/odata/standard.odata/InformationRegister_СрокиОплатыДокументов?$format=json&$expand=*";
 
     /// <summary>
+    /// Часть пути запроса для создания записи в регистре сведений "Статусы документов" в 1С.
+    /// </summary>
+    public const string CreatingDocumentStatusUrlPart1C = "/odata/standard.odata/InformationRegister_СтатусыДокументов?$format=json&$expand=*";
+
+    
+    /// <summary>
     /// Часть пути запроса для обращения к справочнику "Организации" в 1С.
     /// </summary>
     public const string GetBusinessUnitsUrlPart1C = "/odata/standard.odata/Catalog_Организации";
+    
+    /// <summary>
+    /// Часть пути запроса для первичной инициализации OData в 1С.
+    /// </summary>
+    [Public]
+    public const string UpdateListObjectsODataUrlPart1C = "/hs/handlers/UpdateListObjectsOData";
   }
 }

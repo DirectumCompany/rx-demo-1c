@@ -50,6 +50,40 @@
     }
   ],
   "OrderedSpecialFolders": [],
+  "PublicConstants": [
+    {
+      "Name": "Password1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"\""
+    },
+    {
+      "Name": "ServiceUrl1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"https://w1333w10/1C_Melnikov2\""
+    },
+    {
+      "Name": "UpdateListObjectsODataUrlPart1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"/hs/handlers/UpdateListObjectsOData\""
+    },
+    {
+      "Name": "UserName1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"ИвановИИ\""
+    }
+  ],
   "PublicFunctions": [
     {
       "Name": "CreateIncomingInvoice1C",
@@ -112,6 +146,18 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult",
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
+    },
+    {
+      "Name": "SetInvoiceStatusToPaid",
+      "Parameters": [
+        {
+          "Name": "outgoingInvoice",
+          "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
+          "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [
@@ -182,7 +228,9 @@
     "OpenRecord1CErrorIsDelete",
     "OpenRecord1CErrorNotExist",
     "OpenRecord1CError",
-    "OpenIncomingInvoice1CErrorNotFound"
+    "OpenIncomingInvoice1CErrorNotFound",
+    "GetDocumentStatusFrom1CUrl",
+    "PatchDocumentStatusFrom1CUrl"
   ],
   "ServerAssemblyName": "Sungero.Integration1CDemo.Server",
   "ServerNamespace": "Sungero.Integration1CDemo.Server",
