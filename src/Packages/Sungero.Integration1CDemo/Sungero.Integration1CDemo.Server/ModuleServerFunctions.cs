@@ -307,7 +307,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <param name="invoiceId">ID исходящего счёта.</param>
     private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
     {
-      if (this.InvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId))
+      if (this.IsInvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId))
       {
         var statusContent = new {
           Статус = "Оплачен",
@@ -339,7 +339,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <param name="businessUnit1CId">Организация.</param>
     /// <param name="invoiceId">ID исходящего счёта.</param>
     /// <returns>true - существует. false - не существует.</returns>
-    private bool InvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    private bool IsInvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
     {
       try
       {
