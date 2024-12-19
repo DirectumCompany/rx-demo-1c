@@ -277,7 +277,7 @@ namespace Sungero.Integration1CDemo.Server
       try
       {
         var connector1C = this.GetConnector1C();
-        var invoiceId = invoiceExtEntityLink.ExtEntityId;
+        var invoice1CId = invoiceExtEntityLink.ExtEntityId;
         
         // Получить ИД организации в 1С.
         var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, outgoingInvoice.BusinessUnit?.TIN, outgoingInvoice.BusinessUnit?.TRRC);
@@ -288,29 +288,7 @@ namespace Sungero.Integration1CDemo.Server
           return false;
         }
         
-        if (this.InvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoiceId))
-        {
-          var statusContent = new {
-            Статус = "Оплачен",
-            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-          };
-          
-          var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoiceId);
-          
-          connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
-        }
-        else
-        {
-          var statusContent = new {
-            Организация_Key = businessUnit1CId,
-            Документ = invoiceId,
-            Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
-            Статус = "Оплачен",
-            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-          };
-          
-          connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
-        }
+        this.SendInvoiceStatusTo1C(connector1C, businessUnit1CId, invoice1CId);
         
         return true;
       }
@@ -322,17 +300,50 @@ namespace Sungero.Integration1CDemo.Server
     }
     
     /// <summary>
+    /// Отправить запрос на смену статуса в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">ID исходящего счёта.</param>
+    private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      if (this.InvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId))
+      {
+        var statusContent = new {
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoice1CId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+    
+    /// <summary>
     /// Проверить существует ли статус для счёта на оплату в 1С.
     /// </summary>
     /// <param name="connector1C">Коннектор к 1С.</param>
     /// <param name="businessUnit1CId">Организация.</param>
     /// <param name="invoiceId">ID исходящего счёта.</param>
     /// <returns>true - существует. false - не существует.</returns>
-    private bool InvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoiceId)
+    private bool InvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
     {
       try
       {
-        var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoiceId);
+        var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
         
         connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
         
