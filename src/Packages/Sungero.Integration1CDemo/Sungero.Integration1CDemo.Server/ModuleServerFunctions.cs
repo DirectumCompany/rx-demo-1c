@@ -316,7 +316,7 @@ namespace Sungero.Integration1CDemo.Server
         
         var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
         
-        connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
       }
       else
       {
@@ -328,7 +328,7 @@ namespace Sungero.Integration1CDemo.Server
           Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
         };
         
-        connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
       }
     }
     
@@ -345,7 +345,7 @@ namespace Sungero.Integration1CDemo.Server
       {
         var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
         
-        connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
+        connector1C.RunGetRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url));
         
         return true;
       }
@@ -360,6 +360,7 @@ namespace Sungero.Integration1CDemo.Server
     /// </summary>
     /// <param name="key">Ключ параметра.</param>
     /// <returns>Значение параметра.</returns>
+    [Public]
     public string GetDocflowParamsValue(string key) =>
       Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();
     

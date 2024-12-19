@@ -123,6 +123,18 @@
       "ReturnTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetDocflowParamsValue",
+      "Parameters": [
+        {
+          "Name": "key",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetIncomingInvoice1CHyperlink",
       "IsRemote": true,
       "Parameters": [
