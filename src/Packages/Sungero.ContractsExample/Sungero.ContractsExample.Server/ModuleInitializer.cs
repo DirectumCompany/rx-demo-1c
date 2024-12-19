@@ -36,14 +36,11 @@ namespace Sungero.ContractsExample.Server
     /// </summary>
     public void InsertDocflowParams()
     {
-      var keys = new List<string> 
-      {
-        Integration1CDemo.PublicConstants.Module.ServiceUrl1C,
-        Integration1CDemo.PublicConstants.Module.UserName1C,
-        Integration1CDemo.PublicConstants.Module.Password1C,
-        Integration1CDemo.PublicConstants.Module.ExtSystemId1C 
-      };
-      keys.ForEach(k =>  Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(k, string.Empty));
+      InitializationLogger.DebugFormat("Init: Adding parameters to docflow_params for integration with 1C.");
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.ServiceUrl1C, string.Empty);
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.UserName1C, string.Empty);
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.Password1C, string.Empty);
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.ExtSystemId1C, string.Empty);
     }
   }
 }
