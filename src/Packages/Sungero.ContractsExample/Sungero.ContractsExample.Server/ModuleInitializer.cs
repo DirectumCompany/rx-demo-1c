@@ -13,7 +13,6 @@ namespace Sungero.ContractsExample.Server
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
       CreateApprovalCreateIncInvoice1CStage();
-      InsertDocflowParams();
     }
     
     /// <summary>
@@ -29,18 +28,6 @@ namespace Sungero.ContractsExample.Server
       stage.Name = Sungero.ContractsExample.Resources.ApprovalCreateIncInvoice1CStageName;
       stage.TimeoutInHours = 4;
       stage.Save();
-    }
-
-    /// <summary>
-    /// Добавить параметры в docflow_params
-    /// </summary>
-    public void InsertDocflowParams()
-    {
-      InitializationLogger.DebugFormat("Init: Adding parameters to docflow_params for integration with 1C.");
-      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.ServiceUrl1C, string.Empty);
-      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.UserName1C, string.Empty);
-      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.Password1C, string.Empty);
-      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Integration1CDemo.PublicConstants.Module.ExtSystemId1C, string.Empty);
     }
   }
 }
