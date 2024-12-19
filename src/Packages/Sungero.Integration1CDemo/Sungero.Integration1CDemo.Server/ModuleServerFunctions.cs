@@ -67,7 +67,7 @@ namespace Sungero.Integration1CDemo.Server
         {
           var connector1C = this.GetConnector1C();
           hyperlink = connector1C.RunGetRequest(string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}",
-                                                              GetDocflowParamsValue("1CServiceAddress"), entityExternalLink.ExtEntityId, entityExternalLink.ExtEntityType));
+                                                              GetDocflowParamsValue(Constants.Module.ServiceUrl1C), entityExternalLink.ExtEntityId, entityExternalLink.ExtEntityType));
         }
         catch (Exception ex)
         {
@@ -99,10 +99,10 @@ namespace Sungero.Integration1CDemo.Server
         var connector1C = this.GetConnector1C();
         // Ограничение: работает только, если у нашей организации и контрагента заполнены поля: ИНН и КПП.
         var getHyperlinkRequestUrl = string.Format("{0}/hs/gethyperlink/GetIncomingInvoiceHyperlink/{1}/{2}/{3}/{4}/{5}/{6}",
-                                                   GetDocflowParamsValue("1CServiceAddress"), incommingInvoice.Number.Trim(), incommingInvoice.Date.Value.ToString("yyyy-MM-dd"),
+                                                   GetDocflowParamsValue(Constants.Module.ServiceUrl1C), incommingInvoice.Number.Trim(), incommingInvoice.Date.Value.ToString("yyyy-MM-dd"),
                                                    incommingInvoice.BusinessUnit?.TIN, incommingInvoice.BusinessUnit?.TRRC,
                                                    incommingInvoice.Counterparty?.TIN, Sungero.Parties.CompanyBases.As(incommingInvoice.Counterparty)?.TRRC);
-        hyperlink = connector1C.RunGetRequest(getHyperlinkRequestUrl);        
+        hyperlink = connector1C.RunGetRequest(getHyperlinkRequestUrl);
       }
       catch (Exception ex)
       {
@@ -162,10 +162,10 @@ namespace Sungero.Integration1CDemo.Server
         incomingInvoice1C.ДатаВходящегоДокумента = incommingInvoice.Date.Value;
         incomingInvoice1C.Комментарий = incommingInvoice.Note;
         if (!string.IsNullOrEmpty(contractExtEntityId))
-          incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;        
+          incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
         
         // Примечание: для возможности работы с входящими счетами через API веб-сервера 1С необходимо выполнить один раз GET-запрос: "<Адрес веб-сервера 1С>/hs/handlers/UpdateListObjectsOData".
-        var response = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue("1CServiceAddress"), Constants.Module.CreatingIncInvoiceUrlPart1C), incomingInvoice1C);
+        var response = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingIncInvoiceUrlPart1C), incomingInvoice1C);
         
         // Результат выполнения запроса (response) можно парсить либо через десериализацию в структуру либо через JObject.
         var createdIncomingInvoice1C = JsonConvert.DeserializeObject<Sungero.Integration1CDemo.Structures.Module.IncomingInvoice1C>(response);
@@ -181,7 +181,7 @@ namespace Sungero.Integration1CDemo.Server
             СрокОплаты = incommingInvoice.PaymentDueDate
           };
           
-          var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue("1CServiceAddress"), Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
+          var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
         }
         
         created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
@@ -208,7 +208,7 @@ namespace Sungero.Integration1CDemo.Server
         .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
                x.EntityId == entity.Id &&
                x.ExtEntityType == extEntityType &&
-               x.ExtSystemId == GetDocflowParamsValue("1CSystemId"))
+               x.ExtSystemId == GetDocflowParamsValue(Constants.Module.ExtSystemId1C))
         .FirstOrDefault();
       return entityExternalLink;
     }
@@ -223,7 +223,7 @@ namespace Sungero.Integration1CDemo.Server
     public virtual string GetBusinessUnit1CId(Sungero.Integration1CExtensions.Connector1C connector1C, string tin, string trrc)
     {
       var response = connector1C.RunGetRequest(string.Format("{0}{1}?$filter=ИНН eq '{2}' and КПП eq '{3}'&$format=json",
-                                                             GetDocflowParamsValue("1CServiceAddress"), Constants.Module.GetBusinessUnitsUrlPart1C,
+                                                             GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.GetBusinessUnitsUrlPart1C,
                                                              tin, trrc));
       
       // Результат выполнения запроса (response) можно парсить либо через десериализацию в структуру либо через JObject.
@@ -253,7 +253,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <returns>Коннектор к 1С.</returns>
     public virtual Sungero.Integration1CExtensions.Connector1C GetConnector1C()
     {
-      return Integration1CExtensions.Connector1C.Get(GetDocflowParamsValue("Username"), GetDocflowParamsValue("Password"));
+      return Integration1CExtensions.Connector1C.Get(GetDocflowParamsValue(Constants.Module.UserName1C), GetDocflowParamsValue(Constants.Module.Password1C));
     }
     
     /// <summary>
@@ -262,7 +262,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <param name="key">Ключ параметра.</param>
     /// <returns>Значение параметра.</returns>
     public string GetDocflowParamsValue(string key) =>
-      Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();     
+      Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();
     
     #endregion
   }

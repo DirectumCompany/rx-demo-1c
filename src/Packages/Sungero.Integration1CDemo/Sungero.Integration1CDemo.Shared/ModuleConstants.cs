@@ -7,6 +7,26 @@ namespace Sungero.Integration1CDemo.Constants
   public static class Module
   {    
     /// <summary>
+    /// Адрес веб-сервера 1С.
+    /// </summary>
+    public const string ServiceUrl1C = "1CServiceAddress";
+    
+    /// <summary>
+    /// Имя пользователя 1С.
+    /// </summary>
+    public const string UserName1C = "1СUsername";
+
+    /// <summary>
+    /// Пароль пользователя 1С.
+    /// </summary>
+    public const string Password1C = "1СPassword";
+
+    /// <summary>
+    /// Идентификатор системы 1С.
+    /// </summary>
+    public const string ExtSystemId1C = "1CSystemId";
+    
+    /// <summary>
     /// Тип объекта системы 1C для договоров.
     /// </summary>
     public const string ContractsExtEntityType = "ДоговорыКонтрагентов";
