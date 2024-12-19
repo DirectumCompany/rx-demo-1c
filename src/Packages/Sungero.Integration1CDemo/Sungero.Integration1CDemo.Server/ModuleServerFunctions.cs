@@ -257,6 +257,104 @@ namespace Sungero.Integration1CDemo.Server
     }
     
     /// <summary>
+    /// Установить статус УПД как "Документ подписан" в 1С.
+    /// </summary>
+    /// <param name="outgoingInvoice">Универсальный передаточный документ.</param>
+    /// <returns>True - успешно. False - неуспешно.</returns>
+    /// <remarks>Для УПД будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
+    [Public]
+    public virtual bool SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument)
+    {
+      var utdExtEntityLink = this.GetExternalEntityLink(universalTransferDocument, Constants.Module.UniversalTransferDocumentEntityType);
+      
+      if (utdExtEntityLink == null)
+      {
+        Logger.DebugFormat("Integration1C. Document status not updated in 1C: Document is not sync to 1C. UniversalTransferDocument Id = {0}.", universalTransferDocument.Id);
+        return false;
+      }
+      
+      try
+      {
+        var connector1C = this.GetConnector1C();
+        var utd1CId = utdExtEntityLink.ExtEntityId;
+        
+        // Получить ИД организации в 1С.
+        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, universalTransferDocument.BusinessUnit?.TIN, universalTransferDocument.BusinessUnit?.TRRC);
+        
+        if (string.IsNullOrEmpty(businessUnit1CId))
+        {
+          Logger.DebugFormat("Integration1C. Document status not updated in 1C: not found single business unit in 1C. UniversalTransferDocument Id = {0}.", universalTransferDocument.Id);
+          return false;
+        }
+        
+        this.SendUniversalTransferDocumentSignStatusTo1C(connector1C, businessUnit1CId, utd1CId);
+        return true;
+      }
+      catch (Exception ex)
+      {
+        Logger.ErrorFormat("Integration1C. Error while updating document 1C sign status. UniversalTransferDocument Id = {0}.", ex, universalTransferDocument.Id);
+        return false;
+      }
+      
+    }
+    
+    /// <summary>
+    /// Отправить запрос на смену статуса подписания в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="utd1CId">Id УПД.</param>
+    private void SendUniversalTransferDocumentSignStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string utd1CId)
+    {
+      if (this.IsUniversalTranserDocumentStatusExistsIn1C(connector1C, businessUnit1CId, utd1CId))
+      {
+        var statusContent = new {
+          Статус = "Подписан",
+          Статус_Type = "UnavailableEnums.СтатусыДокументовРеализации"
+        };
+
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchUniversalTransferDocumentSignStatusFrom1C, businessUnit1CId, utd1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = utd1CId,
+          Документ_Type = "StandardODATA.Document_РеализацияТоваровУслуг",
+          Статус = "Подписан",
+          Статус_Type = "UnavailableEnums.СтатусыДокументовРеализации"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+        
+    /// <summary>
+    /// Проверить существует ли статус для УПД в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="utdId">ID УПД.</param>
+    /// <returns>True - существует. False - не существует.</returns>
+    private bool IsUniversalTranserDocumentStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string utdId)
+    {
+      try
+      {
+        var url = string.Format(Sungero.Integration1CDemo.Resources.GetUniversalTransferDocumentStatusFrom1CUrl, businessUnit1CId, utdId);
+        
+        connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
+        
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+ 
+    /// <summary>
     /// Установить статус счёта как "Оплачено" в 1С.
     /// </summary>
     /// <param name="outgoingInvoice">Исходящий счёт.</param>

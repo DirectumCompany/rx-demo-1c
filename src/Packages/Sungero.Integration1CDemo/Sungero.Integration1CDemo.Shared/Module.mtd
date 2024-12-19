@@ -158,6 +158,18 @@
       ],
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "SetUniversalTransferDocumentSignStatus",
+      "Parameters": [
+        {
+          "Name": "universalTransferDocument",
+          "ParameterType": "global::Sungero.FinancialArchive.IUniversalTransferDocument",
+          "ParameterTypeFullName": "Sungero.FinancialArchive.IUniversalTransferDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [
@@ -230,7 +242,9 @@
     "OpenRecord1CError",
     "OpenIncomingInvoice1CErrorNotFound",
     "GetDocumentStatusFrom1CUrl",
-    "PatchDocumentStatusFrom1CUrl"
+    "PatchDocumentStatusFrom1CUrl",
+    "GetUniversalTransferDocumentStatusFrom1CUrl",
+    "PatchUniversalTransferDocumentSignStatusFrom1C"
   ],
   "ServerAssemblyName": "Sungero.Integration1CDemo.Server",
   "ServerNamespace": "Sungero.Integration1CDemo.Server",

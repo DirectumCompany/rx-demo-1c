@@ -7,6 +7,29 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
+  partial class SetUniversalTransferDocumentSignStatusHandlers
+  {
+
+    public virtual void SetUniversalTransferDocumentSignStatusExecute()
+    {
+      var universlTransferDocument = Sungero.FinancialArchive.UniversalTransferDocuments.As(_block.Document);
+      if (universlTransferDocument != null &&
+          universlTransferDocument.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed && 
+          universlTransferDocument.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
+      {
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetUniversalTransferDocumentSignStatus(universlTransferDocument);
+        
+        if (isSuccess)
+          Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+        else
+          Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Failed to update sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+      }
+      else
+        Logger.ErrorFormat("SetUniversalTransferDocumentSignStatusExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+    
+    }
+  }
+
 
   partial class SetInvoiceStatusToPaidHandlers
   {

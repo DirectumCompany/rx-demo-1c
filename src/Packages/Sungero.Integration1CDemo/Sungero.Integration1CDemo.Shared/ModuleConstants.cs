@@ -39,6 +39,11 @@ namespace Sungero.Integration1CDemo.Constants
     public const string InvoiceForPaymentEntityType = "СчетНаОплатуПокупателю";
     
     /// <summary>
+    /// Тип объекта системы 1C для универсальных передаточных документов.
+    /// </summary>
+    public const string UniversalTransferDocumentEntityType = "РеализацияТоваровУслуг";
+    
+    /// <summary>
     /// Тип объекта системы 1C для контрагентов.
     /// </summary>
     public const string CounterpartyExtEntityType = "Контрагенты";
