@@ -50,6 +50,40 @@
     }
   ],
   "OrderedSpecialFolders": [],
+  "PublicConstants": [
+    {
+      "Name": "ExtSystemId1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1CSystemId\""
+    },
+    {
+      "Name": "Password1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1СPassword\""
+    },
+    {
+      "Name": "ServiceUrl1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1CServiceAddress\""
+    },
+    {
+      "Name": "UserName1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1СUsername\""
+    }
+  ],
   "PublicFunctions": [
     {
       "Name": "CreateIncomingInvoice1C",

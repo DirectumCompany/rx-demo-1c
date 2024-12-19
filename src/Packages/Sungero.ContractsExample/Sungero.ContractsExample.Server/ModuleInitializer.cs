@@ -36,7 +36,13 @@ namespace Sungero.ContractsExample.Server
     /// </summary>
     public void InsertDocflowParams()
     {
-      var keys = new List<string> { "1CServiceAddress", "Username", "Password", "1CSystemId" };
+      var keys = new List<string> 
+      {
+        Integration1CDemo.PublicConstants.Module.ServiceUrl1C,
+        Integration1CDemo.PublicConstants.Module.UserName1C,
+        Integration1CDemo.PublicConstants.Module.Password1C,
+        Integration1CDemo.PublicConstants.Module.ExtSystemId1C 
+      };
       keys.ForEach(k =>  Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(k, string.Empty));
     }
   }
