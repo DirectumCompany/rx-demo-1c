@@ -49,7 +49,7 @@ namespace Sungero.Sync1CExample.Server
       }
       catch(Exception ex)
       {
-        Logger.DebugFormat("Инициализация: Не удалось установить доступ к 1С. Проверьте корректность реквизитов в docflow_params.", ex);
+        Logger.DebugFormat("Init: Failed access to 1C. Check that parameters in docflow_params are correct.", ex);
       }
     }
   }
