@@ -28,6 +28,6 @@ namespace Sungero.ContractsExample.Server
       stage.Name = Sungero.ContractsExample.Resources.ApprovalCreateIncInvoice1CStageName;
       stage.TimeoutInHours = 4;
       stage.Save();
-    }    
+    }
   }
 }

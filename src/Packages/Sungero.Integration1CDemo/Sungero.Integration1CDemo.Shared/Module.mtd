@@ -34,6 +34,10 @@
     {
       "ItemId": "a91215d7-4fbf-4d69-954f-a14bce212b47",
       "PreviousItemId": "62f70f15-967a-4211-81ac-7c02aa3928b5"
+    },
+    {
+      "ItemId": "c8925f42-ffd5-49c1-8cd9-7f2264429b00",
+      "PreviousItemId": "a91215d7-4fbf-4d69-954f-a14bce212b47"
     }
   ],
   "IconResourcesKeys": [],
@@ -52,12 +56,20 @@
   "OrderedSpecialFolders": [],
   "PublicConstants": [
     {
+      "Name": "ExtSystemId1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1CSystemId\""
+    },
+    {
       "Name": "Password1C",
       "ParentClasses": [
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"\""
+      "Value": "\"1СPassword\""
     },
     {
       "Name": "ServiceUrl1C",
@@ -65,7 +77,7 @@
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"https://w1333w10/1C_Melnikov2\""
+      "Value": "\"1CServiceAddress\""
     },
     {
       "Name": "UpdateListObjectsODataUrlPart1C",
@@ -81,7 +93,7 @@
         "Module"
       ],
       "TypeName": "System.String",
-      "Value": "\"ИвановИИ\""
+      "Value": "\"1СUsername\""
     }
   ],
   "PublicFunctions": [
@@ -113,6 +125,18 @@
       ],
       "ReturnType": "global::Sungero.Docflow.IOfficialDocument",
       "ReturnTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetDocflowParamsValue",
+      "Parameters": [
+        {
+          "Name": "key",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "GetIncomingInvoice1CHyperlink",
@@ -148,24 +172,12 @@
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
     },
     {
-      "Name": "SetInvoiceStatusToPaid",
+      "Name": "SetInvoiceStatusToPaid1C",
       "Parameters": [
         {
           "Name": "outgoingInvoice",
           "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
           "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
-    },
-    {
-      "Name": "SetUniversalTransferDocumentSignStatus",
-      "Parameters": [
-        {
-          "Name": "universalTransferDocument",
-          "ParameterType": "global::Sungero.FinancialArchive.IUniversalTransferDocument",
-          "ParameterTypeFullName": "Sungero.FinancialArchive.IUniversalTransferDocument, Sungero.Domain.Interfaces"
         }
       ],
       "ReturnType": "global::System.Boolean",

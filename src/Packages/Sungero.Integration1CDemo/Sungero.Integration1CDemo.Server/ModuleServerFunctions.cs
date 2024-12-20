@@ -67,7 +67,7 @@ namespace Sungero.Integration1CDemo.Server
         {
           var connector1C = this.GetConnector1C();
           hyperlink = connector1C.RunGetRequest(string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}",
-                                                              Constants.Module.ServiceUrl1C, entityExternalLink.ExtEntityId, entityExternalLink.ExtEntityType));
+                                                              GetDocflowParamsValue(Constants.Module.ServiceUrl1C), entityExternalLink.ExtEntityId, entityExternalLink.ExtEntityType));
         }
         catch (Exception ex)
         {
@@ -99,7 +99,7 @@ namespace Sungero.Integration1CDemo.Server
         var connector1C = this.GetConnector1C();
         // Ограничение: работает только, если у нашей организации и контрагента заполнены поля: ИНН и КПП.
         var getHyperlinkRequestUrl = string.Format("{0}/hs/gethyperlink/GetIncomingInvoiceHyperlink/{1}/{2}/{3}/{4}/{5}/{6}",
-                                                   Constants.Module.ServiceUrl1C, incommingInvoice.Number.Trim(), incommingInvoice.Date.Value.ToString("yyyy-MM-dd"),
+                                                   GetDocflowParamsValue(Constants.Module.ServiceUrl1C), incommingInvoice.Number.Trim(), incommingInvoice.Date.Value.ToString("yyyy-MM-dd"),
                                                    incommingInvoice.BusinessUnit?.TIN, incommingInvoice.BusinessUnit?.TRRC,
                                                    incommingInvoice.Counterparty?.TIN, Sungero.Parties.CompanyBases.As(incommingInvoice.Counterparty)?.TRRC);
         hyperlink = connector1C.RunGetRequest(getHyperlinkRequestUrl);
@@ -165,7 +165,7 @@ namespace Sungero.Integration1CDemo.Server
           incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
         
         // Примечание: для возможности работы с входящими счетами через API веб-сервера 1С необходимо выполнить один раз GET-запрос: "<Адрес веб-сервера 1С>/hs/handlers/UpdateListObjectsOData".
-        var response = connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingIncInvoiceUrlPart1C), incomingInvoice1C);
+        var response = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingIncInvoiceUrlPart1C), incomingInvoice1C);
         
         // Результат выполнения запроса (response) можно парсить либо через десериализацию в структуру либо через JObject.
         var createdIncomingInvoice1C = JsonConvert.DeserializeObject<Sungero.Integration1CDemo.Structures.Module.IncomingInvoice1C>(response);
@@ -181,7 +181,7 @@ namespace Sungero.Integration1CDemo.Server
             СрокОплаты = incommingInvoice.PaymentDueDate
           };
           
-          var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
+          var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
         }
         
         created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
@@ -208,7 +208,7 @@ namespace Sungero.Integration1CDemo.Server
         .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
                x.EntityId == entity.Id &&
                x.ExtEntityType == extEntityType &&
-               x.ExtSystemId == Constants.Module.ExtSystemId1C)
+               x.ExtSystemId == GetDocflowParamsValue(Constants.Module.ExtSystemId1C))
         .FirstOrDefault();
       return entityExternalLink;
     }
@@ -223,7 +223,7 @@ namespace Sungero.Integration1CDemo.Server
     public virtual string GetBusinessUnit1CId(Sungero.Integration1CExtensions.Connector1C connector1C, string tin, string trrc)
     {
       var response = connector1C.RunGetRequest(string.Format("{0}{1}?$filter=ИНН eq '{2}' and КПП eq '{3}'&$format=json",
-                                                             Constants.Module.ServiceUrl1C, Constants.Module.GetBusinessUnitsUrlPart1C,
+                                                             GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.GetBusinessUnitsUrlPart1C,
                                                              tin, trrc));
       
       // Результат выполнения запроса (response) можно парсить либо через десериализацию в структуру либо через JObject.
@@ -253,8 +253,116 @@ namespace Sungero.Integration1CDemo.Server
     /// <returns>Коннектор к 1С.</returns>
     public virtual Sungero.Integration1CExtensions.Connector1C GetConnector1C()
     {
-      return Integration1CExtensions.Connector1C.Get(Constants.Module.UserName1C, Constants.Module.Password1C);
+      return Integration1CExtensions.Connector1C.Get(GetDocflowParamsValue(Constants.Module.UserName1C), GetDocflowParamsValue(Constants.Module.Password1C));
     }
+    
+    /// <summary>
+    /// Установить статус счёта как "Оплачено" в 1С.
+    /// </summary>
+    /// <param name="outgoingInvoice">Исходящий счёт.</param>
+    /// <remarks>Для счёта будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
+    /// <returns>true - успешно. false - не успешно.</returns>
+    [Public]
+    public virtual bool SetInvoiceStatusToPaid1C(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
+    {
+      // Получить счет на оплату
+      var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
+      
+      if (invoiceExtEntityLink == null)
+      {
+        Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: InvoiceForPayment is not sync to 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
+        return false;
+      }
+      
+      try
+      {
+        var connector1C = this.GetConnector1C();
+        var invoice1CId = invoiceExtEntityLink.ExtEntityId;
+        
+        // Получить ИД организации в 1С.
+        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, outgoingInvoice.BusinessUnit?.TIN, outgoingInvoice.BusinessUnit?.TRRC);
+        
+        if (string.IsNullOrEmpty(businessUnit1CId))
+        {
+          Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: not found single business unit in 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
+          return false;
+        }
+        
+        this.SendInvoiceStatusTo1C(connector1C, businessUnit1CId, invoice1CId);
+        
+        return true;
+      }
+      catch(Exception ex)
+      {
+        Logger.ErrorFormat("Integration1C. Error while updating invoice 1C status to paid. OutgoingInvoice Id = {0}.", ex, outgoingInvoice.Id);
+        return false;
+      }
+    }
+    
+    /// <summary>
+    /// Отправить запрос на смену статуса в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">ID исходящего счёта.</param>
+    private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      if (this.IsInvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId))
+      {
+        var statusContent = new {
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoice1CId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+    
+    /// <summary>
+    /// Проверить существует ли статус для счёта на оплату в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">ID исходящего счёта.</param>
+    /// <returns>true - существует. false - не существует.</returns>
+    private bool IsInvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      try
+      {
+        var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunGetRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url));
+        
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+    
+    /// <summary>
+    /// Получить значение параметра из docflow_params.
+    /// </summary>
+    /// <param name="key">Ключ параметра.</param>
+    /// <returns>Значение параметра.</returns>
+    [Public]
+    public string GetDocflowParamsValue(string key) =>
+      Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();
     
     /// <summary>
     /// Установить статус УПД как "Документ подписан" в 1С.
@@ -263,7 +371,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <returns>True - успешно. False - неуспешно.</returns>
     /// <remarks>Для УПД будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
     [Public]
-    public virtual bool SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument)
+    public virtual bool SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument, bool param) //SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument)
     {
       var utdExtEntityLink = this.GetExternalEntityLink(universalTransferDocument, Constants.Module.UniversalTransferDocumentEntityType);
       
@@ -298,6 +406,7 @@ namespace Sungero.Integration1CDemo.Server
       
     }
     
+    
     /// <summary>
     /// Отправить запрос на смену статуса подписания в 1С.
     /// </summary>
@@ -330,7 +439,7 @@ namespace Sungero.Integration1CDemo.Server
         connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
       }
     }
-        
+    
     /// <summary>
     /// Проверить существует ли статус для УПД в 1С.
     /// </summary>
@@ -353,88 +462,7 @@ namespace Sungero.Integration1CDemo.Server
         return false;
       }
     }
- 
-    /// <summary>
-    /// Установить статус счёта как "Оплачено" в 1С.
-    /// </summary>
-    /// <param name="outgoingInvoice">Исходящий счёт.</param>
-    /// <remarks>Для счёта будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
-    /// <returns>true - успешно. false - не успешно.</returns>
-    [Public]
-    public virtual bool SetInvoiceStatusToPaid(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
-    {
-      // Получить счет на оплату
-      var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
-      
-      if (invoiceExtEntityLink == null)
-      {
-        Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: InvoiceForPayment is not sync to 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
-        return false;
-      }
-      
-      try
-      {
-        var connector1C = this.GetConnector1C();
-        var invoiceId = invoiceExtEntityLink.ExtEntityId;
-        
-        // Получить ИД организации в 1С.
-        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, outgoingInvoice.BusinessUnit?.TIN, outgoingInvoice.BusinessUnit?.TRRC);
-        
-        if (string.IsNullOrEmpty(businessUnit1CId))
-        {
-          Logger.DebugFormat("Integration1C. Outgoing invoice status not updated in 1C: not found single business unit in 1C. OutgoingInvoice Id = {0}.", outgoingInvoice.Id);
-          return false;
-        }
-        
-        if (this.ObjectExistsIn1C(connector1C, businessUnit1CId, invoiceId))
-        {
-          var statusContent = new {
-            Статус = "Оплачен",
-            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-          };
-          
-          var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoiceId);
-          
-          connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
-        }
-        else
-        {
-          var statusContent = new {
-            Организация_Key = businessUnit1CId,
-            Документ = invoiceId,
-            Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
-            Статус = "Оплачен",
-            Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-          };
-          
-          connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
-        }
-        
-        return true;
-      }
-      catch(Exception ex)
-      {
-        Logger.ErrorFormat("Integration1C. Error while updating invoice 1C status to paid. OutgoingInvoice Id = {0}.", ex, outgoingInvoice.Id);
-        return false;
-      }
-    }
-    
-    private bool ObjectExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoiceId)
-    {
-      try
-      {
-        var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoiceId);
-        
-        connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
-        
-        return true;
-      }
-      catch
-      {
-        return false;
-      }
-    }
-    
-    #endregion
   }
+  
+  #endregion
 }
