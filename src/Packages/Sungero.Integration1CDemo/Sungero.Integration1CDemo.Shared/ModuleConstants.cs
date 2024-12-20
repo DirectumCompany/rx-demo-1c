@@ -36,6 +36,11 @@ namespace Sungero.Integration1CDemo.Constants
     public const string ContractsExtEntityType = "ДоговорыКонтрагентов";
     
     /// <summary>
+    /// Тип объекта системы 1C для счетов на оплату покупателю.
+    /// </summary>
+    public const string InvoiceForPaymentEntityType = "СчетНаОплатуПокупателю";
+    
+    /// <summary>
     /// Тип объекта системы 1C для контрагентов.
     /// </summary>
     public const string CounterpartyExtEntityType = "Контрагенты";
@@ -51,8 +56,20 @@ namespace Sungero.Integration1CDemo.Constants
     public const string CreatingPaymentTermUrlPart1C = "/odata/standard.odata/InformationRegister_СрокиОплатыДокументов?$format=json&$expand=*";
 
     /// <summary>
+    /// Часть пути запроса для создания записи в регистре сведений "Статусы документов" в 1С.
+    /// </summary>
+    public const string CreatingDocumentStatusUrlPart1C = "/odata/standard.odata/InformationRegister_СтатусыДокументов?$format=json&$expand=*";
+
+    
+    /// <summary>
     /// Часть пути запроса для обращения к справочнику "Организации" в 1С.
     /// </summary>
     public const string GetBusinessUnitsUrlPart1C = "/odata/standard.odata/Catalog_Организации";
+    
+    /// <summary>
+    /// Часть пути запроса для первичной инициализации OData в 1С.
+    /// </summary>
+    [Public]
+    public const string UpdateListObjectsODataUrlPart1C = "/hs/handlers/UpdateListObjectsOData";
   }
 }

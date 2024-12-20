@@ -76,6 +76,14 @@
       "Value": "\"1CServiceAddress\""
     },
     {
+      "Name": "UpdateListObjectsODataUrlPart1C",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"/hs/handlers/UpdateListObjectsOData\""
+    },
+    {
       "Name": "UserName1C",
       "ParentClasses": [
         "Module"
@@ -115,6 +123,18 @@
       "ReturnTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetDocflowParamsValue",
+      "Parameters": [
+        {
+          "Name": "key",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetIncomingInvoice1CHyperlink",
       "IsRemote": true,
       "Parameters": [
@@ -146,6 +166,18 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult",
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
+    },
+    {
+      "Name": "SetInvoiceStatusToPaid1C",
+      "Parameters": [
+        {
+          "Name": "outgoingInvoice",
+          "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
+          "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [
@@ -216,7 +248,9 @@
     "OpenRecord1CErrorIsDelete",
     "OpenRecord1CErrorNotExist",
     "OpenRecord1CError",
-    "OpenIncomingInvoice1CErrorNotFound"
+    "OpenIncomingInvoice1CErrorNotFound",
+    "GetDocumentStatusFrom1CUrl",
+    "PatchDocumentStatusFrom1CUrl"
   ],
   "ServerAssemblyName": "Sungero.Integration1CDemo.Server",
   "ServerNamespace": "Sungero.Integration1CDemo.Server",
