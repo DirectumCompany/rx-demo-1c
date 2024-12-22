@@ -7,6 +7,27 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
+  partial class CreateIIncomingInvoiceIn1CHandlers
+  {
+
+    public virtual void CreateIIncomingInvoiceIn1CExecute()
+    {
+      var incomingInvoice = _block.IncomingInvoice;
+      if (incomingInvoice != null)
+      {
+        var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(incomingInvoice);
+        
+        if (isCreated)
+          Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Successfully created incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+        else
+          Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+      }
+      else
+        Logger.Error("CreateIncomingInvoiceIn1CExecute. Unable to create invoice. Document is not an incoming invoice or is null.");
+    }
+  }
+
+
   partial class SetOutgoingInvoiceStatusToPaid1CHandlers
   {
     public virtual void SetOutgoingInvoiceStatusToPaid1CExecute()
