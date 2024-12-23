@@ -68,12 +68,12 @@
     <value>Передача статуса исходящего счета в 1С</value>
   </data>
   <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c_Property_4dcdd83899a145f191771a567dc01dce" xml:space="preserve">
-    <value>Документ</value>
+    <value>Исходящий счет</value>
   </data>
   <data name="Block_617287cad0fa438badd74712f300f43f" xml:space="preserve">
     <value>Передача статуса подписания УПД в 1C</value>
   </data>
   <data name="Block_617287cad0fa438badd74712f300f43f_Property_6cea16fb64764f00b2c5f0566033f9ce" xml:space="preserve">
-    <value>Документ</value>
+    <value>Универсальный передаточный документ</value>
   </data>
 </root>

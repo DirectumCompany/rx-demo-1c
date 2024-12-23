@@ -35,7 +35,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           universlTransferDocument.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed &&
           universlTransferDocument.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
       {
-        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetUniversalTransferDocumentSignStatus(universlTransferDocument, true);
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetUniversalTransferDocumentSignStatus(universlTransferDocument);
         
         if (isSuccess)
           Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);

@@ -118,10 +118,10 @@
   <data name="OpenIncomingInvoice1CErrorNotFound" xml:space="preserve">
     <value>Входящий счет в системе 1С не найден.</value>
   </data>
-  <data name="GetDocumentStatusFrom1CUrl" xml:space="preserve">
+  <data name="GetOutgoingInvoiceStatusFrom1CUrl" xml:space="preserve">
     <value>/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key='{0}',Документ='{1}',Документ_Type='StandardODATA.Document_СчетНаОплатуПокупателю')</value>
   </data>
-  <data name="PatchDocumentStatusFrom1CUrl" xml:space="preserve">
+  <data name="PatchOutgoingInvoiceStatusFrom1CUrl" xml:space="preserve">
     <value>/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='StandardODATA.Document_СчетНаОплатуПокупателю')?$format=json</value>
   </data>
   <data name="GetUniversalTransferDocumentStatusFrom1CUrl" xml:space="preserve">

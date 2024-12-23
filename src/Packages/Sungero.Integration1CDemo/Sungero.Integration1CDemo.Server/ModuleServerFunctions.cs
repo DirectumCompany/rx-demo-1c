@@ -260,12 +260,11 @@ namespace Sungero.Integration1CDemo.Server
     /// Установить статус счёта как "Оплачено" в 1С.
     /// </summary>
     /// <param name="outgoingInvoice">Исходящий счёт.</param>
+    /// <returns>True - успешно, False - не успешно.</returns>
     /// <remarks>Для счёта будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
-    /// <returns>true - успешно. false - не успешно.</returns>
     [Public]
     public virtual bool SetInvoiceStatusToPaid1C(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
     {
-      // Получить счет на оплату
       var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
       
       if (invoiceExtEntityLink == null)
@@ -278,8 +277,6 @@ namespace Sungero.Integration1CDemo.Server
       {
         var connector1C = this.GetConnector1C();
         var invoice1CId = invoiceExtEntityLink.ExtEntityId;
-        
-        // Получить ИД организации в 1С.
         var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, outgoingInvoice.BusinessUnit?.TIN, outgoingInvoice.BusinessUnit?.TRRC);
         
         if (string.IsNullOrEmpty(businessUnit1CId))
@@ -292,7 +289,7 @@ namespace Sungero.Integration1CDemo.Server
         
         return true;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Logger.ErrorFormat("Integration1C. Error while updating invoice 1C status to paid. OutgoingInvoice Id = {0}.", ex, outgoingInvoice.Id);
         return false;
@@ -300,78 +297,13 @@ namespace Sungero.Integration1CDemo.Server
     }
     
     /// <summary>
-    /// Отправить запрос на смену статуса в 1С.
-    /// </summary>
-    /// <param name="connector1C">Коннектор к 1С.</param>
-    /// <param name="businessUnit1CId">Организация.</param>
-    /// <param name="invoiceId">ID исходящего счёта.</param>
-    private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
-    {
-      if (this.IsInvoiceStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId))
-      {
-        var statusContent = new {
-          Статус = "Оплачен",
-          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-        };
-        
-        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
-        
-        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
-      }
-      else
-      {
-        var statusContent = new {
-          Организация_Key = businessUnit1CId,
-          Документ = invoice1CId,
-          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
-          Статус = "Оплачен",
-          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-        };
-        
-        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
-      }
-    }
-    
-    /// <summary>
-    /// Проверить существует ли статус для счёта на оплату в 1С.
-    /// </summary>
-    /// <param name="connector1C">Коннектор к 1С.</param>
-    /// <param name="businessUnit1CId">Организация.</param>
-    /// <param name="invoiceId">ID исходящего счёта.</param>
-    /// <returns>true - существует. false - не существует.</returns>
-    private bool IsInvoiceStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
-    {
-      try
-      {
-        var url = string.Format(Sungero.Integration1CDemo.Resources.GetDocumentStatusFrom1CUrl, businessUnit1CId, invoice1CId);
-        
-        connector1C.RunGetRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url));
-        
-        return true;
-      }
-      catch
-      {
-        return false;
-      }
-    }
-    
-    /// <summary>
-    /// Получить значение параметра из docflow_params.
-    /// </summary>
-    /// <param name="key">Ключ параметра.</param>
-    /// <returns>Значение параметра.</returns>
-    [Public]
-    public string GetDocflowParamsValue(string key) =>
-      Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();
-    
-    /// <summary>
     /// Установить статус УПД как "Документ подписан" в 1С.
     /// </summary>
     /// <param name="outgoingInvoice">Универсальный передаточный документ.</param>
-    /// <returns>True - успешно. False - неуспешно.</returns>
+    /// <returns>True - успешно, False - неуспешно.</returns>
     /// <remarks>Для УПД будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
     [Public]
-    public virtual bool SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument, bool param) //SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument)
+    public virtual bool SetUniversalTransferDocumentSignStatus(Sungero.FinancialArchive.IUniversalTransferDocument universalTransferDocument)
     {
       var utdExtEntityLink = this.GetExternalEntityLink(universalTransferDocument, Constants.Module.UniversalTransferDocumentEntityType);
       
@@ -385,8 +317,6 @@ namespace Sungero.Integration1CDemo.Server
       {
         var connector1C = this.GetConnector1C();
         var utd1CId = utdExtEntityLink.ExtEntityId;
-        
-        // Получить ИД организации в 1С.
         var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, universalTransferDocument.BusinessUnit?.TIN, universalTransferDocument.BusinessUnit?.TRRC);
         
         if (string.IsNullOrEmpty(businessUnit1CId))
@@ -406,16 +336,15 @@ namespace Sungero.Integration1CDemo.Server
       
     }
     
-    
     /// <summary>
-    /// Отправить запрос на смену статуса подписания в 1С.
+    /// Отправить запрос на смену статуса подписания в 1С для УПД.
     /// </summary>
     /// <param name="connector1C">Коннектор к 1С.</param>
     /// <param name="businessUnit1CId">Организация.</param>
     /// <param name="utd1CId">Id УПД.</param>
     private void SendUniversalTransferDocumentSignStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string utd1CId)
     {
-      if (this.IsUniversalTranserDocumentStatusExistsIn1C(connector1C, businessUnit1CId, utd1CId))
+      if (this.IsDocumentStatusExistsIn1C(connector1C, businessUnit1CId, utd1CId, Sungero.Integration1CDemo.Resources.GetUniversalTransferDocumentStatusFrom1CUrl))
       {
         var statusContent = new {
           Статус = "Подписан",
@@ -424,7 +353,7 @@ namespace Sungero.Integration1CDemo.Server
 
         var url = string.Format(Sungero.Integration1CDemo.Resources.PatchUniversalTransferDocumentSignStatusFrom1C, businessUnit1CId, utd1CId);
         
-        connector1C.RunPatchRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url), statusContent);
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
       }
       else
       {
@@ -436,24 +365,59 @@ namespace Sungero.Integration1CDemo.Server
           Статус_Type = "UnavailableEnums.СтатусыДокументовРеализации"
         };
         
-        connector1C.RunPostRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
       }
     }
     
     /// <summary>
-    /// Проверить существует ли статус для УПД в 1С.
+    /// Отправить запрос на смену статуса в 1С для исходящего счета.
     /// </summary>
     /// <param name="connector1C">Коннектор к 1С.</param>
     /// <param name="businessUnit1CId">Организация.</param>
-    /// <param name="utdId">ID УПД.</param>
-    /// <returns>True - существует. False - не существует.</returns>
-    private bool IsUniversalTranserDocumentStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string utdId)
+    /// <param name="invoiceId">Id исходящего счёта.</param>
+    private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      if (this.IsDocumentStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId, Sungero.Integration1CDemo.Resources.GetOutgoingInvoiceStatusFrom1CUrl))
+      {
+        var statusContent = new {
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchOutgoingInvoiceStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoice1CId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+
+    /// <summary>
+    /// Проверить, существует ли статус для документа в 1С.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="document1CId">Id документа.</param>
+    /// <param name="urlTemplate">Шаблон URL для запроса.</param>
+    /// <returns>True - существует, False - не существует.</returns>
+    private bool IsDocumentStatusExistsIn1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string document1CId, string urlTemplate)
     {
       try
       {
-        var url = string.Format(Sungero.Integration1CDemo.Resources.GetUniversalTransferDocumentStatusFrom1CUrl, businessUnit1CId, utdId);
+        var url = string.Format(urlTemplate, businessUnit1CId, document1CId);
+        var requestString = string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url);
         
-        connector1C.RunGetRequest(string.Format("{0}{1}", Constants.Module.ServiceUrl1C, url));
+        connector1C.RunGetRequest(requestString);
         
         return true;
       }
@@ -462,6 +426,18 @@ namespace Sungero.Integration1CDemo.Server
         return false;
       }
     }
+    
+    /// <summary>
+    /// Получить значение параметра из docflow_params.
+    /// </summary>
+    /// <param name="key">Ключ параметра.</param>
+    /// <returns>Значение параметра.</returns>
+    [Public]
+    public string GetDocflowParamsValue(string key)
+    {
+      return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(key).ToString();
+    }
+
   }
   
   #endregion
