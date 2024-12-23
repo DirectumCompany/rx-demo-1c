@@ -14,7 +14,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
       var outgoingInvoice = Contracts.OutgoingInvoices.As(_block.Document);
       if (outgoingInvoice != null && outgoingInvoice.LifeCycleState == Contracts.OutgoingInvoice.LifeCycleState.Paid)
       {
-        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetOutgoingInvoiceStatusToPaid1C(outgoingInvoice);
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatus(outgoingInvoice);
         
         if (isSuccess)
           Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Successfully updated status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
@@ -22,7 +22,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Failed to update status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
       }
       else
-        Logger.ErrorFormat("SetInvoiceStatusToPaidExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", outgoingInvoice.Id);
+        Logger.DebugFormat("SetInvoiceStatusToPaidExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", outgoingInvoice.Id);
     }
   }
 
@@ -35,7 +35,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           universlTransferDocument.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed &&
           universlTransferDocument.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
       {
-        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SetUniversalTransferDocumentSignStatus(universlTransferDocument);
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatus(universlTransferDocument);
         
         if (isSuccess)
           Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
@@ -43,7 +43,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Failed to update sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
       }
       else
-        Logger.ErrorFormat("SetUniversalTransferDocumentSignStatusExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+        Logger.DebugFormat("SetUniversalTransferDocumentSignStatusExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
       
     }
   }

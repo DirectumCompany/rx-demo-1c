@@ -172,24 +172,12 @@
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
     },
     {
-      "Name": "SetOutgoingInvoiceStatusToPaid1C",
+      "Name": "SendDocumentStatus",
       "Parameters": [
         {
-          "Name": "outgoingInvoice",
-          "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
-          "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
-    },
-    {
-      "Name": "SetUniversalTransferDocumentSignStatus",
-      "Parameters": [
-        {
-          "Name": "universalTransferDocument",
-          "ParameterType": "global::Sungero.FinancialArchive.IUniversalTransferDocument",
-          "ParameterTypeFullName": "Sungero.FinancialArchive.IUniversalTransferDocument, Sungero.Domain.Interfaces"
+          "Name": "document",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
         }
       ],
       "ReturnType": "global::System.Boolean",
