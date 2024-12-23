@@ -38,12 +38,12 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
         var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatusTo1C(universalTransferDocument);
         
         if (isSuccess)
-          Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+          Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universalTransferDocument.Id);
         else
-          Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Failed to update sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+          Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Failed to update sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universalTransferDocument.Id);
       }
       else
-        Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
+        Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universalTransferDocument.Id);
       
     }
   }
