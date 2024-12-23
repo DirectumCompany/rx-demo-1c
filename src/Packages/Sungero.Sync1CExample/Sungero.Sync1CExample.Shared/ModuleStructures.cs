@@ -6,5 +6,5 @@ using Sungero.CoreEntities;
 
 namespace Sungero.Sync1CExample.Structures.Module
 {
-
+  
 }

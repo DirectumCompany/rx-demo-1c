@@ -172,12 +172,12 @@
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
     },
     {
-      "Name": "SetInvoiceStatusToPaid1C",
+      "Name": "SendDocumentStatus",
       "Parameters": [
         {
-          "Name": "outgoingInvoice",
-          "ParameterType": "global::Sungero.Contracts.IOutgoingInvoice",
-          "ParameterTypeFullName": "Sungero.Contracts.IOutgoingInvoice, Sungero.Domain.Interfaces"
+          "Name": "document",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
         }
       ],
       "ReturnType": "global::System.Boolean",
@@ -253,8 +253,10 @@
     "OpenRecord1CErrorNotExist",
     "OpenRecord1CError",
     "OpenIncomingInvoice1CErrorNotFound",
-    "GetDocumentStatusFrom1CUrl",
-    "PatchDocumentStatusFrom1CUrl"
+    "GetOutgoingInvoiceStatusFrom1CUrl",
+    "PatchOutgoingInvoiceStatusFrom1CUrl",
+    "GetUniversalTransferDocumentStatusFrom1CUrl",
+    "PatchUniversalTransferDocumentSignStatusFrom1C"
   ],
   "ServerAssemblyName": "Sungero.Integration1CDemo.Server",
   "ServerNamespace": "Sungero.Integration1CDemo.Server",
