@@ -30,12 +30,12 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
   {
     public virtual void SetUniversalTransferDocumentSignStatus1CExecute()
     {
-      var universlTransferDocument = Sungero.FinancialArchive.UniversalTransferDocuments.As(_block.Document);
-      if (universlTransferDocument != null &&
-          universlTransferDocument.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed &&
-          universlTransferDocument.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
+      var universalTransferDocument = Sungero.FinancialArchive.UniversalTransferDocuments.As(_block.Document);
+      if (universalTransferDocument != null &&
+          universalTransferDocument.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed &&
+          universalTransferDocument.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
       {
-        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatusTo1C(universlTransferDocument);
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatusTo1C(universalTransferDocument);
         
         if (isSuccess)
           Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Successfully updated sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universlTransferDocument.Id);
