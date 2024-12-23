@@ -263,7 +263,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <returns>True - успешно, False - не успешно.</returns>
     /// <remarks>Для счёта будет создан новый статус, если его не было. Иначе - обновит существующий.</remarks>
     [Public]
-    public virtual bool SetInvoiceStatusToPaid1C(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
+    public virtual bool SetOutgoingInvoiceStatusToPaid1C(Sungero.Contracts.IOutgoingInvoice outgoingInvoice)
     {
       var invoiceExtEntityLink = this.GetExternalEntityLink(outgoingInvoice, Constants.Module.InvoiceForPaymentEntityType);
       
@@ -285,7 +285,7 @@ namespace Sungero.Integration1CDemo.Server
           return false;
         }
         
-        this.SendInvoiceStatusTo1C(connector1C, businessUnit1CId, invoice1CId);
+        this.SendOutgoingInvoiceStatusTo1C(connector1C, businessUnit1CId, invoice1CId);
         
         return true;
       }
@@ -335,7 +335,40 @@ namespace Sungero.Integration1CDemo.Server
       }
       
     }
-    
+
+    /// <summary>
+    /// Отправить запрос на смену статуса в 1С для исходящего счета.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">Id исходящего счёта.</param>
+    private void SendOutgoingInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      if (this.IsDocumentStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId, Sungero.Integration1CDemo.Resources.GetOutgoingInvoiceStatusFrom1CUrl))
+      {
+        var statusContent = new {
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchOutgoingInvoiceStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoice1CId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+  
     /// <summary>
     /// Отправить запрос на смену статуса подписания в 1С для УПД.
     /// </summary>
@@ -363,39 +396,6 @@ namespace Sungero.Integration1CDemo.Server
           Документ_Type = "StandardODATA.Document_РеализацияТоваровУслуг",
           Статус = "Подписан",
           Статус_Type = "UnavailableEnums.СтатусыДокументовРеализации"
-        };
-        
-        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
-      }
-    }
-    
-    /// <summary>
-    /// Отправить запрос на смену статуса в 1С для исходящего счета.
-    /// </summary>
-    /// <param name="connector1C">Коннектор к 1С.</param>
-    /// <param name="businessUnit1CId">Организация.</param>
-    /// <param name="invoiceId">Id исходящего счёта.</param>
-    private void SendInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
-    {
-      if (this.IsDocumentStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId, Sungero.Integration1CDemo.Resources.GetOutgoingInvoiceStatusFrom1CUrl))
-      {
-        var statusContent = new {
-          Статус = "Оплачен",
-          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
-        };
-        
-        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchOutgoingInvoiceStatusFrom1CUrl, businessUnit1CId, invoice1CId);
-        
-        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
-      }
-      else
-      {
-        var statusContent = new {
-          Организация_Key = businessUnit1CId,
-          Документ = invoice1CId,
-          Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю",
-          Статус = "Оплачен",
-          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
         };
         
         connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);

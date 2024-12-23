@@ -172,7 +172,7 @@
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
     },
     {
-      "Name": "SetInvoiceStatusToPaid1C",
+      "Name": "SetOutgoingInvoiceStatusToPaid1C",
       "Parameters": [
         {
           "Name": "outgoingInvoice",
