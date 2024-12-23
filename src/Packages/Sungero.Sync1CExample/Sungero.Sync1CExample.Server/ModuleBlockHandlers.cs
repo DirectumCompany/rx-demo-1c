@@ -22,7 +22,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           Logger.DebugFormat("SetOutgoingInvoiceStatusToPaid1CExecute. Failed to update status of the outgoing invoice to 'Paid' in 1C. OutgoingInvoice (ID={0}).", outgoingInvoice.Id);
       }
       else
-        Logger.DebugFormat("SetOutgoingInvoiceStatusToPaid1CExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", outgoingInvoice.Id);
+        Logger.DebugFormat("SetOutgoingInvoiceStatusToPaid1CExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", _block.Document.Id);
     }
   }
 
@@ -43,7 +43,7 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Failed to update sign status of the document in 1C. UniversalTransferDocument (ID={0}).", universalTransferDocument.Id);
       }
       else
-        Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. UniversalTransferDocument (ID={0}).", universalTransferDocument.Id);
+        Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. (ID={0}).", _block.Document.Id);
       
     }
   }
