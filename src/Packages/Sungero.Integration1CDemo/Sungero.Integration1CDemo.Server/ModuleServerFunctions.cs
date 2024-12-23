@@ -264,11 +264,11 @@ namespace Sungero.Integration1CDemo.Server
     /// <param name="document">Документ.</param>
     /// <returns>True - успешно, False - неуспешно.</returns>
     [Public]
-    public virtual bool SendDocumentStatus(Sungero.Docflow.IOfficialDocument document)
+    public virtual bool SendDocumentStatusTo1C(Sungero.Docflow.IOfficialDocument document)
     {
-      var utdExtEntityLink = this.GetExternalEntityLink(document);
+      var documentExtEntityLink = this.GetExternalEntityLink(document);
       
-      if (utdExtEntityLink == null)
+      if (documentExtEntityLink == null)
       {
         Logger.DebugFormat("Integration1C. Document status not updated in 1C: Document is not sync to 1C. Document Id = {0}.", document.Id);
         return false;
@@ -277,7 +277,7 @@ namespace Sungero.Integration1CDemo.Server
       try
       {
         var connector1C = this.GetConnector1C();
-        var document1CId = utdExtEntityLink.ExtEntityId;
+        var document1CId = documentExtEntityLink.ExtEntityId;
         var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, document.BusinessUnit?.TIN, document.BusinessUnit?.TRRC);
         
         if (string.IsNullOrEmpty(businessUnit1CId))

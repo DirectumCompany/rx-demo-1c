@@ -172,7 +172,7 @@
       "ReturnTypeFullName": "Sungero.Integration1CDemo.Structures.Module.IGetHyperlink1CResult"
     },
     {
-      "Name": "SendDocumentStatus",
+      "Name": "SendDocumentStatusTo1C",
       "Parameters": [
         {
           "Name": "document",
