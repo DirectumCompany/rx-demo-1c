@@ -9,7 +9,7 @@ namespace Sungero.Sync1CExample.Server
   public class ModuleFunctions
   {
     /// <summary>
-    /// Сгенерировать буличное тело для формализованного документа.
+    /// Сгенерировать pdf тело для формализованного документа.
     /// </summary>
     /// <param name="documentId">Идентификатор документа.</param>
     [Public(WebApiRequestType = RequestType.Post)]
