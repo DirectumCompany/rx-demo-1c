@@ -13,7 +13,13 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
     public virtual void CreateIIncomingInvoiceIn1CExecute()
     {
       var incomingInvoice = _block.IncomingInvoice;
+      var externalEntityLink = Sungero.Commons.ExternalEntityLinks.Null;
       if (incomingInvoice != null)
+        externalEntityLink = Sungero.Integration1CDemo.PublicFunctions.Module.GetExternalEntityLink(incomingInvoice, null);
+      else
+        Logger.Error("CreateIncomingInvoiceIn1CExecute. Unable to create invoice. Document is not an incoming invoice or is null.");
+      
+      if (externalEntityLink == null)
       {
         var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(incomingInvoice);
         
@@ -23,17 +29,15 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
           Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
       }
       else
-        Logger.Error("CreateIncomingInvoiceIn1CExecute. Unable to create invoice. Document is not an incoming invoice or is null.");
+        Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Incoming invoice alreade exists in 1C.");
     }
-  }
 
 
   partial class SetOutgoingInvoiceStatusToPaid1CHandlers
   {
     public virtual void SetOutgoingInvoiceStatusToPaid1CExecute()
     {
-      var outgoingInvoice = Contracts.OutgoingInvoices.As(_block.Document);
-      if (outgoingInvoice != null && outgoingInvoice.LifeCycleState == Contracts.OutgoingInvoice.LifeCycleState.Paid)
+      public virtual void SetInvoiceStatusToPaid1CExecute()
       {
         var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatusTo1C(outgoingInvoice);
         
@@ -68,4 +72,3 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
       
     }
   }
-}

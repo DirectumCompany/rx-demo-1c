@@ -139,6 +139,23 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "GetExternalEntityLink",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "extEntityType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::Sungero.Commons.IExternalEntityLink",
+      "ReturnTypeFullName": "Sungero.Commons.IExternalEntityLink, Sungero.Domain.Interfaces"
+    },
+    {
       "Name": "GetIncomingInvoice1CHyperlink",
       "IsRemote": true,
       "Parameters": [

@@ -174,7 +174,8 @@ namespace Sungero.Integration1CDemo.Server
         // Создать запись в регистре сведений "Сроки оплаты документов" в 1С.
         if (incommingInvoice.PaymentDueDate.HasValue)
         {
-          var paymentTermContent = new {
+          var paymentTermContent = new 
+          {
             Организация_Key = businessUnit1CId,
             Документ = createdIncomingInvoice1CId,
             Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика",
@@ -185,6 +186,8 @@ namespace Sungero.Integration1CDemo.Server
         }
         
         created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
+        if (created)
+          this.CreateExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
       }
       catch (Exception ex)
       {
@@ -193,6 +196,17 @@ namespace Sungero.Integration1CDemo.Server
       }
       
       return created;
+    }
+    
+    private void CreateExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string externalEntityId, string externalEntityType)
+    {
+      var externalEntityLink = ExternalEntityLinks.Create();
+      externalEntityLink.EntityId = entity.Id;
+      externalEntityLink.EntityType = entity.TypeDiscriminator.ToString();
+      externalEntityLink.ExtEntityId = externalEntityId;
+      externalEntityLink.ExtEntityType = externalEntityType;
+      externalEntityLink.ExtSystemId = GetDocflowParamsValue(Constants.Module.ExtSystemId1C);
+      externalEntityLink.Save();
     }
     
     /// <summary>
