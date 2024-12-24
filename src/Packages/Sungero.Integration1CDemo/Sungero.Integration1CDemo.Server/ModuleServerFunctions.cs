@@ -310,10 +310,45 @@ namespace Sungero.Integration1CDemo.Server
         this.SendUniversalTransferDocumentSignStatusTo1C(connector1C, businessUnit1CId, document1CId);
       else if (Sungero.Contracts.OutgoingInvoices.Is(document))
         this.SendOutgoingInvoiceStatusTo1C(connector1C, businessUnit1CId, document1CId);
+      else if (Sungero.Contracts.IncomingInvoices.Is(document))
+        this.SendIncomingInvoiceStatusTo1C(connector1C, businessUnit1CId, document1CId);
       else
-        Logger.DebugFormat("Integration1C. Couldn't send status. Unsupported document type. Document (ID={0}).", document.Id);
+        throw new Exception(string.Format("Integration1C. Couldn't send status. Unsupported document type. Document (ID={0}).", document.Id));
     }
 
+    /// <summary>
+    /// Отправить запрос на смену статуса в 1С для входящего счета.
+    /// </summary>
+    /// <param name="connector1C">Коннектор к 1С.</param>
+    /// <param name="businessUnit1CId">Организация.</param>
+    /// <param name="invoiceId">Id входящего счёта.</param>
+    private void SendIncomingInvoiceStatusTo1C(Sungero.Integration1CExtensions.Connector1C connector1C, string businessUnit1CId, string invoice1CId)
+    {
+      if (this.IsDocumentStatusExistsIn1C(connector1C, businessUnit1CId, invoice1CId, Sungero.Integration1CDemo.Resources.GetIncomingInvoiceStatusFrom1CUrl))
+      {
+        var statusContent = new {
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        var url = string.Format(Sungero.Integration1CDemo.Resources.PatchIncomingInvoiceStatusFrom1CUrl, businessUnit1CId, invoice1CId);
+        
+        connector1C.RunPatchRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), url), statusContent);
+      }
+      else
+      {
+        var statusContent = new {
+          Организация_Key = businessUnit1CId,
+          Документ = invoice1CId,
+          Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика",
+          Статус = "Оплачен",
+          Статус_Type = "UnavailableEnums.СтатусОплатыСчета"
+        };
+        
+        connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingDocumentStatusUrlPart1C), statusContent);
+      }
+    }
+    
     /// <summary>
     /// Отправить запрос на смену статуса в 1С для исходящего счета.
     /// </summary>

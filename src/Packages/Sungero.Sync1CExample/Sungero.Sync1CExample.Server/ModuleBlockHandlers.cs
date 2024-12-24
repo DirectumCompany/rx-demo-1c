@@ -7,6 +7,26 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
+  partial class SetIncomingInvoiceStatusToPaid1CHandlers
+  {
+    public virtual void SetIncomingInvoiceStatusToPaid1CExecute()
+    {
+      var incomingInvoice = Contracts.IncomingInvoices.As(_block.Document);
+      if (incomingInvoice != null && incomingInvoice.LifeCycleState == Contracts.IncomingInvoice.LifeCycleState.Paid)
+      {
+        var isSuccess = Sungero.Integration1CDemo.PublicFunctions.Module.SendDocumentStatusTo1C(incomingInvoice);
+        
+        if (isSuccess)
+          Logger.DebugFormat("SetIncomingInvoiceStatusToPaid1CExecute. Successfully updated status of the incoming invoice to 'Paid' in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+        else
+          Logger.DebugFormat("SetIncomingInvoiceStatusToPaid1CExecute. Failed to update status of the incoming invoice to 'Paid' in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+      }
+      else
+        Logger.DebugFormat("SetIncomingInvoiceStatusToPaid1CExecute. Unable to update status. Document is not outgoing invoice or status is not 'Paid' (ID={0}).", _block.Document.Id);
+      
+    }
+  }
+
   partial class SetOutgoingInvoiceStatusToPaid1CHandlers
   {
     public virtual void SetOutgoingInvoiceStatusToPaid1CExecute()
