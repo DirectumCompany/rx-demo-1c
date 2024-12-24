@@ -7,9 +7,9 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
-  partial class CreateIIncomingInvoiceIn1CHandlers
+  partial class CreateIncomingInvoiceIn1CHandlers
   {
-    public virtual void CreateIIncomingInvoiceIn1CExecute()
+    public virtual void CreateIncomingInvoiceIn1CExecute()
     {
       var incomingInvoice = _block.IncomingInvoice;
       var externalEntityLink = Sungero.Commons.ExternalEntityLinks.Null;
