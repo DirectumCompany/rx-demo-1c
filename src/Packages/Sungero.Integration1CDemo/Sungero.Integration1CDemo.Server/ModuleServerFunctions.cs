@@ -187,7 +187,7 @@ namespace Sungero.Integration1CDemo.Server
         
         created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
         if (created)
-          this.CreateExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
+          this.Create1СExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
       }
       catch (Exception ex)
       {
@@ -198,7 +198,13 @@ namespace Sungero.Integration1CDemo.Server
       return created;
     }
     
-    private void CreateExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string externalEntityId, string externalEntityType)
+    /// <summary>
+    /// Создать запись со связной сущностью в 1С.
+    /// </summary>
+    /// <param name="entity">Сущность.</param>
+    /// <param name="externalEntityId">Идентификатор сущности в 1С.</param>
+    /// <param name="externalEntityType">Тип сущности в 1С.</param>
+    private void Create1СExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string externalEntityId, string externalEntityType)
     {
       var externalEntityLink = ExternalEntityLinks.Create();
       externalEntityLink.EntityId = entity.Id;
@@ -215,6 +221,7 @@ namespace Sungero.Integration1CDemo.Server
     /// <param name="entity">Запись Directum RX.</param>
     /// <param name="extEntityType">Тип объекта 1С.</param>
     /// <returns>Ссылка на объект внешней системы. Если не найдена, то null.</returns>
+    [Public]
     public virtual IExternalEntityLink GetExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string extEntityType = null)
     {
       var typeGuid = entity.TypeDiscriminator.ToString();

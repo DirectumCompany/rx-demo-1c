@@ -47,10 +47,10 @@
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "d5a5cfc0-6aeb-4957-ba30-fd08bb8aec5a",
-      "Name": "CreateIIncomingInvoiceIn1C",
+      "Name": "CreateIncomingInvoiceIn1C",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
-        "CreateIIncomingInvoiceIn1CExecute"
+        "CreateIncomingInvoiceIn1CExecute"
       ],
       "ProcessStagesDisplayMode": "Hide",
       "Properties": [

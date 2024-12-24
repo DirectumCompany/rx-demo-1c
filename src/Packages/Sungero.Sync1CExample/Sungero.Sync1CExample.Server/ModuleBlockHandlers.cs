@@ -23,12 +23,12 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
         var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(incomingInvoice);
         
         if (isCreated)
-          Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Successfully created incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+          Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Successfully created incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
         else
-          Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+          Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
       }
       else
-        Logger.DebugFormat("CreateIIncomingInvoiceIn1CExecute. Incoming invoice already exists in 1C.");
+        Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Incoming invoice already exists in 1C.");
     }
   }
 
