@@ -161,6 +161,7 @@ namespace Sungero.Integration1CDemo.Server
         incomingInvoice1C.НомерВходящегоДокумента = incommingInvoice.Number.Trim();
         incomingInvoice1C.ДатаВходящегоДокумента = incommingInvoice.Date.Value;
         incomingInvoice1C.Комментарий = incommingInvoice.Note;
+        incomingInvoice1C.rx_ID = incommingInvoice.Id;
         if (!string.IsNullOrEmpty(contractExtEntityId))
           incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
         

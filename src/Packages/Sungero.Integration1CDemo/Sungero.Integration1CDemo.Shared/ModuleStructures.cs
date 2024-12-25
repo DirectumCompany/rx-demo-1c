@@ -55,6 +55,8 @@ namespace Sungero.Integration1CDemo.Structures.Module
     /// </summary>
     public string Комментарий { get; set; }
     
+    public long rx_ID {get; set;}
+    
     /// <summary>
     /// Идентификатор.
     /// </summary>

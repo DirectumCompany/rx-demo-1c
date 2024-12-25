@@ -254,6 +254,10 @@
           "TypeFullName": "global::System.String"
         },
         {
+          "Name": "rx_ID",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
           "Name": "Ref_Key",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
