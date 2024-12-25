@@ -64,7 +64,6 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
       }
       else
         Logger.DebugFormat("SetUniversalTransferDocumentSignStatus1CExecute. Unable to update status. Document is not universal transfer document or does not have an external or internal signature. (ID={0}).", _block.Document.Id);
-      
     }
   }
 }
