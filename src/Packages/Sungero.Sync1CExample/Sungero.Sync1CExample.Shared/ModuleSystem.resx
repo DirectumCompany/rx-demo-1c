@@ -65,7 +65,7 @@
     <value>Sync1CExample</value>
   </data>
   <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c" xml:space="preserve">
-    <value>Передача статуса исходящего счета в 1С</value>
+    <value>Передача статуса оплаты исходящего счета в 1С</value>
   </data>
   <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c_Property_4dcdd83899a145f191771a567dc01dce" xml:space="preserve">
     <value>Исходящий счет</value>
@@ -77,7 +77,7 @@
     <value>Универсальный передаточный документ</value>
   </data>
   <data name="Block_f1baf94d2b414bd09aa76d7f40e21d92" xml:space="preserve">
-    <value>Передача статуса входящего счета в 1С</value>
+    <value>Передача статуса оплаты входящего счета в 1С</value>
   </data>
   <data name="Block_f1baf94d2b414bd09aa76d7f40e21d92_Property_18b01b1f610f46a2bcd8921b902a6835" xml:space="preserve">
     <value>Входящий счет</value>
