@@ -107,15 +107,24 @@
     "Elements": [
       {
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "80dc75a0-fc36-4458-af25-6df2d455721c",
-        "Name": "Open1CEntitySungeroSungero",
+        "NameGuid": "cceea33a-8b78-4fc7-8c72-5a4292395834",
+        "Name": "ActionButtonSungero",
         "ActionGuid": "e1fb41dc-e33a-4929-b10c-890e37112a04",
         "ButtonSize": "Large",
-        "Index": 2,
-        "ParentGuid": "2ed94346-ba89-4c52-9815-d18010d3a2ae"
+        "Index": 0,
+        "ParentGuid": "bdb40daf-b79e-40b8-bd6c-d8b908fa3531"
       }
     ],
-    "Groups": [],
+    "Groups": [
+      {
+        "NameGuid": "bdb40daf-b79e-40b8-bd6c-d8b908fa3531",
+        "Name": "IntegrationGroup",
+        "IconName": null,
+        "Index": 13,
+        "ParentGuid": "1f08362f-6a13-44cb-9590-5a5b51c85c30",
+        "SmallIconName": null
+      }
+    ],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"
