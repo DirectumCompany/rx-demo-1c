@@ -161,6 +161,7 @@ namespace Sungero.Integration1CDemo.Server
         incomingInvoice1C.НомерВходящегоДокумента = incommingInvoice.Number.Trim();
         incomingInvoice1C.ДатаВходящегоДокумента = incommingInvoice.Date.Value;
         incomingInvoice1C.Комментарий = incommingInvoice.Note;
+        incomingInvoice1C.rx_ID = incommingInvoice.Id;
         if (!string.IsNullOrEmpty(contractExtEntityId))
           incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
         
@@ -174,7 +175,8 @@ namespace Sungero.Integration1CDemo.Server
         // Создать запись в регистре сведений "Сроки оплаты документов" в 1С.
         if (incommingInvoice.PaymentDueDate.HasValue)
         {
-          var paymentTermContent = new {
+          var paymentTermContent = new 
+          {
             Организация_Key = businessUnit1CId,
             Документ = createdIncomingInvoice1CId,
             Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика",
@@ -185,6 +187,8 @@ namespace Sungero.Integration1CDemo.Server
         }
         
         created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
+        if (created)
+          this.Create1СExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
       }
       catch (Exception ex)
       {
@@ -196,11 +200,29 @@ namespace Sungero.Integration1CDemo.Server
     }
     
     /// <summary>
+    /// Создать запись со связной сущностью в 1С.
+    /// </summary>
+    /// <param name="entity">Сущность.</param>
+    /// <param name="externalEntityId">Идентификатор сущности в 1С.</param>
+    /// <param name="externalEntityType">Тип сущности в 1С.</param>
+    private void Create1СExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string externalEntityId, string externalEntityType)
+    {
+      var externalEntityLink = ExternalEntityLinks.Create();
+      externalEntityLink.EntityId = entity.Id;
+      externalEntityLink.EntityType = entity.TypeDiscriminator.ToString();
+      externalEntityLink.ExtEntityId = externalEntityId;
+      externalEntityLink.ExtEntityType = externalEntityType;
+      externalEntityLink.ExtSystemId = GetDocflowParamsValue(Constants.Module.ExtSystemId1C);
+      externalEntityLink.Save();
+    }
+    
+    /// <summary>
     /// Получить ссылку на объект внешней системы.
     /// </summary>
     /// <param name="entity">Запись Directum RX.</param>
     /// <param name="extEntityType">Тип объекта 1С.</param>
     /// <returns>Ссылка на объект внешней системы. Если не найдена, то null.</returns>
+    [Public]
     public virtual IExternalEntityLink GetExternalEntityLink(Sungero.Domain.Shared.IEntity entity, string extEntityType = null)
     {
       var typeGuid = entity.TypeDiscriminator.ToString();
