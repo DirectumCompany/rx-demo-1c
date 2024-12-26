@@ -130,4 +130,10 @@
   <data name="PatchUniversalTransferDocumentSignStatusFrom1C" xml:space="preserve">
     <value>/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='StandardODATA.Document_РеализацияТоваровУслуг')?$format=json</value>
   </data>
+  <data name="GetIncomingInvoiceStatusFrom1CUrl" xml:space="preserve">
+    <value>/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key='{0}',Документ='{1}',Документ_Type='StandardODATA.Document_СчетНаОплатуПоставщика')</value>
+  </data>
+  <data name="PatchIncomingInvoiceStatusFrom1CUrl" xml:space="preserve">
+    <value>/odata/standard.odata/InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='StandardODATA.Document_СчетНаОплатуПоставщика')?$format=json</value>
+  </data>
 </root>

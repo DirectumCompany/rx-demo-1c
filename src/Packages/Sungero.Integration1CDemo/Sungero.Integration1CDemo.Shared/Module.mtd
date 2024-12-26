@@ -277,7 +277,9 @@
     "GetOutgoingInvoiceStatusFrom1CUrl",
     "PatchOutgoingInvoiceStatusFrom1CUrl",
     "GetUniversalTransferDocumentStatusFrom1CUrl",
-    "PatchUniversalTransferDocumentSignStatusFrom1C"
+    "PatchUniversalTransferDocumentSignStatusFrom1C",
+    "GetIncomingInvoiceStatusFrom1CUrl",
+    "PatchIncomingInvoiceStatusFrom1CUrl"
   ],
   "ServerAssemblyName": "Sungero.Integration1CDemo.Server",
   "ServerNamespace": "Sungero.Integration1CDemo.Server",
