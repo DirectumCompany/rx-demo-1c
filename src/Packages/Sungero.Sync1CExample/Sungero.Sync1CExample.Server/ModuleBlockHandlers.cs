@@ -11,25 +11,27 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
   {
     public virtual void CreateIncomingInvoiceIn1CExecute()
     {
-      var incomingInvoice = _block.IncomingInvoice;
-      var externalEntityLink = Sungero.Commons.ExternalEntityLinks.Null;
-      if (incomingInvoice != null)
-        externalEntityLink = Sungero.Integration1CDemo.PublicFunctions.Module.GetExternalEntityLink(incomingInvoice, null);
-      else
-        Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Unable to create invoice. Document is not an incoming invoice or is null.");
-      
-      if (externalEntityLink == null)
+      var incomingInvoice = Sungero.Integration1CDemo.IncomingInvoices.As(_block.Document);
+      if (incomingInvoice == null)
       {
-        var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(incomingInvoice);
-        
-        if (isCreated)
-          Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Successfully created incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
-        else
-          Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+        Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Unable to create invoice. Document is not an incoming invoice or is null.");
+        return;
       }
-      else
+
+      var externalEntityLink = Sungero.Integration1CDemo.PublicFunctions.Module.GetExternalEntityLink(incomingInvoice, null);
+      if (externalEntityLink != null)
+      {
         Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Incoming invoice already exists in 1C.");
+        return;
+      }
+
+      var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(incomingInvoice);
+      if (isCreated)
+        Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Successfully created incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
+      else
+        Logger.DebugFormat("CreateIncomingInvoiceIn1CExecute. Failed to create incoming invoice in 1C. IncomingInvoice (ID={0}).", incomingInvoice.Id);
     }
+
   }
 
   partial class SetIncomingInvoiceStatusToPaid1CHandlers
