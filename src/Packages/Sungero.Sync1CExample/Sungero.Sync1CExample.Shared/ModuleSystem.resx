@@ -88,4 +88,10 @@
   <data name="Block_d5a5cfc06aeb4957ba30fd08bb8aec5a_Property_4881d75b08da42ac8a48ff91f09a8f7d" xml:space="preserve">
     <value>Входящий счет</value>
   </data>
+  <data name="Block_fa30541e075a4ff7a8d4e87d438ca3c0" xml:space="preserve">
+    <value>Отправка УПД в 1С</value>
+  </data>
+  <data name="Block_fa30541e075a4ff7a8d4e87d438ca3c0_Property_fe7f1f9c82af4594bfee458e331b99ee" xml:space="preserve">
+    <value>Универсальный передаточный документ</value>
+  </data>
 </root>

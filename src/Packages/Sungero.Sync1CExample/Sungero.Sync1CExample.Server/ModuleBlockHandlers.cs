@@ -7,6 +7,27 @@ using Sungero.Workflow;
 
 namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
 {
+  partial class SendUniversalTransferDocumentTo1CHandlers
+  {
+
+    public virtual void SendUniversalTransferDocumentTo1CExecute()
+    {
+      var externalEntityLink = Sungero.Integration1CDemo.PublicFunctions.Module.GetExternalEntityLink(_block.Document, null);      
+      if (externalEntityLink == null)
+      {
+        var isCreated = Sungero.Integration1CDemo.PublicFunctions.Module.SendUniversalTransferDocumentTo1C(_block.Document);
+        
+        if (isCreated)
+          Logger.DebugFormat("SendUniversalTransferDocumentTo1CExecute. Universal transfer document is successfully created  in 1C (ID={0}).", _block.Document.Id);
+        else
+          Logger.DebugFormat("SendUniversalTransferDocumentTo1CExecute. Universal transfer document creation in 1C is failed (ID={0}).", _block.Document.Id);
+      }
+      else
+        Logger.DebugFormat("SendUniversalTransferDocumentTo1CExecute. Universal Transfer Document already exists in 1C.");
+    }
+  }
+
+
   partial class CreateIncomingInvoiceIn1CHandlers
   {
     public virtual void CreateIncomingInvoiceIn1CExecute()

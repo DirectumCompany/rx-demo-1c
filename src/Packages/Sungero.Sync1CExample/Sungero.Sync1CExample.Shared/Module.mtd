@@ -83,6 +83,26 @@
           "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
         }
       ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "fa30541e-075a-4ff7-a8d4-e87d438ca3c0",
+      "Name": "SendUniversalTransferDocumentTo1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendUniversalTransferDocumentTo1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "fe7f1f9c-82af-4594-bfee-458e331b99ee",
+          "Name": "Document",
+          "EntityGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
     }
   ],
   "ClientAssemblyName": "Sungero.Sync1CExample.Client",

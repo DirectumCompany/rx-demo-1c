@@ -199,6 +199,87 @@ namespace Sungero.Integration1CDemo.Server
       return created;
     }
     
+     /// <summary>
+    /// Создать УПД в 1С.
+    /// </summary>
+    /// <param name="document">УПД в Directum RX.</param>
+    /// <returns>True - УПД успешно создан в 1С, иначе - False.</returns>
+    [Public]
+    public bool SendUniversalTransferDocumentTo1C(Sungero.FinancialArchive.IUniversalTransferDocument document)
+    {
+      var result = false;
+      
+      // Получить ссылку на контрагента.
+      var counterpartyExtEntityLink = this.GetExternalEntityLink(document.Counterparty, Constants.Module.CounterpartyExtEntityType);
+      if (counterpartyExtEntityLink == null)
+      {
+        Logger.DebugFormat("Integration1C. Universal transfer document is not created in 1C: counterparty is not sync to 1C. Document Id = {0}.", document.Id);
+        return false;
+      }
+      
+//      // Получить ИД договора в 1С.
+//      var contractExtEntityId = string.Empty;
+//      if (incommingInvoice.Contract != null)
+//      {
+//        var contractExtEntityLink = this.GetExternalEntityLink(incommingInvoice.Contract, Constants.Module.ContractsExtEntityType);
+//        if (contractExtEntityLink != null)
+//          contractExtEntityId = contractExtEntityLink.ExtEntityId;
+//      }
+//      
+//      try
+//      {
+//        var connector1C = this.GetConnector1C();
+//        
+//        // Получить ИД организации в 1С.
+//        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, incommingInvoice.BusinessUnit?.TIN, incommingInvoice.BusinessUnit?.TRRC);
+//        if (string.IsNullOrEmpty(businessUnit1CId))
+//        {
+//          Logger.DebugFormat("Integration1C. Incoming invoice not created in 1C: not found single business unit in 1C. IncomingInvoice Id = {0}.", incommingInvoice.Id);
+//          return false;
+//        }
+//        
+//        var incomingInvoice1C = Structures.Module.IncomingInvoice1C.Create();
+//        incomingInvoice1C.Организация_Key = businessUnit1CId;
+//        incomingInvoice1C.Контрагент_Key = counterpartyExtEntityLink.ExtEntityId;
+//        incomingInvoice1C.НомерВходящегоДокумента = incommingInvoice.Number.Trim();
+//        incomingInvoice1C.ДатаВходящегоДокумента = incommingInvoice.Date.Value;
+//        incomingInvoice1C.Комментарий = incommingInvoice.Note;
+//        incomingInvoice1C.rx_ID = incommingInvoice.Id;
+//        if (!string.IsNullOrEmpty(contractExtEntityId))
+//          incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
+//        
+//        var response = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingIncInvoiceUrlPart1C), incomingInvoice1C);
+//        
+//        var createdIncomingInvoice1C = JsonConvert.DeserializeObject<Sungero.Integration1CDemo.Structures.Module.IncomingInvoice1C>(response);
+//        var createdIncomingInvoice1CId = createdIncomingInvoice1C?.Ref_Key;
+//        
+//        // Создать запись в регистре сведений "Сроки оплаты документов" в 1С.
+//        if (incommingInvoice.PaymentDueDate.HasValue)
+//        {
+//          var paymentTermContent = new 
+//          {
+//            Организация_Key = businessUnit1CId,
+//            Документ = createdIncomingInvoice1CId,
+//            Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика",
+//            СрокОплаты = incommingInvoice.PaymentDueDate
+//          };
+//          
+//          var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
+//        }
+//        
+//        result = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
+//        if (result)
+//          this.Create1СExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
+//      }
+//      catch (Exception ex)
+//      {
+//        Logger.ErrorFormat("Integration1C. Error while getting incoming invoice 1C hyperlink. IncomingInvoice Id = {0}.", ex, incommingInvoice.Id);
+//        result = false;
+//      }
+      
+      return result;
+    }
+    
     /// <summary>
     /// Создать запись со связной сущностью в 1С.
     /// </summary>

@@ -199,6 +199,18 @@
       ],
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "SendUniversalTransferDocumentTo1C",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::Sungero.FinancialArchive.IUniversalTransferDocument",
+          "ParameterTypeFullName": "Sungero.FinancialArchive.IUniversalTransferDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [
