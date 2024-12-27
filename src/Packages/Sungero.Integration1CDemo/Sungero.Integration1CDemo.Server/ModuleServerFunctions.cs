@@ -118,26 +118,26 @@ namespace Sungero.Integration1CDemo.Server
     /// <summary>
     /// Создать входящий счет в 1С.
     /// </summary>
-    /// <param name="incommingInvoice">Входящий счет в Directum RX.</param>
+    /// <param name="incomingInvoice">Входящий счет в Directum RX.</param>
     /// <returns>True - входящий счет успешно создан в 1С, иначе - False.</returns>
     [Public]
-    public virtual bool CreateIncomingInvoice1C(Sungero.Integration1CDemo.IIncomingInvoice incommingInvoice)
+    public virtual bool CreateIncomingInvoice1C(Sungero.Integration1CDemo.IIncomingInvoice incomingInvoice)
     {
-      var created = false;
+      var isCreated = false;
       
       // Получить ссылку на контрагента.
-      var counterpartyExtEntityLink = this.GetExternalEntityLink(incommingInvoice.Counterparty, Constants.Module.CounterpartyExtEntityType);
+      var counterpartyExtEntityLink = this.GetExternalEntityLink(incomingInvoice.Counterparty, Constants.Module.CounterpartyExtEntityType);
       if (counterpartyExtEntityLink == null)
       {
-        Logger.DebugFormat("Integration1C. Incoming invoice not created in 1C: counterparty is not sync to 1C. IncomingInvoice Id = {0}.", incommingInvoice.Id);
+        Logger.DebugFormat("Integration1C. Incoming invoice not created in 1C: counterparty is not sync to 1C. IncomingInvoice Id = {0}.", incomingInvoice.Id);
         return false;
       }
       
       // Получить ИД договора в 1С.
       var contractExtEntityId = string.Empty;
-      if (incommingInvoice.Contract != null)
+      if (incomingInvoice.Contract != null)
       {
-        var contractExtEntityLink = this.GetExternalEntityLink(incommingInvoice.Contract, Constants.Module.ContractsExtEntityType);
+        var contractExtEntityLink = this.GetExternalEntityLink(incomingInvoice.Contract, Constants.Module.ContractsExtEntityType);
         if (contractExtEntityLink != null)
           contractExtEntityId = contractExtEntityLink.ExtEntityId;
       }
@@ -147,10 +147,10 @@ namespace Sungero.Integration1CDemo.Server
         var connector1C = this.GetConnector1C();
         
         // Получить ИД организации в 1С.
-        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, incommingInvoice.BusinessUnit?.TIN, incommingInvoice.BusinessUnit?.TRRC);
+        var businessUnit1CId = this.GetBusinessUnit1CId(connector1C, incomingInvoice.BusinessUnit?.TIN, incomingInvoice.BusinessUnit?.TRRC);
         if (string.IsNullOrEmpty(businessUnit1CId))
         {
-          Logger.DebugFormat("Integration1C. Incoming invoice not created in 1C: not found single business unit in 1C. IncomingInvoice Id = {0}.", incommingInvoice.Id);
+          Logger.DebugFormat("Integration1C. Incoming invoice not created in 1C: not found single business unit in 1C. IncomingInvoice Id = {0}.", incomingInvoice.Id);
           return false;
         }
         
@@ -158,10 +158,10 @@ namespace Sungero.Integration1CDemo.Server
         var incomingInvoice1C = Structures.Module.IncomingInvoice1C.Create();
         incomingInvoice1C.Организация_Key = businessUnit1CId;
         incomingInvoice1C.Контрагент_Key = counterpartyExtEntityLink.ExtEntityId;
-        incomingInvoice1C.НомерВходящегоДокумента = incommingInvoice.Number.Trim();
-        incomingInvoice1C.ДатаВходящегоДокумента = incommingInvoice.Date.Value;
-        incomingInvoice1C.Комментарий = incommingInvoice.Note;
-        incomingInvoice1C.rx_ID = incommingInvoice.Id;
+        incomingInvoice1C.НомерВходящегоДокумента = incomingInvoice.Number.Trim();
+        incomingInvoice1C.ДатаВходящегоДокумента = incomingInvoice.Date.Value;
+        incomingInvoice1C.Комментарий = incomingInvoice.Note;
+        incomingInvoice1C.rx_ID = incomingInvoice.Id;
         if (!string.IsNullOrEmpty(contractExtEntityId))
           incomingInvoice1C.ДоговорКонтрагента_Key = contractExtEntityId;
         
@@ -173,30 +173,30 @@ namespace Sungero.Integration1CDemo.Server
         var createdIncomingInvoice1CId = createdIncomingInvoice1C?.Ref_Key;
         
         // Создать запись в регистре сведений "Сроки оплаты документов" в 1С.
-        if (incommingInvoice.PaymentDueDate.HasValue)
+        if (incomingInvoice.PaymentDueDate.HasValue)
         {
           var paymentTermContent = new 
           {
             Организация_Key = businessUnit1CId,
             Документ = createdIncomingInvoice1CId,
             Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика",
-            СрокОплаты = incommingInvoice.PaymentDueDate
+            СрокОплаты = incomingInvoice.PaymentDueDate
           };
           
           var paymentTerm = connector1C.RunPostRequest(string.Format("{0}{1}", GetDocflowParamsValue(Constants.Module.ServiceUrl1C), Constants.Module.CreatingPaymentTermUrlPart1C), paymentTermContent);
         }
         
-        created = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
-        if (created)
-          this.Create1СExternalEntityLink(incommingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
+        isCreated = !string.IsNullOrEmpty(createdIncomingInvoice1CId);
+        if (isCreated)
+          this.Create1СExternalEntityLink(incomingInvoice, createdIncomingInvoice1CId, "СчетНаОплатуПоставщика");
       }
       catch (Exception ex)
       {
-        Logger.ErrorFormat("Integration1C. Error while getting incoming invoice 1C hyperlink. IncomingInvoice Id = {0}.", ex, incommingInvoice.Id);
-        created = false;
+        Logger.ErrorFormat("Integration1C. Error while getting incoming invoice 1C hyperlink. IncomingInvoice Id = {0}.", ex, incomingInvoice.Id);
+        isCreated = false;
       }
       
-      return created;
+      return isCreated;
     }
     
     /// <summary>

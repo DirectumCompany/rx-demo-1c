@@ -101,7 +101,7 @@
       "Name": "CreateIncomingInvoice1C",
       "Parameters": [
         {
-          "Name": "incommingInvoice",
+          "Name": "incomingInvoice",
           "ParameterType": "global::Sungero.Integration1CDemo.IIncomingInvoice",
           "ParameterTypeFullName": "Sungero.Integration1CDemo.IIncomingInvoice, Sungero.Domain.Interfaces"
         }

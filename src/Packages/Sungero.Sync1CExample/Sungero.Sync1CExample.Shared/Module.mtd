@@ -77,8 +77,8 @@
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
           "NameGuid": "4881d75b-08da-42ac-8a48-ff91f09a8f7d",
-          "Name": "IncomingInvoice",
-          "EntityGuid": "62f70f15-967a-4211-81ac-7c02aa3928b5",
+          "Name": "Document",
+          "EntityGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
           "IsRequired": true,
           "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
         }
