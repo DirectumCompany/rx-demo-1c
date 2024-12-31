@@ -33,6 +33,13 @@
   "IsolatedAssemblyName": "Sungero.Demo1C.Isolated",
   "IsolatedNamespace": "Sungero.Demo1C.Isolated",
   "IsVisible": false,
+  "Libraries": [
+    {
+      "NameGuid": "8b98a431-51e1-44d0-a76d-6c087fee7f90",
+      "Name": "DirectumRXDemo1CExtensions",
+      "Scope": "Both"
+    }
+  ],
   "OrderedSpecialFolders": [],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
