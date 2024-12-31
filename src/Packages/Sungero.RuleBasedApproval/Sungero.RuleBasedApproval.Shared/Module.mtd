@@ -1,0 +1,75 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "c0c97766-faa4-436f-ba29-1c8b5e046e67",
+  "Name": "RuleBasedApproval",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.RuleBasedApproval.Client",
+  "ClientBaseAssemblyName": "Sungero.RuleBasedApproval.ClientBase",
+  "ClientBaseNamespace": "Sungero.RuleBasedApproval.ClientBase",
+  "ClientNamespace": "Sungero.RuleBasedApproval.Client",
+  "Code": "RuleBas",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "cb2fc5ed-0625-454e-b0c2-26b8620a1a4d",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "8bcd246b-1f31-4f28-ba0b-5c68d6547f55",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "bb5d7160-4b10-4521-8e09-1989b28ae1f3",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "8645d768-5789-4b21-ac6a-b404248d3495",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "a7582ddd-3a95-4cc6-8788-48be77c7c348",
+      "PreviousItemId": "beb0bae4-a420-4277-8f07-b3ec652c53dd"
+    }
+  ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.RuleBasedApproval",
+  "IsolatedAssemblyName": "Sungero.RuleBasedApproval.Isolated",
+  "IsolatedNamespace": "Sungero.RuleBasedApproval.Isolated",
+  "IsVisible": false,
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.RuleBasedApproval",
+  "ResourcesKeys": [
+    "SendIncomingInvoiceTo1C"
+  ],
+  "ServerAssemblyName": "Sungero.RuleBasedApproval.Server",
+  "ServerNamespace": "Sungero.RuleBasedApproval.Server",
+  "SharedAssemblyName": "Sungero.RuleBasedApproval.Shared",
+  "SharedNamespace": "Sungero.RuleBasedApproval.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

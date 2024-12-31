@@ -1,0 +1,62 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "8645d768-5789-4b21-ac6a-b404248d3495",
+  "Name": "Demo1C",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.Demo1C.Client",
+  "ClientBaseAssemblyName": "Sungero.Demo1C.ClientBase",
+  "ClientBaseNamespace": "Sungero.Demo1C.ClientBase",
+  "ClientNamespace": "Sungero.Demo1C.Client",
+  "Code": "Demo1C",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "df088231-5f72-44fc-8923-835631bbcd76",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "350043a5-a7a8-4f0f-98f3-40311dae57e8",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "7a489bd3-264e-4ac7-a72f-f186093c2ac0",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.Demo1C",
+  "IsolatedAssemblyName": "Sungero.Demo1C.Isolated",
+  "IsolatedNamespace": "Sungero.Demo1C.Isolated",
+  "IsVisible": false,
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.Demo1C",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.Demo1C.Server",
+  "ServerNamespace": "Sungero.Demo1C.Server",
+  "SharedAssemblyName": "Sungero.Demo1C.Shared",
+  "SharedNamespace": "Sungero.Demo1C.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

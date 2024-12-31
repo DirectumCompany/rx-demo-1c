@@ -1,0 +1,171 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "79a275ba-4207-4e00-9e28-8fa74c387d13",
+  "Name": "Sync1CExample",
+  "AsyncHandlers": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "6b1a1d98-08ea-433d-876b-2f8b07cd408c",
+      "Name": "SetOutgoingInvoiceStatusToPaid1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SetOutgoingInvoiceStatusToPaid1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "4dcdd838-99a1-45f1-9177-1a567dc01dce",
+          "Name": "Document",
+          "EntityGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "617287ca-d0fa-438b-add7-4712f300f43f",
+      "Name": "SetUniversalTransferDocumentSignStatus1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SetUniversalTransferDocumentSignStatus1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "6cea16fb-6476-4f00-b2c5-f0566033f9ce",
+          "Name": "Document",
+          "EntityGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "f1baf94d-2b41-4bd0-9aa7-6d7f40e21d92",
+      "Name": "SetIncomingInvoiceStatusToPaid1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SetIncomingInvoiceStatusToPaid1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "18b01b1f-610f-46a2-bcd8-921b902a6835",
+          "Name": "Document",
+          "EntityGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "d5a5cfc0-6aeb-4957-ba30-fd08bb8aec5a",
+      "Name": "CreateIncomingInvoiceIn1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "CreateIncomingInvoiceIn1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "4881d75b-08da-42ac-8a48-ff91f09a8f7d",
+          "Name": "IncomingInvoice",
+          "EntityGuid": "62f70f15-967a-4211-81ac-7c02aa3928b5",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    }
+  ],
+  "ClientAssemblyName": "Sungero.Sync1CExample.Client",
+  "ClientBaseAssemblyName": "Sungero.Sync1CExample.ClientBase",
+  "ClientBaseNamespace": "Sungero.Sync1CExample.ClientBase",
+  "ClientNamespace": "Sungero.Sync1CExample.Client",
+  "Code": "Sync1CE",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "b01d2a4b-fe71-4814-bc66-33faf06fd7f5",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "1c384140-2fe1-40fc-bf3e-aabff3027eaf",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "bbc37af1-e4e6-4355-9679-0995028f16ec",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "15234f2e-0858-4733-a9cb-eaa6ed2b2a5e",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.Sync1CExample",
+  "IsolatedAssemblyName": "Sungero.Sync1CExample.Isolated",
+  "IsolatedNamespace": "Sungero.Sync1CExample.Isolated",
+  "IsVisible": false,
+  "Libraries": [
+    {
+      "NameGuid": "8d509ddd-977e-47b6-8437-22ad44d427ab",
+      "Name": "Integration1CExtensions",
+      "Scope": "Both"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GeneratePublicBodyForFormalizedDocument",
+      "Parameters": [
+        {
+          "Name": "documentId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void",
+      "WebApiRequestType": "Post"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.Sync1CExample",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.Sync1CExample.Server",
+  "ServerNamespace": "Sungero.Sync1CExample.Server",
+  "SharedAssemblyName": "Sungero.Sync1CExample.Shared",
+  "SharedNamespace": "Sungero.Sync1CExample.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

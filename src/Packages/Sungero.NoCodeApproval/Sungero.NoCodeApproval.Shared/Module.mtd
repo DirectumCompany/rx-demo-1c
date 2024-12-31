@@ -1,0 +1,64 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "e87233b3-03bf-45e0-ae9c-e34c329efa8a",
+  "Name": "NoCodeApproval",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.NoCodeApproval.Client",
+  "ClientBaseAssemblyName": "Sungero.NoCodeApproval.ClientBase",
+  "ClientBaseNamespace": "Sungero.NoCodeApproval.ClientBase",
+  "ClientNamespace": "Sungero.NoCodeApproval.Client",
+  "Code": "NoCodeA",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "1997c455-2fba-4a28-89c3-a997d6b3f906",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "e3065163-1896-4e8e-be9f-40775b2930c3",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "55ce37f5-cf99-4459-a559-f6ee04c9f3d7",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "8645d768-5789-4b21-ac6a-b404248d3495",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.NoCodeApproval",
+  "IsolatedAssemblyName": "Sungero.NoCodeApproval.Isolated",
+  "IsolatedNamespace": "Sungero.NoCodeApproval.Isolated",
+  "IsVisible": false,
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.NoCodeApproval",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.NoCodeApproval.Server",
+  "ServerNamespace": "Sungero.NoCodeApproval.Server",
+  "SharedAssemblyName": "Sungero.NoCodeApproval.Shared",
+  "SharedNamespace": "Sungero.NoCodeApproval.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
