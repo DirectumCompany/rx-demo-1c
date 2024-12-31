@@ -32,8 +32,7 @@ _ConfigSettings.xml*
 
 *.nupkg
 *.diff
-*.csproj
-*.sln
+/src/Packages/**/*.csproj
 *.g.cs
 *.xaml
 *.xaml.cs
@@ -41,3 +40,7 @@ _ConfigSettings.xml*
 AssemblyInfo.cs
 [bB]in/*
 _ConfigSettings.xml
+
+
+*.csproj
+*.sln
