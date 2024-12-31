@@ -1,32 +1,30 @@
-﻿using System;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using DirectumRXDemo1C.Extensions.Http.Internal;
 
 namespace DirectumRXDemo1C.Extensions.Http
 {
   public class Request1C
   {
-    private HttpMethod method;
-    private readonly string url;
-    private readonly object content;
+    private readonly HttpMethod method;
+    private readonly string url;    
 
-    internal Request1C(HttpMethod method, string url, object content)
+    private Request1C(HttpMethod method, string url)
     {
       this.method = method;
       this.url = url;
-      this.content = content;
     }
 
-    public void Execute()
+    public void Invoke(object content = null)
     {
-      var response = HttpClientLocator.GetOrCreate().SendAsync(this.CreateRequest()).Result;
+      ParametersValidator.Invoke(method, content);
+
+      var response = HttpClientProvider.Get().SendAsync(this.CreateRequest(content)).Result;
       response.EnsureSuccessStatusCode();
 
-      this.Result = response.Content.ReadAsStringAsync().Result;
+      this.ResponseContent = response.Content.ReadAsStringAsync().Result;
     }
 
-    private HttpRequestMessage CreateRequest()
+    private HttpRequestMessage CreateRequest(object content)
     {
       var requestBuilder = new HttpRequestMessageBuilder(method, url);
       if (HttpMethodHelper.MethodRequiresContent(method))
@@ -35,6 +33,9 @@ namespace DirectumRXDemo1C.Extensions.Http
       return requestBuilder.Result;
     }
 
-    public string Result { get; private set; }
+    public string ResponseContent { get; private set; }
+
+    public static Request1C Create(HttpMethod method, string url) 
+      => new Request1C(method, url);
   }
 }
