@@ -39,7 +39,7 @@ namespace Sungero.RuleBasedApproval.Server
       {
         try
         {
-          var created = Sungero.Integration1CDemo.PublicFunctions.Module.CreateIncomingInvoice1C(invoice);
+          var created = Sungero.Demo1C.PublicFunctions.Module.SendIncomingInvoiceTo1C(invoice);
           if (created)
             Logger.DebugFormat("SendIncomingInvoiceTo1CStage. The incoming invoice is succcesssfully sent to 1C. Approval task (ID={0}), Document (ID={1}).", approvalTask.Id, invoice.Id);
           else
@@ -67,17 +67,17 @@ namespace Sungero.RuleBasedApproval.Server
     /// <remarks>Получает основной документ задачи на согласование, если это входящий счет.
     /// Получает все входящие счета из группы "Приложения", но только со статусом "Принят к оплате".
     /// Счета из группы "Дополнительно" игнорируются.</remarks>
-    private static List<Sungero.Integration1CDemo.IIncomingInvoice> GetIncomingInvoicesForSyncTo1C(Sungero.Docflow.IApprovalTask approvalTask)
+    private static List<Sungero.Demo1C.IIncomingInvoice> GetIncomingInvoicesForSyncTo1C(Sungero.Docflow.IApprovalTask approvalTask)
     {
-      var result = new List<Sungero.Integration1CDemo.IIncomingInvoice>();
+      var result = new List<Sungero.Demo1C.IIncomingInvoice>();
       
       var mainDocument = approvalTask.DocumentGroup.OfficialDocuments.SingleOrDefault();
       if (mainDocument != null && Sungero.Integration1CDemo.IncomingInvoices.Is(mainDocument))
-        result.Add(Sungero.Integration1CDemo.IncomingInvoices.As(mainDocument));
+        result.Add(Sungero.Demo1C.IncomingInvoices.As(mainDocument));
       
       var addendaInvoices = approvalTask.AddendaGroup.OfficialDocuments
-        .Where(x => Sungero.Integration1CDemo.IncomingInvoices.Is(x) && x.LifeCycleState == Sungero.Contracts.IncomingInvoice.LifeCycleState.Active)
-        .Select(x => Sungero.Integration1CDemo.IncomingInvoices.As(x));
+        .Where(x => Sungero.Demo1C.IncomingInvoices.Is(x) && x.LifeCycleState == Sungero.Contracts.IncomingInvoice.LifeCycleState.Active)
+        .Select(x => Sungero.Demo1C.IncomingInvoices.As(x));
       result.AddRange(addendaInvoices);
       
       return result;
