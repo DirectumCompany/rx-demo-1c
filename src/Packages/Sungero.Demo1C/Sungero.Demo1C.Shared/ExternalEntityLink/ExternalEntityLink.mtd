@@ -1,0 +1,88 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d",
+  "Name": "ExternalEntityLink",
+  "BaseGuid": "4346363e-39b9-40eb-9c12-64f0cf48d87f",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "IconResourcesKeys": [],
+  "LayeredFromGuid": "4346363e-39b9-40eb-9c12-64f0cf48d87f",
+  "OperationsClass": "",
+  "PublicFunctions": [
+    {
+      "Name": "CreateNew",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "externalEntityId",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "externalEntityType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetForEntityIn1C",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::Sungero.Demo1C.IExternalEntityLink",
+      "ReturnTypeFullName": "Sungero.Demo1C.IExternalEntityLink, Sungero.Domain.Interfaces"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "6a2c0259-798d-4e44-a0a9-0542c544d9d8",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "5cb5148c-78e5-4639-906d-a8b535fe1ca3",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 13
+    }
+  ]
+}

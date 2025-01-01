@@ -26,6 +26,15 @@
     "Tabs": []
   },
   "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d"
+    },
+    {
+      "ItemId": "c83694e6-b90a-4660-853f-5cea6f30b748",
+      "PreviousItemId": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d"
+    }
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -33,14 +42,21 @@
   "IsolatedAssemblyName": "Sungero.Demo1C.Isolated",
   "IsolatedNamespace": "Sungero.Demo1C.Isolated",
   "IsVisible": false,
-  "Libraries": [
+  "OrderedSpecialFolders": [],
+  "PublicFunctions": [
     {
-      "NameGuid": "8b98a431-51e1-44d0-a76d-6c087fee7f90",
-      "Name": "DirectumRXDemo1CExtensions",
-      "Scope": "Both"
+      "Name": "SendIncomingInvoiceTo1C",
+      "Parameters": [
+        {
+          "Name": "invoice",
+          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
+          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
-  "OrderedSpecialFolders": [],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.Demo1C",
