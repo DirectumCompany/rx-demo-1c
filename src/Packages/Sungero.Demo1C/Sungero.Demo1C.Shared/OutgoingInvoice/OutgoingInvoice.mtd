@@ -3,6 +3,16 @@
   "NameGuid": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62",
   "Name": "OutgoingInvoice",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "d8dbec05-cba9-4ba2-a657-5bc82adb76bd",
+      "Name": "OpenEntityIn1CSungero",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_OpenEntityIn1CSungero_large_d8dbec05cba94ba2a6575bc82adb76bd.png",
+      "SmallIconName": "Action_OpenEntityIn1CSungero_small_d8dbec05cba94ba2a6575bc82adb76bd.png"
+    }
+  ],
   "BaseGuid": "58ad01fb-6805-426b-9152-4de16d83b258",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -20,6 +30,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "58ad01fb-6805-426b-9152-4de16d83b258",
   "OpenCardByDefaultInCollection": true,
@@ -73,8 +96,27 @@
     "NameGuid": "2965b035-c563-4f89-b962-d951d9e2ffb5",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
-    "Groups": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "fc9d1bb5-00b0-42d2-870f-f2bf8acc064e",
+        "Name": "ActionButtonSungero",
+        "ActionGuid": "d8dbec05-cba9-4ba2-a657-5bc82adb76bd",
+        "ButtonSize": "Large",
+        "Index": 0,
+        "ParentGuid": "d91b433d-0dd7-439c-bfbc-2678263428f6"
+      }
+    ],
+    "Groups": [
+      {
+        "NameGuid": "d91b433d-0dd7-439c-bfbc-2678263428f6",
+        "Name": "IntegrationGroup",
+        "IconName": null,
+        "Index": 13,
+        "ParentGuid": "1f08362f-6a13-44cb-9590-5a5b51c85c30",
+        "SmallIconName": null
+      }
+    ],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"

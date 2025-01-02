@@ -17,7 +17,7 @@ namespace Sungero.NoCodeApproval.Server
     /// <returns>True - успешно, False - неуспешно.</returns>
     public static void SendDocumentStatusTo1C(Sungero.Docflow.IOfficialDocument document)
     {
-      var externalEntityLink = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.GetForEntityIn1C(document);
+      var externalEntityLink = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(document);
       if (externalEntityLink == null)
       {
         Logger.DebugFormat("NoCodeApproval.SendDocumentStatusTo1C. The document status is not updated because the entity is not synchronized with 1C. Id = {0}.", document.Id);        

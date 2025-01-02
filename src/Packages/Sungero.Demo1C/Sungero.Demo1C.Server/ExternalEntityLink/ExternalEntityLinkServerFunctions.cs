@@ -14,7 +14,7 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <param name="entity">Запись Directum RX.</param>
     /// <returns>Связь сущности с внешней системой. Если не найдена, то null.</returns>
-    [Public]
+    [Public, Remote(IsPure = true)]
     public static IExternalEntityLink GetForEntityIn1C(Sungero.Domain.Shared.IEntity entity)
     {
       var typeGuid = entity.TypeDiscriminator.ToString();

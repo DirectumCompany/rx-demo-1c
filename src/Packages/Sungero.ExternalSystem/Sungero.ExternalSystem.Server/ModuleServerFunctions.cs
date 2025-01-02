@@ -55,6 +55,22 @@ namespace Sungero.ExternalSystem.Server
       return businessUnits.FirstOrDefault()?["Ref_Key"].Value<string>();
     }
     
+    /// <summary>
+    /// Получить ссылку на сущноссть в 1С.
+    /// </summary>
+    /// <param name="entityId">ИД сущности.</param>
+    /// <param name="entityType">Тип сущности.</param>
+    /// <returns>Ссылка на сущность.</returns>
+    [Public, Remote(IsPure = true)]
+    public string GetEntityLink(string entityId, string entityType)
+    {
+      var url = BuildGetUrl(string.Format("hs/gethyperlink/GetHyperlink/{1}/{2}", entityId, entityType));
+      var request = Request.Create(RequestMethod.Get, url);
+      request.Invoke();
+      
+      return request.ResponseContent;
+    }
+    
     #endregion
     
     #region Сохранение данных
@@ -133,7 +149,7 @@ namespace Sungero.ExternalSystem.Server
     /// </summary>
     /// <param name="entityName">Наименование сущности</param>    
     /// <returns>Url.</returns>
-    private static string BuildGetUrl(string entityName, string filterValue)
+    private static string BuildGetUrl(string entityName, string filterValue = null)
     {
       return BuildUrl(entityName, filterValue, null);
     }
