@@ -71,9 +71,9 @@ namespace Sungero.Sync1CExample.Server.Sync1CExampleBlocks
     }
   }
 
-  partial class SetUniversalTransferDocumentSignStatus1CHandlers
+  partial class SendPropertySignedTo1CForUniversalTransferDocumentHandlers
   {
-    public virtual void SetUniversalTransferDocumentSignStatus1CExecute()
+    public virtual void SendPropertySignedTo1CForUniversalTransferDocumentExecute()
     {
       var universalTransferDocument = Sungero.FinancialArchive.UniversalTransferDocuments.As(_block.Document);
       if (universalTransferDocument != null &&

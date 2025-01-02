@@ -33,6 +33,14 @@
     {
       "ItemId": "c83694e6-b90a-4660-853f-5cea6f30b748",
       "PreviousItemId": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d"
+    },
+    {
+      "ItemId": "e32c6b0b-f1e9-41e7-853a-56a64e4f3e30",
+      "PreviousItemId": "c83694e6-b90a-4660-853f-5cea6f30b748"
+    },
+    {
+      "ItemId": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62",
+      "PreviousItemId": "e32c6b0b-f1e9-41e7-853a-56a64e4f3e30"
     }
   ],
   "IconResourcesKeys": [],
@@ -44,6 +52,19 @@
   "IsVisible": false,
   "OrderedSpecialFolders": [],
   "PublicFunctions": [
+    {
+      "Name": "GeneratePublicBodyForFormalizedDocument",
+      "Parameters": [
+        {
+          "Name": "documentId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void",
+      "WebApiRequestType": "Post"
+    },
     {
       "Name": "SendIncomingInvoiceTo1C",
       "Parameters": [
