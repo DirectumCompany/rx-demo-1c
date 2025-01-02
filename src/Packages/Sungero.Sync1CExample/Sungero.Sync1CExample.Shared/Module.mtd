@@ -27,10 +27,10 @@
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "617287ca-d0fa-438b-add7-4712f300f43f",
-      "Name": "SetUniversalTransferDocumentSignStatus1C",
+      "Name": "SendPropertySignedTo1CForUniversalTransferDocument",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
-        "SetUniversalTransferDocumentSignStatus1CExecute"
+        "SendPropertySignedTo1CForUniversalTransferDocumentExecute"
       ],
       "ProcessStagesDisplayMode": "Hide",
       "Properties": [

@@ -33,6 +33,9 @@
       "MinVersion": ""
     }
   ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -45,26 +48,6 @@
       "NameGuid": "3eb1af70-d9a3-4b5a-88f2-5175d25b84f0",
       "Name": "DirectumRXDemo1CExtensions",
       "Scope": "Both"
-    }
-  ],
-  "PublicConstants": [
-    {
-      "Name": "ServiceUrl1C",
-      "ParentClasses": [
-        "Module",
-        "ConnectionParamNames"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"1CServiceAddress\""
-    },
-    {
-      "Name": "SystemId",
-      "ParentClasses": [
-        "Module",
-        "ConnectionParamNames"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"1CSystemId\""
     }
   ],
   "PublicFunctions": [

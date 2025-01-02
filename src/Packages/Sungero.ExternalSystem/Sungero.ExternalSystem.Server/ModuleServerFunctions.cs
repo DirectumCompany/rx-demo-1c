@@ -116,7 +116,7 @@ namespace Sungero.ExternalSystem.Server
     /// <param name="entityName">Наименование сущности</param>
     /// <param name="filterValue">Значение фильтра.</param>
     /// <param name="expandValue">Значение параметра "expand"</param>
-    /// <returns></returns>
+    /// <returns>Url.</returns>
     private static string BuildUrl(string entityName, string filterValue, string expandValue = null)
     {
       var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C);

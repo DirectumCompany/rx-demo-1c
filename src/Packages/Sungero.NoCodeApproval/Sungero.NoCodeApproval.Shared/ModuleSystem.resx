@@ -64,4 +64,28 @@
   <data name="CoverTitle" xml:space="preserve">
     <value>NoCodeApproval</value>
   </data>
+  <data name="Block_a17e0a4f8b1646eea6f1122c647f3ce0" xml:space="preserve">
+    <value>Исходящий счет. Передача в 1С статуса "Оплачен"</value>
+  </data>
+  <data name="Block_a17e0a4f8b1646eea6f1122c647f3ce0_Property_1df5a6498cea48a49eed3acdef6b76c3" xml:space="preserve">
+    <value>Исходящий счет</value>
+  </data>
+  <data name="Block_462a133056614031bc1a2e664f27f5ee" xml:space="preserve">
+    <value>Входящий счет. Передача в 1С статуса "Оплачен"</value>
+  </data>
+  <data name="Block_462a133056614031bc1a2e664f27f5ee_Property_1044a10318b74b6398c4b4590e14eb6e" xml:space="preserve">
+    <value>Входящий счет</value>
+  </data>
+  <data name="Block_b637c495d6c64b46a7654f778a1aba21" xml:space="preserve">
+    <value>УПД. Передача в 1С признака "Документ подписан"</value>
+  </data>
+  <data name="Block_b637c495d6c64b46a7654f778a1aba21_Property_22837a4447b74f3f9e282f5070bf10bc" xml:space="preserve">
+    <value>Универсальный передаточный документ</value>
+  </data>
+  <data name="Block_d558315214da4d99b27f90b802438d0f" xml:space="preserve">
+    <value>Передача входящего счета в 1С</value>
+  </data>
+  <data name="Block_d558315214da4d99b27f90b802438d0f_Property_edfc4ad96d0d4e85a1116a907f5f3642" xml:space="preserve">
+    <value>Входящий счет</value>
+  </data>
 </root>

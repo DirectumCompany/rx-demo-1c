@@ -58,34 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>1C Integration (Demo)</value>
-  </data>
-  <data name="CoverTitle" xml:space="preserve">
-    <value>Sync1CExample</value>
-  </data>
-  <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c" xml:space="preserve">
-    <value>Передача статуса оплаты исходящего счета в 1С</value>
-  </data>
-  <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c_Property_4dcdd83899a145f191771a567dc01dce" xml:space="preserve">
-    <value>Исходящий счет</value>
-  </data>
-  <data name="Block_617287cad0fa438badd74712f300f43f" xml:space="preserve">
-    <value>УПД. Передача в 1С признака "Документ подписан"</value>
-  </data>
-  <data name="Block_617287cad0fa438badd74712f300f43f_Property_6cea16fb64764f00b2c5f0566033f9ce" xml:space="preserve">
-    <value>Универсальный передаточный документ</value>
-  </data>
-  <data name="Block_f1baf94d2b414bd09aa76d7f40e21d92" xml:space="preserve">
-    <value>Передача статуса оплаты входящего счета в 1С</value>
-  </data>
-  <data name="Block_f1baf94d2b414bd09aa76d7f40e21d92_Property_18b01b1f610f46a2bcd8921b902a6835" xml:space="preserve">
-    <value>Входящий счет</value>
-  </data>
-  <data name="Block_d5a5cfc06aeb4957ba30fd08bb8aec5a" xml:space="preserve">
-    <value>Создать счет в 1С</value>
-  </data>
-  <data name="Block_d5a5cfc06aeb4957ba30fd08bb8aec5a_Property_4881d75b08da42ac8a48ff91f09a8f7d" xml:space="preserve">
-    <value>Входящий счет</value>
-  </data>
 </root>

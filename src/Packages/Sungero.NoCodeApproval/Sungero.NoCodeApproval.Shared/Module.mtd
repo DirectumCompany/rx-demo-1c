@@ -3,6 +3,87 @@
   "NameGuid": "e87233b3-03bf-45e0-ae9c-e34c329efa8a",
   "Name": "NoCodeApproval",
   "AsyncHandlers": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "a17e0a4f-8b16-46ee-a6f1-122c647f3ce0",
+      "Name": "SendStatusPaidTo1CForOutgoingInvoice",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendStatusPaidTo1CForOutgoingInvoiceExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "1df5a649-8cea-48a4-9eed-3acdef6b76c3",
+          "Name": "Document",
+          "EntityGuid": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "462a1330-5661-4031-bc1a-2e664f27f5ee",
+      "Name": "SendStatusPaidTo1CForIncomingInvoice",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendStatusPaidTo1CForIncomingInvoiceExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "1044a103-18b7-4b63-98c4-b4590e14eb6e",
+          "Name": "Document",
+          "EntityGuid": "c83694e6-b90a-4660-853f-5cea6f30b748",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "b637c495-d6c6-4b46-a765-4f778a1aba21",
+      "Name": "SendPropertySignedTo1CForUniversalTransferDocument",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendPropertySignedTo1CForUniversalTransferDocumentExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "22837a44-47b7-4f3f-9e28-2f5070bf10bc",
+          "Name": "Document",
+          "EntityGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
+          "IsRequired": true,
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "d5583152-14da-4d99-b27f-90b802438d0f",
+      "Name": "SendIncomingInvoiceTo1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendIncomingInvoiceTo1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "edfc4ad9-6d0d-4e85-a111-6a907f5f3642",
+          "Name": "Document",
+          "EntityGuid": "c83694e6-b90a-4660-853f-5cea6f30b748",
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
+    }
+  ],
   "ClientAssemblyName": "Sungero.NoCodeApproval.Client",
   "ClientBaseAssemblyName": "Sungero.NoCodeApproval.ClientBase",
   "ClientBaseNamespace": "Sungero.NoCodeApproval.ClientBase",
