@@ -17,9 +17,7 @@ namespace Sungero.Demo1C.Server
     {
       var document = Sungero.Docflow.AccountingDocumentBases.Get(documentId);
       Sungero.Docflow.PublicFunctions.Module.Remote.GeneratePublicBodyForFormalizedDocument(document, document.LastVersion.Id, null, null);
-    }
-    
-    #region Отправить входящий счет в 1С.
+    }   
     
     /// <summary>
     /// Отправить входящий счет в 1С.
@@ -41,6 +39,7 @@ namespace Sungero.Demo1C.Server
           Sungero.ExternalSystem.PublicFunctions.Module.CreatePaymentTermForInvoice(createdDtoKey, invoiceDto.Организация_Key, invoice.PaymentDueDate.Value);
         
         Sungero.Demo1C.PublicFunctions.ExternalEntityLink.CreateNew(invoice, createdDtoKey, "СчетНаОплатуПоставщика");
+        Logger.DebugFormat("Demo1C.SendIncomingInvoiceTo1C. The incoming invoice is successfully sent to 1C. Id={0}.", invoice.Id);
         
         return true;
       }
@@ -49,8 +48,6 @@ namespace Sungero.Demo1C.Server
         Logger.ErrorFormat("Demo1C.SendIncomingInvoiceTo1C. Error while sending incoming invoice to 1C. Id = {0}.", ex, invoice.Id);
         return false;
       }
-    }
-    
-    #endregion
+    }    
   }
 }

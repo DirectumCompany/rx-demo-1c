@@ -29,5 +29,17 @@ namespace Sungero.Demo1C.Server
       
       return result;
     }
+    
+    /// <summary>
+    /// Заполнить недостающие данные для отправки статуса в 1С.
+    /// </summary>
+    /// <param name="status">Инфоормация о статусе.</param>
+    [Public]
+    public void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
+    {
+      status.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
+      status.Статус = "Оплачен";
+      status.Статус_Type = "UnavailableEnums.СтатусОплатыСчета";
+    }
   }
 }

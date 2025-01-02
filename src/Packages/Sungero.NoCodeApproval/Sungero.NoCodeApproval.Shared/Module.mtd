@@ -58,7 +58,7 @@
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
           "NameGuid": "22837a44-47b7-4f3f-9e28-2f5070bf10bc",
           "Name": "Document",
-          "EntityGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
+          "EntityGuid": "aab93307-8945-4804-888c-773db6e1ac54",
           "IsRequired": true,
           "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
         }

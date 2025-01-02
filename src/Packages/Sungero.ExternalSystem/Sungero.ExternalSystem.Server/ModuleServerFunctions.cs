@@ -32,7 +32,7 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static string GetBusinessUnit(string tin, string trrc)
     {
-      var url = BuildUrl("Catalog_Организации", $"ИНН eq '{tin}' and КПП eq '{trrc}'");
+      var url = BuildGetUrl("Catalog_Организации", $"ИНН eq '{tin}' and КПП eq '{trrc}'");
       var request = Request.Create(RequestMethod.Get, url);
       request.Invoke();
       
@@ -69,17 +69,17 @@ namespace Sungero.ExternalSystem.Server
     {
       if (dto.Контрагент_Key == null)
       {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because counterparty is not found in 1C. Id = {0}.", dto.rx_ID);
+        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because counterparty is not found. Id = {0}.", dto.rx_ID);
         return null;
       }
       
       if (dto.Организация_Key == null)
       {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because business unit is not found in 1C or more than one. Id = {0}.", dto.rx_ID);
+        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.rx_ID);
         return null;
       }
       
-      var url = BuildUrl("Document_СчетНаОплатуПоставщика", null, "*");
+      var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
       
@@ -101,14 +101,52 @@ namespace Sungero.ExternalSystem.Server
       dto.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
       dto.СрокОплаты = paymentDueDate;
       
-      var url = BuildUrl("InformationRegister_СрокиОплатыДокументов", null, "*");
+      var url = BuildPostUrl("InformationRegister_СрокиОплатыДокументов");
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
     }
     
-    #endregion
+    /// <summary>
+    /// Создать запись в регистре сведений "Статусы документов".
+    /// </summary>
+    /// <param name="dto">Структура с данными для записи.</param>    
+    [Public]
+    public static void CreateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      if (dto.Организация_Key == null)
+      {
+        Logger.DebugFormat("ExternalSystem.CreateDocumentStatus. The document status is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+        return;
+      }
+      
+      var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
+      var request = Request.Create(RequestMethod.Post, url);
+      request.Invoke(dto);
+    }
+    
+    #endregion    
     
     #region Формирование URL
+    
+    /// <summary>
+    /// Собрать URL для GET запроса.
+    /// </summary>
+    /// <param name="entityName">Наименование сущности</param>    
+    /// <returns>Url.</returns>
+    private static string BuildGetUrl(string entityName, string filterValue)
+    {
+      return BuildUrl(entityName, filterValue, null);
+    }
+    
+    /// <summary>
+    /// Собрать URL для POST запроса.
+    /// </summary>
+    /// <param name="entityName">Наименование сущности</param>    
+    /// <returns>Url.</returns>
+    private static string BuildPostUrl(string entityName)
+    {
+      return BuildUrl(entityName, null, "*");
+    }
     
     /// <summary>
     /// Собрать URL для запроса.

@@ -7,7 +7,7 @@ using Sungero.CoreEntities;
 namespace Sungero.ExternalSystem.Structures.Module
 {
   /// <summary>
-  /// Входящий счет в 1С.
+  /// Документ "Счет на оплату покупателю".
   /// </summary>
   [Public]
   partial class IncomingInvoiceDto
@@ -51,7 +51,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   }
   
   /// <summary>
-  /// Срок оплаты в 1С.
+  /// Регистр сведений "Сроки оплаты документов".
   /// </summary>
   [Public]
   partial class PaymentTermDto
@@ -75,5 +75,37 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// Срок оплаты.
     /// </summary>
     public DateTime СрокОплаты { get; set; }
+  }
+  
+  /// <summary>
+  /// Регистр сведений "Статусы документов".
+  /// </summary>
+  [Public]
+  partial class DocumentStatusDto
+  {
+    // <summary>
+    /// Организация.
+    /// </summary>
+    public string Организация_Key { get; set; }
+    
+    /// <summary>
+    /// Документ.
+    /// </summary>
+    public string Документ { get; set; }
+    
+    /// <summary>
+    /// Тип документа.
+    /// </summary>
+    public string Документ_Type { get; set; }
+
+    /// <summary>
+    /// Статус.
+    /// </summary>
+    public string Статус { get; set; }
+    
+    /// <summary>
+    /// Тип статуса.
+    /// </summary>
+    public string Статус_Type { get; set; }
   }
 }

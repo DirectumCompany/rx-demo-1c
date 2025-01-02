@@ -4,7 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 
-namespace Sungero.NoCodeApproval.Structures.Module
+namespace Sungero.Demo1C.Structures.FinancialArchive.UniversalTransferDocument
 {
-  
+
 }
