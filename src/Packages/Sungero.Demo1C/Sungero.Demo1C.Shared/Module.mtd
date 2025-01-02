@@ -98,7 +98,11 @@
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.Demo1C",
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "OpenRecord1CErrorNotExist",
+    "OpenRecord1CErrorIsDelete",
+    "OpenRecord1CError"
+  ],
   "ServerAssemblyName": "Sungero.Demo1C.Server",
   "ServerNamespace": "Sungero.Demo1C.Server",
   "SharedAssemblyName": "Sungero.Demo1C.Shared",

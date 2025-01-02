@@ -19,10 +19,10 @@ namespace Sungero.Demo1C.Client
       var externalEntityLink = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(document);
 
       if (externalEntityLink == null)
-        return Integration1CDemo.Resources.OpenRecord1CErrorNotExist;
+        return Sungero.Demo1C.Resources.OpenRecord1CErrorNotExist;
       
-      if (externalEntityLink.IsDeleted == true)
-        return Integration1CDemo.Resources.OpenRecord1CErrorIsDelete;
+      if (externalEntityLink.IsDeleted == true)        
+        return Sungero.Demo1C.Resources.OpenRecord1CErrorIsDelete;
       
       try
       {
@@ -33,8 +33,8 @@ namespace Sungero.Demo1C.Client
       }
       catch(Exception ex)
       {
-        Logger.ErrorFormat("Demo1C.OpenEntityIn1CFor. An error occured while getting the link to external entity. DocumentId = {0}", ex, document.Id);
-        return Integration1CDemo.Resources.OpenRecord1CError;
+        Logger.ErrorFormat("Demo1C.OpenEntityIn1CFor. An error occured while getting the link to external entity. DocumentId = {0}", ex, document.Id);        
+        return Sungero.Demo1C.Resources.OpenRecord1CError;
       }
     }
   }

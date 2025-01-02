@@ -58,4 +58,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="OpenRecord1CErrorNotExist" xml:space="preserve">
+    <value>Нет связанной записи в системе 1С.</value>
+  </data>
+  <data name="OpenRecord1CErrorIsDelete" xml:space="preserve">
+    <value>Связанная запись в системе 1С удалена.</value>
+  </data>
+  <data name="OpenRecord1CError" xml:space="preserve">
+    <value>Произошла ошибка при получении связанной записи в системе 1С. Обратитесь к администратору.</value>
+  </data>
 </root>
