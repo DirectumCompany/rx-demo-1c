@@ -72,7 +72,7 @@ namespace Sungero.RuleBasedApproval.Server
       var result = new List<Sungero.Demo1C.IIncomingInvoice>();
       
       var mainDocument = approvalTask.DocumentGroup.OfficialDocuments.SingleOrDefault();
-      if (mainDocument != null && Sungero.Integration1CDemo.IncomingInvoices.Is(mainDocument))
+      if (mainDocument != null && Sungero.Demo1C.IncomingInvoices.Is(mainDocument))
         result.Add(Sungero.Demo1C.IncomingInvoices.As(mainDocument));
       
       var addendaInvoices = approvalTask.AddendaGroup.OfficialDocuments
