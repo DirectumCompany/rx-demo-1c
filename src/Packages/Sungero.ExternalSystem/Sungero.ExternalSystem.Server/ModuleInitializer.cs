@@ -49,11 +49,11 @@ namespace Sungero.ExternalSystem.Server
     /// <returns></returns>
     private static string BuildUrl()
     {
-      var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C);
-      if (serviceUrl == null)
+      var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
+      if (string.IsNullOrEmpty(serviceUrl))
         serviceUrl = Constants.Module.DefaultServiceUrl1C;      
       
-      return string.Format("{0}/hs/handlers/UpdateListObjectsOData");      
+      return string.Format("{0}/hs/handlers/UpdateListObjectsOData", serviceUrl);
     }
   }
 }
