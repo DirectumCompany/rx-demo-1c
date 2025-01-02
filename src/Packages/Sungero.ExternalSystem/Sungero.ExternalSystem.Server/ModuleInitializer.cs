@@ -27,7 +27,7 @@ namespace Sungero.ExternalSystem.Server
     }
     
     /// <summary>
-    /// Установить cостав стандартного интерфейса OData в 1С.
+    /// Установить cостав стандартного интерфейса odata в 1С.
     /// </summary>
     private static void UpdateOdataObjectsIn1C()
     {
@@ -39,7 +39,7 @@ namespace Sungero.ExternalSystem.Server
       }
       catch(Exception ex)
       {
-        Logger.ErrorFormat("Init: Errors occured while updating odata objects.", ex);
+        Logger.ErrorFormat("Init: Errors occured while updating odata objects in 1C.", ex);
       }
     }
     
