@@ -1,9 +1,9 @@
 {
   "$type": "Sungero.Metadata.DocumentMetadata, Sungero.Content.Shared",
-  "NameGuid": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62",
-  "Name": "OutgoingInvoice",
+  "NameGuid": "aab93307-8945-4804-888c-773db6e1ac54",
+  "Name": "UniversalTransferDocument",
   "AccessRightsMode": "Both",
-  "BaseGuid": "58ad01fb-6805-426b-9152-4de16d83b258",
+  "BaseGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
     "NameGuid": "7322020b-3299-4fba-b9b0-4c995bd2e401",
@@ -21,7 +21,7 @@
     "Versions": []
   },
   "IconResourcesKeys": [],
-  "LayeredFromGuid": "58ad01fb-6805-426b-9152-4de16d83b258",
+  "LayeredFromGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
@@ -29,7 +29,7 @@
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
       "NameGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
       "Name": "Versions",
-      "EntityGuid": "659eef5f-9185-45d6-9e25-1c519f66b384",
+      "EntityGuid": "568a79c1-85d0-47f8-84c1-97ed56e8984f",
       "IsAncestorMetadata": true,
       "Overridden": [
         "EntityGuid"
@@ -40,7 +40,7 @@
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
       "NameGuid": "15280407-331e-42f6-b263-041a495b66cd",
       "Name": "Tracking",
-      "EntityGuid": "29d83639-b0cf-470b-8141-56366c662433",
+      "EntityGuid": "67d7c362-fd20-4d4e-b7d8-ad43c71a84ee",
       "IsAncestorMetadata": true,
       "Overridden": [
         "EntityGuid"
@@ -53,9 +53,9 @@
       "Name": "CompleteStatusInfo",
       "Parameters": [
         {
-          "Name": "outgoingInvoice",
-          "ParameterType": "global::Sungero.Demo1C.IOutgoingInvoice",
-          "ParameterTypeFullName": "Sungero.Demo1C.IOutgoingInvoice, Sungero.Domain.Interfaces"
+          "Name": "universalTransferDocument",
+          "ParameterType": "global::Sungero.Demo1C.IUniversalTransferDocument",
+          "ParameterTypeFullName": "Sungero.Demo1C.IUniversalTransferDocument, Sungero.Domain.Interfaces"
         },
         {
           "Name": "status",
@@ -70,7 +70,7 @@
   "PublicStructures": [],
   "ResourcesKeys": [],
   "RibbonCardMetadata": {
-    "NameGuid": "2965b035-c563-4f89-b962-d951d9e2ffb5",
+    "NameGuid": "5e1b67c7-0979-467c-9665-2de87a192619",
     "Name": "RibbonCard",
     "Categories": [],
     "Elements": [],
@@ -80,7 +80,7 @@
     "RibbonKind": "Card"
   },
   "RibbonCollectionMetadata": {
-    "NameGuid": "791cd212-dd73-4866-b8ec-aebe9b9eb9ec",
+    "NameGuid": "087625b4-fc94-407f-84fa-a4b802f853d4",
     "Name": "RibbonCollection",
     "Categories": [],
     "Elements": [],

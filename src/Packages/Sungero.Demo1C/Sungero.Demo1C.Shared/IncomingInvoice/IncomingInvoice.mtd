@@ -50,6 +50,23 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CompleteStatusInfo",
+      "Parameters": [
+        {
+          "Name": "incomingInvoice",
+          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
+          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "status",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "ConvertTo1cDto",
       "Parameters": [
         {

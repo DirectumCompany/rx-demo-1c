@@ -12,7 +12,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendIncomingInvoiceTo1CExecute()
     {
-      
+      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
     }
   }
 
@@ -21,7 +21,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendPropertySignedTo1CForUniversalTransferDocumentExecute()
     {
-      
+      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
     }
   }
 
@@ -30,7 +30,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendStatusPaidTo1CForIncomingInvoiceExecute()
     {
-      
+      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
     }
   }
 
@@ -39,8 +39,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendStatusPaidTo1CForOutgoingInvoiceExecute()
     {
-      
+      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
     }
   }
-
 }

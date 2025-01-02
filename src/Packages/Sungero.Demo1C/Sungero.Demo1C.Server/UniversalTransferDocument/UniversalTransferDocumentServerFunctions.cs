@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using Sungero.Demo1C.OutgoingInvoice;
+using Sungero.Demo1C.UniversalTransferDocument;
 
 namespace Sungero.Demo1C.Server
 {
-  partial class OutgoingInvoiceFunctions
+  partial class UniversalTransferDocumentFunctions
   {
     /// <summary>
     /// Заполнить недостающие данные для отправки статуса в 1С.
@@ -16,9 +16,9 @@ namespace Sungero.Demo1C.Server
     [Public]
     public void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
     {
-      status.Документ_Type = "StandardODATA.Document_СчетНаОплатуПокупателю";
-      status.Статус = "Оплачен";
-      status.Статус_Type = "UnavailableEnums.СтатусОплатыСчета";
+      status.Документ_Type = "StandardODATA.Document_РеализацияТоваровУслуг";
+      status.Статус = "Подписан";
+      status.Статус_Type = "UnavailableEnums.СтатусыДокументовРеализации";
     }
   }
 }

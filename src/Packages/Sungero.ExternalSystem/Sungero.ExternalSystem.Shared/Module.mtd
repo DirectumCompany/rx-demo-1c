@@ -52,6 +52,18 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CreateDocumentStatus",
+      "Parameters": [
+        {
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "CreateIncomingInvoice",
       "Parameters": [
         {
@@ -109,6 +121,38 @@
     }
   ],
   "PublicStructures": [
+    {
+      "Name": "DocumentStatusDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Организация_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Статус",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Статус_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    },
     {
       "Name": "IncomingInvoiceDto",
       "IsPublic": true,
