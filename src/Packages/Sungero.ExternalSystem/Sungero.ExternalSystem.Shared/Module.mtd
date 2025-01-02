@@ -115,6 +115,25 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "GetEntityLink",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "entityId",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "entityType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetId",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"

@@ -58,4 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action_OpenEntityIn1CSungero" xml:space="preserve">
+    <value>Открыть в 1С</value>
+  </data>
+  <data name="Action_OpenEntityIn1CSungeroDescription" xml:space="preserve">
+    <value>Открытие записи в 1С</value>
+  </data>
+  <data name="Action_OpenEntityIn1CSungeroHint" xml:space="preserve">
+    <value>Открыть запись в 1С</value>
+  </data>
+  <data name="Action_OpenEntityIn1CSungeroConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_OpenEntityIn1CSungeroConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_IntegrationGroup_d91b433d0dd7439cbfbc2678263428f6" xml:space="preserve">
+    <value>IntegrationGroup</value>
+  </data>
 </root>

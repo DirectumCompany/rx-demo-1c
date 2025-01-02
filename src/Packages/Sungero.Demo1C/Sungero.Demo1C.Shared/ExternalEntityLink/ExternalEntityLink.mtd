@@ -47,6 +47,7 @@
     },
     {
       "Name": "GetForEntityIn1C",
+      "IsRemote": true,
       "Parameters": [
         {
           "Name": "entity",
@@ -54,6 +55,7 @@
           "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
         }
       ],
+      "Placement": "Shared",
       "ReturnType": "global::Sungero.Demo1C.IExternalEntityLink",
       "ReturnTypeFullName": "Sungero.Demo1C.IExternalEntityLink, Sungero.Domain.Interfaces"
     }

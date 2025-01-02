@@ -70,6 +70,19 @@
       "WebApiRequestType": "Post"
     },
     {
+      "Name": "OpenEntityIn1CFor",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "SendIncomingInvoiceTo1C",
       "Parameters": [
         {
