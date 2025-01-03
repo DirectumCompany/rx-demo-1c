@@ -28,11 +28,11 @@ namespace Sungero.NoCodeApproval.Server
         var  dto = CreateDocumentStatusDto(document, externalEntityLink);
         
         if (Sungero.Demo1C.IncomingInvoices.Is(document))
-          Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(Sungero.Demo1C.IncomingInvoices.As(document), dto);
+          Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
         else if (Sungero.Demo1C.OutgoingInvoices.Is(document))
-          Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(Sungero.Demo1C.OutgoingInvoices.As(document), dto);
+          Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
         else if (Sungero.Demo1C.UniversalTransferDocuments.Is(document))
-          Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(Sungero.Demo1C.UniversalTransferDocuments.As(document), dto);
+          Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
         
         Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);        
       }

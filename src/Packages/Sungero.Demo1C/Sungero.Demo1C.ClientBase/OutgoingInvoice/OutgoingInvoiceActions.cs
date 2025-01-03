@@ -18,7 +18,7 @@ namespace Sungero.Demo1C.Client
 
     public virtual bool CanOpenEntityIn1CSungero(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return true;
+      return !_obj.State.IsInserted;
     }
 
   }

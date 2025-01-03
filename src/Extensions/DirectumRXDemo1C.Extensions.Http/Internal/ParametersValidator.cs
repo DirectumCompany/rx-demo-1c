@@ -8,10 +8,12 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
     public static void Invoke(HttpMethod method, object content)
     {
       if (method == HttpMethod.Get && content != null)
-        throw new ArgumentException($"Http method \"{HttpMethodHelper.ConvertToString(method)}\" shouldn't have a content");
+        throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" shouldn't have a content");
 
-      if (HttpMethodHelper.MethodRequiresContent(method) && content == null)
-        throw new ArgumentException($"Http method \"{HttpMethodHelper.ConvertToString(method)}\" must have a content");
+      if (method == HttpMethod.Post && content == null)
+        throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" must have a content");
     }
+
+    private static string HttpMethodToUpper(HttpMethod method) => method.ToString().ToUpperInvariant();
   }
 }
