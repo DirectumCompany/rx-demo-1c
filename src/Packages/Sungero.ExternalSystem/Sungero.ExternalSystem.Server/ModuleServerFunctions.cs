@@ -64,7 +64,7 @@ namespace Sungero.ExternalSystem.Server
     [Public, Remote(IsPure = true)]
     public string GetEntityLink(string entityId, string entityType)
     {
-      var url = BuildGetUrl(string.Format("hs/gethyperlink/GetHyperlink/{1}/{2}", entityId, entityType));
+      var url = string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}", GetBaseAddress(), entityId, entityType);
       var request = Request.Create(RequestMethod.Get, url);
       request.Invoke();
       
@@ -125,7 +125,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Создать запись в регистре сведений "Статусы документов".
     /// </summary>
-    /// <param name="dto">Структура с данными для записи.</param>    
+    /// <param name="dto">Структура с данными для записи.</param>
     [Public]
     public static void CreateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
@@ -140,14 +140,14 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
-    #endregion    
+    #endregion
     
     #region Формирование URL
     
     /// <summary>
     /// Собрать URL для GET запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности</param>    
+    /// <param name="entityName">Наименование сущности</param>
     /// <returns>Url.</returns>
     private static string BuildGetUrl(string entityName, string filterValue = null)
     {
@@ -157,7 +157,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать URL для POST запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности</param>    
+    /// <param name="entityName">Наименование сущности</param>
     /// <returns>Url.</returns>
     private static string BuildPostUrl(string entityName)
     {
@@ -173,12 +173,19 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>Url.</returns>
     private static string BuildUrl(string entityName, string filterValue, string expandValue = null)
     {
-      var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C);
-      
       var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
       var expand = expandValue != null ? string.Format("&$expand={0}", expandValue) : string.Empty;
       
-      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json{3}", serviceUrl, entityName, filter, expand);
+      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json{3}", GetBaseAddress(), entityName, filter, expand);
+    }
+    
+    /// <summary>
+    /// Вернуть базовый адрес.
+    /// </summary>
+    /// <returns></returns>
+    private static string GetBaseAddress()
+    {
+      return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
     }
     
     #endregion
