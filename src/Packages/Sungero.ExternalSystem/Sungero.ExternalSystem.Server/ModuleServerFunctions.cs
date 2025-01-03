@@ -99,7 +99,7 @@ namespace Sungero.ExternalSystem.Server
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
       
-      return JsonConvert.DeserializeObject<Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto>(request.ResponseContent)?.Ref_Key;
+      return (((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"]).ToString();
     }
     
     /// <summary>
