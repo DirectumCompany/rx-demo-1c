@@ -12,7 +12,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendIncomingInvoiceTo1CExecute()
     {
-      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
+      Sungero.Demo1C.PublicFunctions.Module.SendIncomingInvoiceTo1C(_block.Document);
     }
   }
 
