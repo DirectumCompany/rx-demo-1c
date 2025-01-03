@@ -35,7 +35,7 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <param name="status">Инфоормация о статусе.</param>
     [Public]
-    public void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
+    public static void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
     {
       status.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
       status.Статус = "Оплачен";

@@ -53,11 +53,6 @@
       "Name": "CompleteStatusInfo",
       "Parameters": [
         {
-          "Name": "universalTransferDocument",
-          "ParameterType": "global::Sungero.Demo1C.IUniversalTransferDocument",
-          "ParameterTypeFullName": "Sungero.Demo1C.IUniversalTransferDocument, Sungero.Domain.Interfaces"
-        },
-        {
           "Name": "status",
           "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
           "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
