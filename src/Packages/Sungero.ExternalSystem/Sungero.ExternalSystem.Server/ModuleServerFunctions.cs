@@ -1,9 +1,9 @@
-using DirectumRXDemo1C.Extensions.Http;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DirectumRXDemo1C.Extensions.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 
@@ -99,7 +99,7 @@ namespace Sungero.ExternalSystem.Server
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
       
-      return (((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"]).ToString();
+      return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
     }
     
     /// <summary>
@@ -147,7 +147,8 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать URL для GET запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности</param>
+    /// <param name="entityName">Наименование сущности.</param>
+    /// <param name="filterValue">Значение фильтра.</param>
     /// <returns>Url.</returns>
     private static string BuildGetUrl(string entityName, string filterValue = null)
     {
@@ -157,7 +158,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать URL для POST запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности</param>
+    /// <param name="entityName">Наименование сущности.</param>
     /// <returns>Url.</returns>
     private static string BuildPostUrl(string entityName)
     {
@@ -167,9 +168,9 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать URL для запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности</param>
+    /// <param name="entityName">Наименование сущности.</param>
     /// <param name="filterValue">Значение фильтра.</param>
-    /// <param name="expandValue">Значение параметра "expand"</param>
+    /// <param name="expandValue">Значение параметра "expand".</param>
     /// <returns>Url.</returns>
     private static string BuildUrl(string entityName, string filterValue, string expandValue = null)
     {
@@ -182,7 +183,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Вернуть базовый адрес.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Базовый адрес.</returns>
     private static string GetBaseAddress()
     {
       return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();

@@ -37,7 +37,7 @@ namespace Sungero.ExternalSystem.Server
         var request = DirectumRXDemo1C.Extensions.Http.Request.Create(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl());
         request.Invoke();                                 
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Logger.ErrorFormat("Init: Errors occured while updating odata objects in 1C.", ex);
       }
@@ -46,7 +46,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать  Url для регистрации объектов odata в 1С.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Url.</returns>
     private static string BuildUrl()
     {
       var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();

@@ -14,7 +14,6 @@ namespace Sungero.NoCodeApproval.Server
     /// Установить статус документа в 1C.
     /// </summary>
     /// <param name="document">Документ.</param>
-    /// <returns>True - успешно, False - неуспешно.</returns>
     public static void SendDocumentStatusTo1C(Sungero.Docflow.IOfficialDocument document)
     {
       var externalEntityLink = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(document);
@@ -25,7 +24,7 @@ namespace Sungero.NoCodeApproval.Server
       
       try
       {
-        var  dto = CreateDocumentStatusDto(document, externalEntityLink);
+        var dto = CreateDocumentStatusDto(document, externalEntityLink);
         
         if (Sungero.Demo1C.IncomingInvoices.Is(document))
           Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
@@ -45,6 +44,8 @@ namespace Sungero.NoCodeApproval.Server
     /// <summary>
     /// Сформировать структуру данных "Статусы обмена" для 1С.
     /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="externalEntityLink">Связь сущности с внешней системой.</param>
     /// <returns>Структура данных 1С.</returns>   
     private static Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto CreateDocumentStatusDto(Sungero.Docflow.IOfficialDocument document,
                                                                                                           Sungero.Demo1C.IExternalEntityLink externalEntityLink)

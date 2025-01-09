@@ -42,7 +42,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// </summary>
     public string Комментарий { get; set; }
     
-    public long rx_ID {get; set;}
+    public long rx_ID { get; set; }
     
     /// <summary>
     /// Идентификатор.
@@ -83,7 +83,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   [Public]
   partial class DocumentStatusDto
   {
-    // <summary>
+    /// <summary>
     /// Организация.
     /// </summary>
     public string Организация_Key { get; set; }

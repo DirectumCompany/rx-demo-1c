@@ -31,7 +31,7 @@ namespace Sungero.Demo1C.Client
         
         return null;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         Logger.ErrorFormat("Demo1C.OpenEntityIn1CFor. An error occured while getting the link to external entity. DocumentId = {0}", ex, document.Id);        
         return Sungero.Demo1C.Resources.OpenRecord1CError;
