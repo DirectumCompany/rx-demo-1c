@@ -67,4 +67,7 @@
   <data name="Block_6b1a1d9808ea433d876b2f8b07cd408c_Property_4dcdd83899a145f191771a567dc01dce" xml:space="preserve">
     <value>Исходящий счет</value>
   </data>
+  <data name="Block_d5a5cfc06aeb4957ba30fd08bb8aec5a" xml:space="preserve">
+    <value>Создание входящего счета в 1С</value>
+  </data>
 </root>
