@@ -6,11 +6,13 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Structures.Module
 {
+  #region Документы
+  
   /// <summary>
-  /// Документ "Счет на оплату покупателю".
+  /// Документ "Счета от поставщиков".
   /// </summary>
   [Public]
-  partial class IncomingInvoiceDto
+  partial class SupplierInvoiceDto
   {
     /// <summary>
     /// Номер счета.
@@ -42,13 +44,70 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// </summary>
     public string Комментарий { get; set; }
     
+    /// <summary>
+    /// ИД в Directum RX.
+    /// </summary>
     public long rx_ID { get; set; }
     
     /// <summary>
-    /// Идентификатор.
+    /// Идентификатор в 1С.
     /// </summary>
     public string Ref_Key { get; set; }
   }
+  
+  /// <summary>
+  /// Документ "Поступление (акты, накладные, УПД)".
+  /// </summary>
+  [Public]
+  partial class ReceiptDto
+  {
+    /// <summary>
+    /// Номер счета.
+    /// </summary>
+    public string НомерВходящегоДокумента { get; set; }
+
+    /// <summary>
+    /// Дата счета.
+    /// </summary>
+    public DateTime ДатаВходящегоДокумента { get; set; }
+
+    /// <summary>
+    /// Организация.
+    /// </summary>
+    public string Организация_Key { get; set; }
+
+    /// <summary>
+    /// Контрагент.
+    /// </summary>
+    public string Контрагент_Key { get; set; }
+
+    /// <summary>
+    /// Договор.
+    /// </summary>
+    public string ДоговорКонтрагента_Key { get; set; }
+
+    /// <summary>
+    /// Комментарий.
+    /// </summary>
+    public string Комментарий { get; set; }
+    
+    /// <summary>
+    /// ИД в Directum RX.
+    /// </summary>
+    public long rx_ID { get; set; }
+    
+    /// <summary>
+    /// Идентификатор в 1С.
+    /// </summary>
+    public string Ref_Key { get; set; }
+    
+    /// <summary>
+    /// Признак "УПД"
+    /// </summary>
+    public bool ЭтоУниверсальныйДокумент { get { return true; } }
+  }
+  
+  #endregion
   
   /// <summary>
   /// Регистр сведений "Сроки оплаты документов".

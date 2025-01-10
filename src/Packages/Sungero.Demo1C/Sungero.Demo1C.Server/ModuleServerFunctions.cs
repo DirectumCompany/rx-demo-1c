@@ -30,7 +30,7 @@ namespace Sungero.Demo1C.Server
       try
       {
         var invoiceDto = Sungero.Demo1C.PublicFunctions.IncomingInvoice.ConvertTo1cDto(invoice);
-        var createdDtoKey = Sungero.ExternalSystem.PublicFunctions.Module.CreateIncomingInvoice(invoiceDto);
+        var createdDtoKey = Sungero.ExternalSystem.PublicFunctions.Module.CreateSupplierInvoice(invoiceDto);
         
         if (createdDtoKey == null)
           return false;

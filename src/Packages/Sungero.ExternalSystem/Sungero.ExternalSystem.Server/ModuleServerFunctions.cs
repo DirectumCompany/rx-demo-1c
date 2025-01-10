@@ -75,25 +75,18 @@ namespace Sungero.ExternalSystem.Server
     
     #region Сохранение данных
     
+    #region Создание документов
+    
     /// <summary>
-    /// Создать входящий счет в 1С.
+    /// Создать счет от поставщика в 1С.
     /// </summary>
     /// <param name="dto">Структура с данными для документа.</param>
     /// <returns>ИД созданного документа.</returns>
     [Public]
-    public static string CreateIncomingInvoice(Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto dto)
+    public static string CreateSupplierInvoice(Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto dto)
     {
-      if (dto.Контрагент_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because counterparty is not found. Id = {0}.", dto.rx_ID);
+      if (!IsConterpartyAndOrganizationFound(dto.Организация_Key, dto.Контрагент_Key, "SupplierInvoice", dto.rx_ID))
         return null;
-      }
-      
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.rx_ID);
-        return null;
-      }
       
       var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
       var request = Request.Create(RequestMethod.Post, url);
@@ -101,6 +94,56 @@ namespace Sungero.ExternalSystem.Server
       
       return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
     }
+    
+    /// <summary>
+    /// Создать поступление в 1С.
+    /// </summary>
+    /// <param name="dto">Структура с данными для документа.</param>
+    /// <returns>ИД созданного документа.</returns>
+    [Public]
+    public static string CreateReceipt(Sungero.ExternalSystem.Structures.Module.IReceiptDto dto)
+    {      
+     if (!IsConterpartyAndOrganizationFound(dto.Организация_Key, dto.Контрагент_Key, "Receipt", dto.rx_ID))
+        return null;
+      
+      if (dto.ДоговорКонтрагента_Key == null)
+      {
+        Logger.DebugFormat("ExternalSystem.CreateReceipt. The document is not created in 1C because contract is not found. Id = {0}.", dto.rx_ID);
+        return null;
+      }
+      
+      var url = BuildPostUrl("Document_ПоступлениеТоваровУслуг");
+      var request = Request.Create(RequestMethod.Post, url);
+      request.Invoke(dto);
+      
+      return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
+    }
+    
+    /// <summary>
+    /// Проверить найдены ли контрагент и НОР в 1С.
+    /// </summary>
+    /// <param name="businessUnit">НОР.</param>
+    /// <param name="counterparty">Контрагент.</param>
+    /// <param name="documentName">Наименование создаваемого документа.</param>
+    /// <param name="id">ИД документа в RX.</param>
+    /// <returns>True - найдены обе сущности.</returns>
+    private static bool IsConterpartyAndOrganizationFound(string businessUnit, string counterparty, string documentName, long id)
+    {
+      if (counterparty == null)
+      {
+        Logger.DebugFormat("ExternalSystem.Create{0}. The document is not created in 1C because counterparty is not found. Id = {1}.", documentName, id);
+        return false;
+      }
+      
+      if (businessUnit == null)
+      {
+        Logger.DebugFormat("ExternalSystem.Create{0}. The document is not created in 1C because business unit is not found or more than one. Id = {1}.", documentName, id);
+        return false;
+      }
+      return true;
+    }
+    
+    #endregion
     
     /// <summary>
     /// Создать срок оплаты для входящего счета.

@@ -58,5 +58,31 @@ namespace Sungero.NoCodeApproval.Server
     }
     
     #endregion
+    
+    #region Отправка УПД в 1С
+    
+    /// <summary>
+    /// Отправить универсальный передаточный документ в 1С.
+    /// </summary>
+    /// <param name="document">Универсальный передаточный документ из Directum RX.</param>
+    public static void SendUniversalTransferDocumentTo1C(Sungero.Demo1C.IUniversalTransferDocument document)
+    {
+      const string logMessagePrefix = "Demo1C.SendUniversalTransferDocumentTo1C.";
+      try
+      {
+        var receiptDto = Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.ConvertTo1cDto(document);
+        var createdDtoKey = Sungero.ExternalSystem.PublicFunctions.Module.CreateReceipt(receiptDto);
+        if (createdDtoKey == null) return;
+
+        Sungero.Demo1C.PublicFunctions.ExternalEntityLink.CreateNew(document, createdDtoKey, "ПоступлениеТоваровУслуг");
+        Logger.DebugFormat("{0} The universal transfer document is successfully sent to 1C. Id={1}.", logMessagePrefix, document.Id);
+      }
+      catch (Exception ex)
+      {
+        Logger.ErrorFormat("{0} Error while sending universal transfer document to 1C. Id = {0}.", ex, logMessagePrefix, document.Id);
+      }
+    }
+    
+    #endregion
   }
 }
