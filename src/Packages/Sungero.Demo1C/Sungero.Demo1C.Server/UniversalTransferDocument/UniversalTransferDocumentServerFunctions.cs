@@ -18,8 +18,8 @@ namespace Sungero.Demo1C.Server
     {
       var result = Sungero.ExternalSystem.Structures.Module.ReceiptDto.Create();
       
-      result.НомерВходящегоДокумента = _obj.Number.Trim();
-      result.ДатаВходящегоДокумента = _obj.Date.Value;
+      result.НомерВходящегоДокумента = _obj.RegistrationNumber.Trim();
+      result.ДатаВходящегоДокумента = _obj.RegistrationDate.Value;
       result.Комментарий = _obj.Note;
       result.rx_ID = _obj.Id;
       
