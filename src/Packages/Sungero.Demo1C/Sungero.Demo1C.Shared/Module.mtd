@@ -1,0 +1,127 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "8645d768-5789-4b21-ac6a-b404248d3495",
+  "Name": "Demo1C",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.Demo1C.Client",
+  "ClientBaseAssemblyName": "Sungero.Demo1C.ClientBase",
+  "ClientBaseNamespace": "Sungero.Demo1C.ClientBase",
+  "ClientNamespace": "Sungero.Demo1C.Client",
+  "Code": "Demo1C",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "df088231-5f72-44fc-8923-835631bbcd76",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "350043a5-a7a8-4f0f-98f3-40311dae57e8",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "7a489bd3-264e-4ac7-a72f-f186093c2ac0",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d"
+    },
+    {
+      "ItemId": "c83694e6-b90a-4660-853f-5cea6f30b748",
+      "PreviousItemId": "b5b7fed2-1ee6-4ff3-aaaa-b6e31b0eca3d"
+    },
+    {
+      "ItemId": "e32c6b0b-f1e9-41e7-853a-56a64e4f3e30",
+      "PreviousItemId": "c83694e6-b90a-4660-853f-5cea6f30b748"
+    },
+    {
+      "ItemId": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62",
+      "PreviousItemId": "e32c6b0b-f1e9-41e7-853a-56a64e4f3e30"
+    },
+    {
+      "ItemId": "aab93307-8945-4804-888c-773db6e1ac54",
+      "PreviousItemId": "f750f5a4-f2d0-44a1-834d-23d1e7dc6c62"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.Demo1C",
+  "IsolatedAssemblyName": "Sungero.Demo1C.Isolated",
+  "IsolatedNamespace": "Sungero.Demo1C.Isolated",
+  "IsVisible": false,
+  "OrderedSpecialFolders": [],
+  "PublicFunctions": [
+    {
+      "Name": "GeneratePublicBodyForFormalizedDocument",
+      "Parameters": [
+        {
+          "Name": "documentId",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void",
+      "WebApiRequestType": "Post"
+    },
+    {
+      "Name": "OpenEntityIn1CFor",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "SendIncomingInvoiceTo1C",
+      "Parameters": [
+        {
+          "Name": "invoice",
+          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
+          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.Demo1C",
+  "ResourcesKeys": [
+    "OpenRecord1CErrorNotExist",
+    "OpenRecord1CErrorIsDelete",
+    "OpenRecord1CError"
+  ],
+  "ServerAssemblyName": "Sungero.Demo1C.Server",
+  "ServerNamespace": "Sungero.Demo1C.Server",
+  "SharedAssemblyName": "Sungero.Demo1C.Shared",
+  "SharedNamespace": "Sungero.Demo1C.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

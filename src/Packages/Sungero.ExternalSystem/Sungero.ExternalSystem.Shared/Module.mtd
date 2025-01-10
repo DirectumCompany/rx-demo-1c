@@ -1,0 +1,269 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "24a8ef98-c7ce-445d-b60f-52e185db67ed",
+  "Name": "ExternalSystem",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.ExternalSystem.Client",
+  "ClientBaseAssemblyName": "Sungero.ExternalSystem.ClientBase",
+  "ClientBaseNamespace": "Sungero.ExternalSystem.ClientBase",
+  "ClientNamespace": "Sungero.ExternalSystem.Client",
+  "Code": "Externa",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "66149026-74e7-4904-8659-19c642cec4b0",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "1aad7cad-fed0-4076-80c0-144778034c5b",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "bf7fb089-59ed-4a69-85b4-53da0eb4be58",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "8645d768-5789-4b21-ac6a-b404248d3495",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.ExternalSystem",
+  "IsolatedAssemblyName": "Sungero.ExternalSystem.Isolated",
+  "IsolatedNamespace": "Sungero.ExternalSystem.Isolated",
+  "IsVisible": false,
+  "Libraries": [
+    {
+      "NameGuid": "3eb1af70-d9a3-4b5a-88f2-5175d25b84f0",
+      "Name": "DirectumRXDemo1CExtensions",
+      "Scope": "Both"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "CreateDocumentStatus",
+      "Parameters": [
+        {
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateIncomingInvoice",
+      "Parameters": [
+        {
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "CreatePaymentTermForInvoice",
+      "Parameters": [
+        {
+          "Name": "key",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "businessUnitKey",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "paymentDueDate",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetBusinessUnit",
+      "Parameters": [
+        {
+          "Name": "tin",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "trrc",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetEntityLink",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "entityId",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "entityType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetId",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    }
+  ],
+  "PublicStructures": [
+    {
+      "Name": "DocumentStatusDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Организация_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Статус",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Статус_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    },
+    {
+      "Name": "IncomingInvoiceDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "НомерВходящегоДокумента",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ДатаВходящегоДокумента",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "Организация_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Контрагент_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ДоговорКонтрагента_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Комментарий",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "rx_ID",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Ref_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    },
+    {
+      "Name": "PaymentTermDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Организация_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "СрокОплаты",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    }
+  ],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ExternalSystem",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.ExternalSystem.Server",
+  "ServerNamespace": "Sungero.ExternalSystem.Server",
+  "SharedAssemblyName": "Sungero.ExternalSystem.Shared",
+  "SharedNamespace": "Sungero.ExternalSystem.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

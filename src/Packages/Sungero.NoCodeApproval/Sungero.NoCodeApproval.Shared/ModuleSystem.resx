@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>NoCodeApproval</value>
+  </data>
+  <data name="CoverTitle" xml:space="preserve">
+    <value>NoCodeApproval</value>
+  </data>
+  <data name="Block_a17e0a4f8b1646eea6f1122c647f3ce0" xml:space="preserve">
+    <value>Исходящий счет. Передача в 1С статуса "Оплачен"</value>
+  </data>
+  <data name="Block_a17e0a4f8b1646eea6f1122c647f3ce0_Property_1df5a6498cea48a49eed3acdef6b76c3" xml:space="preserve">
+    <value>Исходящий счет</value>
+  </data>
+  <data name="Block_462a133056614031bc1a2e664f27f5ee" xml:space="preserve">
+    <value>Входящий счет. Передача в 1С статуса "Оплачен"</value>
+  </data>
+  <data name="Block_462a133056614031bc1a2e664f27f5ee_Property_1044a10318b74b6398c4b4590e14eb6e" xml:space="preserve">
+    <value>Входящий счет</value>
+  </data>
+  <data name="Block_b637c495d6c64b46a7654f778a1aba21" xml:space="preserve">
+    <value>УПД. Передача в 1С признака "Документ подписан"</value>
+  </data>
+  <data name="Block_b637c495d6c64b46a7654f778a1aba21_Property_22837a4447b74f3f9e282f5070bf10bc" xml:space="preserve">
+    <value>Универсальный передаточный документ</value>
+  </data>
+  <data name="Block_d558315214da4d99b27f90b802438d0f" xml:space="preserve">
+    <value>Входящий счет. Передача в 1С</value>
+  </data>
+  <data name="Block_d558315214da4d99b27f90b802438d0f_Property_edfc4ad96d0d4e85a1116a907f5f3642" xml:space="preserve">
+    <value>Входящий счет</value>
+  </data>
+</root>
