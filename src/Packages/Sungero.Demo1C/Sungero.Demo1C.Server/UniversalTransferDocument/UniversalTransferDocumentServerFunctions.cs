@@ -12,7 +12,7 @@ namespace Sungero.Demo1C.Server
     /// <summary>
     /// Заполнить недостающие данные для отправки статуса в 1С.
     /// </summary>
-    /// <param name="status">Инфоормация о статусе.</param>
+    /// <param name="status">Информация о статусе.</param>
     [Public]
     public static void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
     {

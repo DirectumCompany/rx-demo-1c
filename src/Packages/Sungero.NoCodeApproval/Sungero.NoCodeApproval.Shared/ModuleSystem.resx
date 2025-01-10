@@ -83,7 +83,7 @@
     <value>Универсальный передаточный документ</value>
   </data>
   <data name="Block_d558315214da4d99b27f90b802438d0f" xml:space="preserve">
-    <value>Передача входящего счета в 1С</value>
+    <value>Входящий счет. Передача в 1С</value>
   </data>
   <data name="Block_d558315214da4d99b27f90b802438d0f_Property_edfc4ad96d0d4e85a1116a907f5f3642" xml:space="preserve">
     <value>Входящий счет</value>
