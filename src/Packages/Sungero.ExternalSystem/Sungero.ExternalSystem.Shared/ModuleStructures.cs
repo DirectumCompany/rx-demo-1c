@@ -104,7 +104,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// Признак "УПД"
     /// </summary>
-    public bool ЭтоУниверсальныйДокумент { get { return true; } }
+    public bool ЭтоУниверсальныйДокумент { get; set; }
   }
   
   #endregion
