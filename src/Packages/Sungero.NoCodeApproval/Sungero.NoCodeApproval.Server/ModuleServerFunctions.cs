@@ -32,8 +32,15 @@ namespace Sungero.NoCodeApproval.Server
         else if (Sungero.Demo1C.OutgoingInvoices.Is(document))
           Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
         else if (Sungero.Demo1C.UniversalTransferDocuments.Is(document))
+        {
           Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
-        
+          if (Sungero.ExternalSystem.PublicFunctions.Module.IsDocumentStatusExistsIn1C(dto))
+          {
+            Sungero.ExternalSystem.PublicFunctions.Module.UpdateUtdStatus(dto);
+            return;
+          }
+        }
+
         Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
       }
       catch (Exception ex)

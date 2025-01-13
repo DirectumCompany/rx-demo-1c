@@ -140,6 +140,26 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
+    /// <summary>
+    /// Обновить запись в регистре сведений "Статусы документов" для УПД.
+    /// </summary>
+    /// <param name="dto">Структура с данными для записи.</param>
+    [Public]
+    public static void UpdateUtdStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      if (dto.Организация_Key == null)
+      {
+        Logger.DebugFormat("ExternalSystem.CreateDocumentStatus. The document status is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+        return;
+      }
+      
+      var url = string.Format(Sungero.Demo1C.UniversalTransferDocuments.Resources.PatchUniversalTransferDocumentSignStatusFrom1C, dto.Организация_Key, dto.Документ);
+      var requestString = string.Format("{0}{1}",GetBaseAddress(), url);
+      
+      var request = Request.Create(RequestMethod.Patch, requestString);
+      request.Invoke(dto);
+    }
+    
     #endregion
     
     #region Формирование URL
@@ -187,6 +207,34 @@ namespace Sungero.ExternalSystem.Server
     private static string GetBaseAddress()
     {
       return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
+    }
+    
+    #endregion
+    
+    #region Проверка статуса документа
+    
+    /// <summary>
+    /// Проверить, существует ли статус для документа в 1С.
+    /// </summary>
+    /// <param name="dto">Структура с данными для записи.</param>
+    /// <returns>True - существует, False - не существует.</returns>
+    [Public]
+    public bool IsDocumentStatusExistsIn1C(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      try
+      {
+        var statusInfo = string.Format("(Организация_Key='{0}',Документ='{1}',Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
+        var requestString = string.Format("{0}/odata/standard.odata/InformationRegister_СтатусыДокументов{1}", GetBaseAddress(), statusInfo);
+        
+        var request = Request.Create(RequestMethod.Get, requestString);
+        request.Invoke();
+        
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
     }
     
     #endregion
