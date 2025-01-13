@@ -21,9 +21,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendPropertySignedTo1CForUniversalTransferDocumentExecute()
     {
-      if (_block.Document.InternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.InternalApprovalState.Signed &&
-          _block.Document.ExternalApprovalState == Sungero.FinancialArchive.UniversalTransferDocument.ExternalApprovalState.Signed)
-        Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
+      Sungero.NoCodeApproval.Functions.Module.SendDocumentStatusTo1C(_block.Document);
     }
   }
 

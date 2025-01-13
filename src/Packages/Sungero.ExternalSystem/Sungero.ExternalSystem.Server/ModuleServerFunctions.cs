@@ -48,7 +48,7 @@ namespace Sungero.ExternalSystem.Server
 
       if (businessUnitsCount > 1)
       {
-        Logger.DebugFormat("ExternalSystem.GetBusinessUnit. There  are found {3} business units in 1C by TIN and TRRC. BusinessUnit.TIN = {0}, BusinessUnit.TRRC = {1}.", tin, trrc, businessUnitsCount);
+        Logger.DebugFormat("ExternalSystem.GetBusinessUnit. There are found {3} business units in 1C by TIN and TRRC. BusinessUnit.TIN = {0}, BusinessUnit.TRRC = {1}.", tin, trrc, businessUnitsCount);
         return null;
       }
 
@@ -139,13 +139,17 @@ namespace Sungero.ExternalSystem.Server
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
     }
+
+    #endregion
+    
+    #region Обновление данных
     
     /// <summary>
-    /// Обновить запись в регистре сведений "Статусы документов" для УПД.
+    /// Обновить запись в регистре сведений "Статусы документов".
     /// </summary>
     /// <param name="dto">Структура с данными для записи.</param>
     [Public]
-    public static void UpdateUtdStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    public static void UpdateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
       if (dto.Организация_Key == null)
       {
@@ -153,11 +157,12 @@ namespace Sungero.ExternalSystem.Server
         return;
       }
       
-      var url = string.Format(Sungero.Demo1C.UniversalTransferDocuments.Resources.PatchUniversalTransferDocumentSignStatusFrom1C, dto.Организация_Key, dto.Документ);
-      var requestString = string.Format("{0}{1}",GetBaseAddress(), url);
-      
-      var request = Request.Create(RequestMethod.Patch, requestString);
+      var statusInfo = string.Format("InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type); 
+      var url = BuildUrl(statusInfo, null);
+
+      var request = Request.Create(RequestMethod.Patch, url);
       request.Invoke(dto);
+      
     }
     
     #endregion
@@ -207,34 +212,6 @@ namespace Sungero.ExternalSystem.Server
     private static string GetBaseAddress()
     {
       return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
-    }
-    
-    #endregion
-    
-    #region Проверка статуса документа
-    
-    /// <summary>
-    /// Проверить, существует ли статус для документа в 1С.
-    /// </summary>
-    /// <param name="dto">Структура с данными для записи.</param>
-    /// <returns>True - существует, False - не существует.</returns>
-    [Public]
-    public bool IsDocumentStatusExistsIn1C(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
-    {
-      try
-      {
-        var statusInfo = string.Format("(Организация_Key='{0}',Документ='{1}',Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
-        var requestString = string.Format("{0}/odata/standard.odata/InformationRegister_СтатусыДокументов{1}", GetBaseAddress(), statusInfo);
-        
-        var request = Request.Create(RequestMethod.Get, requestString);
-        request.Invoke();
-        
-        return true;
-      }
-      catch
-      {
-        return false;
-      }
     }
     
     #endregion

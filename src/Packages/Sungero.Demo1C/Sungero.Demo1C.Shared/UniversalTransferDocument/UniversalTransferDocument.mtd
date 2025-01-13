@@ -63,9 +63,7 @@
     }
   ],
   "PublicStructures": [],
-  "ResourcesKeys": [
-    "PatchUniversalTransferDocumentSignStatusFrom1C"
-  ],
+  "ResourcesKeys": [],
   "RibbonCardMetadata": {
     "NameGuid": "5e1b67c7-0979-467c-9665-2de87a192619",
     "Name": "RibbonCard",

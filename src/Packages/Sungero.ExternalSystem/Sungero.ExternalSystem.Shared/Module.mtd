@@ -139,19 +139,7 @@
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "IsDocumentStatusExistsIn1C",
-      "Parameters": [
-        {
-          "Name": "dto",
-          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
-          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
-    },
-    {
-      "Name": "UpdateUtdStatus",
+      "Name": "UpdateDocumentStatus",
       "Parameters": [
         {
           "Name": "dto",
