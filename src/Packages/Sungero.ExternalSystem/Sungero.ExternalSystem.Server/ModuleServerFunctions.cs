@@ -33,7 +33,9 @@ namespace Sungero.ExternalSystem.Server
     public static string GetBusinessUnit(string tin, string trrc)
     {
       var url = BuildGetUrl("Catalog_Организации", $"ИНН eq '{tin}' and КПП eq '{trrc}'");
-      var request = Request.Create(RequestMethod.Get, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
+      var request = Request.Create(RequestMethod.Get, url, login, password);
       request.Invoke();
       
       var jsonDataResponse = (JObject)JsonConvert.DeserializeObject(request.ResponseContent);
@@ -65,7 +67,9 @@ namespace Sungero.ExternalSystem.Server
     public string GetEntityLink(string entityId, string entityType)
     {
       var url = string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}", GetBaseAddress(), entityId, entityType);
-      var request = Request.Create(RequestMethod.Get, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
+      var request = Request.Create(RequestMethod.Get, url, login, password);
       request.Invoke();
       
       return request.ResponseContent;
@@ -96,7 +100,9 @@ namespace Sungero.ExternalSystem.Server
       }
       
       var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
-      var request = Request.Create(RequestMethod.Post, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
+      var request = Request.Create(RequestMethod.Post, url, login, password);
       request.Invoke(dto);
       
       return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
@@ -118,7 +124,9 @@ namespace Sungero.ExternalSystem.Server
       dto.СрокОплаты = paymentDueDate;
       
       var url = BuildPostUrl("InformationRegister_СрокиОплатыДокументов");
-      var request = Request.Create(RequestMethod.Post, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
+      var request = Request.Create(RequestMethod.Post, url, login, password);
       request.Invoke(dto);
     }
     
@@ -136,7 +144,9 @@ namespace Sungero.ExternalSystem.Server
       }
       
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
-      var request = Request.Create(RequestMethod.Post, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
+      var request = Request.Create(RequestMethod.Post, url, login, password);
       request.Invoke(dto);
     }
     
