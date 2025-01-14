@@ -27,7 +27,7 @@ namespace DirectumRXDemo1C.Extensions.Http
     private HttpRequestMessage CreateRequest(object content)
     {
       var requestBuilder = new HttpRequestMessageBuilder(method, url);
-      if (HttpMethodTools.IsContentRequired(method))
+      if (ParametersValidator.IsContentRequired(method))
         requestBuilder.AppendContent(content);
 
       return requestBuilder.Result;

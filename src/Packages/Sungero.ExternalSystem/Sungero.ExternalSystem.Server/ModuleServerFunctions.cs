@@ -159,13 +159,12 @@ namespace Sungero.ExternalSystem.Server
         return;
       }
       
-      var entityName = "InformationRegister_СтатусыДокументов";
-      var entityParameters = string.Format("Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}'", dto.Организация_Key, dto.Документ, dto.Документ_Type);
-      var url = BuildPatchUrl(entityName, entityParameters);
+      var entityParameters = string.Format("(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
+      var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов{0}", entityParameters);
+      var url = BuildPatchUrl(entityNameWithParameters);
 
       var request = Request.Create(RequestMethod.Patch, url);
       request.Invoke(dto);
-      
     }
     
     #endregion
@@ -180,10 +179,10 @@ namespace Sungero.ExternalSystem.Server
     /// <param name="entityName">Наименование сущности.</param>
     /// <param name="filterValue">Значение фильтра.</param>
     /// <returns>Url.</returns>
-    private static string BuildGetUrl(string entityName, string filterValue = null)
+    private static string BuildGetUrl(string entityName, string filterValue)
     {
       var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
-      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json", GetBaseAddress(), entityName, filter);
+      return string.Format("{0}{1}?{2}&$format=json", GetOdataUrl(), entityName, filter);
     }
     
     /// <summary>
@@ -193,20 +192,28 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>Url.</returns>
     private static string BuildPostUrl(string entityName)
     {
-      return string.Format("{0}/odata/standard.odata/{1}?$format=json&$expand=*", GetBaseAddress(), entityName);
+      return string.Format("{0}{1}?$format=json&$expand=*", GetOdataUrl(), entityName);
     }
     
     /// <summary>
     /// Собрать URL для PATCH запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности.</param>
-    /// <param name="entityParameters">Параметры сущности.</param>
+    /// <param name="entityName">Наименование сущности с параметрами.</param>
     /// <returns>Url.</returns>
-    private static string BuildPatchUrl(string entityName, string entityParameters)
+    private static string BuildPatchUrl(string entityNameWithParameters)
     {
-      return string.Format("{0}/odata/standard.odata/{1}({2})?$format=json", GetBaseAddress(), entityName, entityParameters);
+      return string.Format("{0}{1}?$format=json", GetOdataUrl(), entityNameWithParameters);
     }
 
+    /// <summary>
+    /// Собрать базовую часть URL для работы по OData.
+    /// </summary>
+    /// <returns>Url.</returns>
+    private static string GetOdataUrl()
+    {
+      return string.Format("{0}/odata/standard.odata/", GetBaseAddress());
+    }
+    
     /// <summary>
     /// Вернуть базовый адрес.
     /// </summary>

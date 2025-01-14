@@ -32,14 +32,13 @@ namespace Sungero.NoCodeApproval.Server
           Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
           Sungero.ExternalSystem.PublicFunctions.Module.UpdateDocumentStatus(dto);
         }
-        else if (Sungero.Demo1C.IncomingInvoices.Is(document))
+        else if (Sungero.Demo1C.IncomingInvoices.Is(document) || Sungero.Demo1C.OutgoingInvoices.Is(document))
         {
-          Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
-          Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
-        }
-        else if (Sungero.Demo1C.OutgoingInvoices.Is(document))
-        {
-          Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
+          if (Sungero.Demo1C.IncomingInvoices.Is(document))
+            Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
+          else
+            Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
+          
           Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
         }
       }

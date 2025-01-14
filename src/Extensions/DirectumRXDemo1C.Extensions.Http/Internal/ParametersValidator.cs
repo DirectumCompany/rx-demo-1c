@@ -10,10 +10,11 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
       if (method == HttpMethod.Get && content != null)
         throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" shouldn't have a content");
 
-      if (HttpMethodTools.IsContentRequired(method) && content == null)
+      if (IsContentRequired(method) && content == null)
         throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" must have a content");
     }
 
+    public static bool IsContentRequired(HttpMethod method) => method == HttpMethod.Post || method == HttpPatchMethodProvider.Get();
     private static string HttpMethodToUpper(HttpMethod method) => method.ToString().ToUpperInvariant();
   }
 }
