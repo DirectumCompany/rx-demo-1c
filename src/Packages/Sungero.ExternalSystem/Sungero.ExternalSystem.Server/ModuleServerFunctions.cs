@@ -75,6 +75,8 @@ namespace Sungero.ExternalSystem.Server
     
     #region Сохранение данных
     
+    #region Операции с входящими счетами
+    
     /// <summary>
     /// Создать входящий счет в 1С.
     /// </summary>
@@ -122,6 +124,10 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
+    #endregion
+    
+    #region Операции со статусами документов
+    
     /// <summary>
     /// Создать запись в регистре сведений "Статусы документов".
     /// </summary>
@@ -140,10 +146,6 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
 
-    #endregion
-    
-    #region Обновление данных
-    
     /// <summary>
     /// Обновить запись в регистре сведений "Статусы документов".
     /// </summary>
@@ -153,17 +155,19 @@ namespace Sungero.ExternalSystem.Server
     {
       if (dto.Организация_Key == null)
       {
-        Logger.DebugFormat("ExternalSystem.CreateDocumentStatus. The document status is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+        Logger.DebugFormat("ExternalSystem.UpdateDocumentStatus. The document status is not updated in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
         return;
       }
       
-      var statusInfo = string.Format("InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type); 
-      var url = BuildUrl(statusInfo, null);
+      var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type); 
+      var url = BuildUrl(entityNameWithParameters, null);
 
       var request = Request.Create(RequestMethod.Patch, url);
       request.Invoke(dto);
       
     }
+    
+    #endregion
     
     #endregion
     

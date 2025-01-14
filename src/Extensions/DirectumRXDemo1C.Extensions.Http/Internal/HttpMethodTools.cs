@@ -2,11 +2,10 @@
 
 namespace DirectumRXDemo1C.Extensions.Http.Internal
 {
-  internal static class HttpMethodExtensions
+  internal static class HttpMethodTools
   {
     public static readonly HttpMethod Patch = new HttpMethod("PATCH");
 
-    public static bool IsPostOrPatch(HttpMethod method)
-      => method == HttpMethod.Post || method == Patch;
+    public static bool IsContentRequired(HttpMethod method) => method == HttpMethod.Post || method == Patch;
   }
 }
