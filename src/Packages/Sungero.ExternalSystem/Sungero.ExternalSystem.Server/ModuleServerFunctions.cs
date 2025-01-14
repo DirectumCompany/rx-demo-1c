@@ -159,8 +159,9 @@ namespace Sungero.ExternalSystem.Server
         return;
       }
       
-      var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type); 
-      var url = BuildUrl(entityNameWithParameters, null);
+      var entityName = "InformationRegister_СтатусыДокументов";
+      var entityParameters = string.Format("Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}'", dto.Организация_Key, dto.Документ, dto.Документ_Type);
+      var url = BuildPatchUrl(entityName, entityParameters);
 
       var request = Request.Create(RequestMethod.Patch, url);
       request.Invoke(dto);
@@ -181,7 +182,8 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>Url.</returns>
     private static string BuildGetUrl(string entityName, string filterValue = null)
     {
-      return BuildUrl(entityName, filterValue, null);
+      var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
+      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json", GetBaseAddress(), entityName, filter);
     }
     
     /// <summary>
@@ -191,24 +193,20 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>Url.</returns>
     private static string BuildPostUrl(string entityName)
     {
-      return BuildUrl(entityName, null, "*");
+      return string.Format("{0}/odata/standard.odata/{1}?$format=json&$expand=*", GetBaseAddress(), entityName);
     }
     
     /// <summary>
-    /// Собрать URL для запроса.
+    /// Собрать URL для PATCH запроса.
     /// </summary>
     /// <param name="entityName">Наименование сущности.</param>
-    /// <param name="filterValue">Значение фильтра.</param>
-    /// <param name="expandValue">Значение параметра "expand".</param>
+    /// <param name="entityParameters">Параметры сущности.</param>
     /// <returns>Url.</returns>
-    private static string BuildUrl(string entityName, string filterValue, string expandValue = null)
+    private static string BuildPatchUrl(string entityName, string entityParameters)
     {
-      var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
-      var expand = expandValue != null ? string.Format("&$expand={0}", expandValue) : string.Empty;
-      
-      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json{3}", GetBaseAddress(), entityName, filter, expand);
+      return string.Format("{0}/odata/standard.odata/{1}({2})?$format=json", GetBaseAddress(), entityName, entityParameters);
     }
-    
+
     /// <summary>
     /// Вернуть базовый адрес.
     /// </summary>
