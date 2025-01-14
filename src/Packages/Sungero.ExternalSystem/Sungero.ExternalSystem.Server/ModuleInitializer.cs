@@ -13,7 +13,6 @@ namespace Sungero.ExternalSystem.Server
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
       AddConnectionDocflowParams();
-      UpdateOdataObjectsIn1C();
     }
     
     /// <summary>
@@ -26,37 +25,6 @@ namespace Sungero.ExternalSystem.Server
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.SystemId, string.Empty);
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Login, "СувороваЕА");
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Password, string.Empty);
-    }
-    
-    /// <summary>
-    /// Установить cостав стандартного интерфейса odata в 1С.
-    /// </summary>
-    private static void UpdateOdataObjectsIn1C()
-    {
-      try
-      {
-        InitializationLogger.Debug("Init: Start updating odata objects in 1C.");
-        
-        var request = ExternalSystem.Functions.Module.CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl());
-        request.Invoke();
-      }
-      catch (Exception ex)
-      {
-        Logger.ErrorFormat("Init: Errors occured while updating odata objects in 1C.", ex);
-      }
-    }
-    
-    /// <summary>
-    /// Собрать  Url для регистрации объектов odata в 1С.
-    /// </summary>
-    /// <returns>Url.</returns>
-    private static string BuildUrl()
-    {
-      var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
-      if (string.IsNullOrEmpty(serviceUrl))
-        serviceUrl = Constants.Module.DefaultServiceUrl1C;
-      
-      return string.Format("{0}/hs/handlers/UpdateListObjectsOData", serviceUrl);
     }
   }
 }
