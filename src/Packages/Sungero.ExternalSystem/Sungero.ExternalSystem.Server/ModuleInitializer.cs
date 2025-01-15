@@ -24,7 +24,7 @@ namespace Sungero.ExternalSystem.Server
       InitializationLogger.DebugFormat("Init: Adding docflow parameters for 1C connection.");
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.ServiceUrl1C, string.Empty);
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.SystemId, string.Empty);
-      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Login, string.Empty);
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Login, "СувороваЕА");
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Password, string.Empty);
     }
     
