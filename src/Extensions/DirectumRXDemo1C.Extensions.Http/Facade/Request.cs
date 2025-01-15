@@ -1,24 +1,30 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using System.Text;
 using DirectumRXDemo1C.Extensions.Http.Internal;
 
 namespace DirectumRXDemo1C.Extensions.Http
 {
   public class Request
   {
-    private readonly HttpMethod method;
-    private readonly string url;
-    private readonly string basicAuth;
+    private readonly HttpMethod httpMethod;
+    private readonly HttpRequestMessageBuilder requestMessageBuilder;
 
-    private Request(HttpMethod method, string url, string basicAuth)
+    private Request(HttpMethod method, string url)
     {
-      this.method = method;
-      this.url = url;
-      this.basicAuth = basicAuth;
+      httpMethod = method;
+      requestMessageBuilder = new HttpRequestMessageBuilder(method, url);
     }
 
+    public void UseBasicAuth(string login, string password)
+    {
+      var token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{login}:{password}"));
+      requestMessageBuilder.AppendBasicAuthHeader(token);
+    }
+    
     public void Invoke(object content = null)
     {
-      ParametersValidator.Invoke(method, content);
+      ParametersValidator.Invoke(httpMethod, content);
 
       var response = HttpClientProvider.Get().SendAsync(this.CreateRequest(content)).Result;
       response.EnsureSuccessStatusCode();
@@ -28,21 +34,18 @@ namespace DirectumRXDemo1C.Extensions.Http
 
     private HttpRequestMessage CreateRequest(object content)
     {
-      var requestBuilder = new HttpRequestMessageBuilder(method, url);
+      if (httpMethod == HttpMethod.Post)
+        requestMessageBuilder.AppendContent(content);
 
-      requestBuilder.AppendAuthorizationHeader(basicAuth);
-      if (method == HttpMethod.Post)
-        requestBuilder.AppendContent(content);
-
-      return requestBuilder.Result;
+      return requestMessageBuilder.Result;
     }
 
     public string ResponseContent { get; private set; }
 
-    public static Request Create(RequestMethod method, string url, string basicAuth)
+    public static Request Create(RequestMethod method, string url)
     {
       var httpMethod = new HttpMethod(method.ToString().ToUpperInvariant());
-      return new Request(httpMethod, url, basicAuth);
+      return new Request(httpMethod, url);
     }
   }
 }

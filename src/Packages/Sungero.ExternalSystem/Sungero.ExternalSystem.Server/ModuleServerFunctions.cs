@@ -139,6 +139,8 @@ namespace Sungero.ExternalSystem.Server
       
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
+      
+      
       request.Invoke(dto);
     }
     
@@ -157,7 +159,18 @@ namespace Sungero.ExternalSystem.Server
       var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
       var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
       var basicAuth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{login}:{password}"));
-      return Request.Create(method, url, basicAuth);
+      
+      var request =  Request.Create(method, url, login, password);
+      
+      1 
+      var request =  Request.Create(method, url, basicAuth);      
+      2 
+        
+      var request =  Request.Create(method, url);
+      result.UseBasicAuth(login, password);      
+      request.Invoke(dto);
+      
+      return result;
     }
     
     #region Формирование URL
