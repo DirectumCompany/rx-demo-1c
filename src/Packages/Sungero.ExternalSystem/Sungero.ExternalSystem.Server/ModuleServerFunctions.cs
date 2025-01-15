@@ -156,19 +156,9 @@ namespace Sungero.ExternalSystem.Server
     /// <returns></returns>
     public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
     {
-      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
-      var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
-      var basicAuth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{login}:{password}"));
-      
-      var request =  Request.Create(method, url, login, password);
-      
-      1 
-      var request =  Request.Create(method, url, basicAuth);      
-      2 
-        
-      var request =  Request.Create(method, url);
-      result.UseBasicAuth(login, password);      
-      request.Invoke(dto);
+      var result = Request.Create(method, url);
+      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(), 
+                          Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString());
       
       return result;
     }
