@@ -7,15 +7,13 @@ namespace DirectumRXDemo1C.Extensions.Http
   {
     private readonly HttpMethod method;
     private readonly string url;
-    private readonly string login;
-    private readonly string password;
+    private readonly string basicAuth;
 
-    private Request(HttpMethod method, string url, string login, string password)
+    private Request(HttpMethod method, string url, string basicAuth)
     {
       this.method = method;
       this.url = url;
-      this.login = login;
-      this.password = password;
+      this.basicAuth = basicAuth;
     }
 
     public void Invoke(object content = null)
@@ -30,7 +28,9 @@ namespace DirectumRXDemo1C.Extensions.Http
 
     private HttpRequestMessage CreateRequest(object content)
     {
-      var requestBuilder = new HttpRequestMessageBuilder(method, url, login, password);
+      var requestBuilder = new HttpRequestMessageBuilder(method, url);
+
+      requestBuilder.AppendAuthorizationHeader(basicAuth);
       if (method == HttpMethod.Post)
         requestBuilder.AppendContent(content);
 
@@ -39,10 +39,10 @@ namespace DirectumRXDemo1C.Extensions.Http
 
     public string ResponseContent { get; private set; }
 
-    public static Request Create(RequestMethod method, string url, string login, string password)
+    public static Request Create(RequestMethod method, string url, string basicAuth)
     {
       var httpMethod = new HttpMethod(method.ToString().ToUpperInvariant());
-      return new Request(httpMethod, url, login, password);
+      return new Request(httpMethod, url, basicAuth);
     }
   }
 }

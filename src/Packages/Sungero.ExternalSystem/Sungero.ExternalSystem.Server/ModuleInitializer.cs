@@ -36,9 +36,8 @@ namespace Sungero.ExternalSystem.Server
       try
       {
         InitializationLogger.Debug("Init: Start updating odata objects in 1C.");
-        var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
-        var password = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString();
-        var request = DirectumRXDemo1C.Extensions.Http.Request.Create(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl(), login, password);
+        
+        var request = ExternalSystem.Functions.Module.CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl());
         request.Invoke();
       }
       catch (Exception ex)
