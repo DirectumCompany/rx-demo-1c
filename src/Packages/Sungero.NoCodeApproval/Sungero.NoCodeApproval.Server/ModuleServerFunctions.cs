@@ -118,7 +118,7 @@ namespace Sungero.NoCodeApproval.Server
     /// Отправить данные документа в 1C.
     /// </summary>
     /// <param name="document">Документ.</param>
-    public static void SendDocumentDataTo1C(Sungero.Docflow.IOfficialDocument document)
+    public static void SendDocumentDataTo1C()
     {      
       try
       {        
@@ -126,7 +126,7 @@ namespace Sungero.NoCodeApproval.Server
       }
       catch (Exception ex)
       {
-        Logger.ErrorFormat("Error sending document data. DocumentId = {0}", ex, document.Id);
+        Logger.ErrorFormat("Error sending document data.", ex);
       }
     }
     

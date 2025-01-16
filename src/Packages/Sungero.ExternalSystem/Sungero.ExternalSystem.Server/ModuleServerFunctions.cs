@@ -195,7 +195,7 @@ namespace Sungero.ExternalSystem.Server
     public void SyncDocumentData()
     {
       var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
-      var request = Request.Create(RequestMethod.Post, url);
+      var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke();
     }
     

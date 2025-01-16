@@ -107,21 +107,12 @@
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "03ba03f1-b7aa-441e-9084-7ff222339c94",
-      "Name": "SendContractTo1C",
+      "Name": "SendDataTo1C",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
-        "SendContractTo1CExecute"
+        "SendDataTo1CExecute"
       ],
-      "ProcessStagesDisplayMode": "Hide",
-      "Properties": [
-        {
-          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
-          "NameGuid": "07953d3b-f91b-45a7-89aa-4c4d9d457b1f",
-          "Name": "Document",
-          "EntityGuid": "e32c6b0b-f1e9-41e7-853a-56a64e4f3e30",
-          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
-        }
-      ]
+      "ProcessStagesDisplayMode": "Hide"
     }
   ],
   "ClientAssemblyName": "Sungero.NoCodeApproval.Client",
