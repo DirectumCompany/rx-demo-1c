@@ -55,12 +55,23 @@ namespace Sungero.NoCodeApproval.Server
       return result;
     }
     
+    /// <summary>
+    /// Установить статус "Подписан" для УПД в 1С. 
+    /// </summary>
+    /// <param name="dto">Структура с данными для обновления.</param>
+    /// <remarks>При создании УПД запись в статусах документа создаётся автоматически и должна обновляться.</remarks>
     private static void UpdateStatusForUniversalTransferDocument(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
       Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
       Sungero.ExternalSystem.PublicFunctions.Module.UpdateDocumentStatus(dto);
     }
     
+    /// <summary>
+    /// Установить статус "Оплачен" для счета в 1C.
+    /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="dto">Структура с данными для записи.</param>
+    /// <remarks>При создании счетов запись в статусах документа не создаётся и требует добавления.</remarks>
     private static void CreateStatusForInvoice(Sungero.Docflow.IOfficialDocument document, Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
       if (Sungero.Demo1C.IncomingInvoices.Is(document))        

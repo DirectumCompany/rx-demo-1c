@@ -14,8 +14,8 @@ namespace DirectumRXDemo1C.Extensions.Http
 
     private Request(HttpMethod method, string url)
     {
-      httpMethod = method;
-      requestMessageBuilder = new HttpRequestMessageBuilder(method, url);
+      this.httpMethod = method;
+      this.requestMessageBuilder = new HttpRequestMessageBuilder(method, url);
     }
 
     #endregion
@@ -25,15 +25,15 @@ namespace DirectumRXDemo1C.Extensions.Http
       ParametersValidator.ValidateCredentials(login, password);
 
       var token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{login}:{password}"));
-      requestMessageBuilder.AppendBasicAuthHeader(token);
+      this.requestMessageBuilder.AppendBasicAuthHeader(token);
     }
 
     public void Invoke(object content = null)
     {
-      ParametersValidator.ValidateContent(httpMethod, content);
+      ParametersValidator.ValidateContent(this.httpMethod, content);
 
-      if (HttpMethodHelper.IsContentRequired(httpMethod))
-        requestMessageBuilder.AppendContent(content);
+      if (HttpMethodHelper.IsContentRequired(this.httpMethod))
+        this.requestMessageBuilder.AppendContent(content);
 
       var response = HttpClientProvider.Get().SendAsync(requestMessageBuilder.Result).Result;
       response.EnsureSuccessStatusCode();

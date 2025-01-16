@@ -4,11 +4,11 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
 {
   internal static class HttpMethodHelper
   {
-    private static readonly HttpMethod patch = new HttpMethod("PATCH");
+    private static readonly HttpMethod Patch = new HttpMethod("PATCH");
 
-    public static HttpMethod GetPatch() => patch;
+    public static HttpMethod GetPatch() => Patch;
 
     public static bool IsContentRequired(HttpMethod method) => 
-      method == HttpMethod.Post || method == patch;
+      method == HttpMethod.Post || method == Patch;
   }
 }

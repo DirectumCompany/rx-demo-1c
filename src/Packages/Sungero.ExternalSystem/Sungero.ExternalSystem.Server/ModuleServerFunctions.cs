@@ -146,7 +146,6 @@ namespace Sungero.ExternalSystem.Server
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
       
-      
       request.Invoke(dto);
     }
 
@@ -167,7 +166,7 @@ namespace Sungero.ExternalSystem.Server
       var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов{0}", entityParameters);
       var url = BuildPatchUrl(entityNameWithParameters);
 
-      var request = Request.Create(RequestMethod.Patch, url);
+      var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(dto);
     }
     
@@ -182,7 +181,7 @@ namespace Sungero.ExternalSystem.Server
     /// </summary>
     /// <param name="method">Метод.</param>
     /// <param name="url">Url.</param>
-    /// <returns></returns>
+    /// <returns>Запрос.</returns>
     public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
     {
       var result = Request.Create(method, url);
@@ -219,7 +218,7 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Собрать URL для PATCH запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности с параметрами.</param>
+    /// <param name="entityNameWithParameters">Наименование сущности с параметрами.</param>
     /// <returns>Url.</returns>
     private static string BuildPatchUrl(string entityNameWithParameters)
     {
