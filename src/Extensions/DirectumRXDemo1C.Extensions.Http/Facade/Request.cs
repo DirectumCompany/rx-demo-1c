@@ -7,6 +7,8 @@ namespace DirectumRXDemo1C.Extensions.Http
 {
   public class Request
   {
+    #region ctor
+
     private readonly HttpMethod httpMethod;
     private readonly HttpRequestMessageBuilder requestMessageBuilder;
 
@@ -16,42 +18,41 @@ namespace DirectumRXDemo1C.Extensions.Http
       requestMessageBuilder = new HttpRequestMessageBuilder(method, url);
     }
 
+    #endregion
+
     public void UseBasicAuth(string login, string password)
     {
+      ParametersValidator.ValidateCredentials(login, password);
+
       var token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{login}:{password}"));
       requestMessageBuilder.AppendBasicAuthHeader(token);
     }
-    
+
     public void Invoke(object content = null)
     {
-      ParametersValidator.Invoke(httpMethod, content);
+      ParametersValidator.ValidateContent(httpMethod, content);
 
-      var response = HttpClientProvider.Get().SendAsync(this.CreateRequest(content)).Result;
+      if (HttpMethodHelper.IsContentRequired(httpMethod))
+        requestMessageBuilder.AppendContent(content);
+
+      var response = HttpClientProvider.Get().SendAsync(requestMessageBuilder.Result).Result;
       response.EnsureSuccessStatusCode();
 
       this.ResponseContent = response.Content.ReadAsStringAsync().Result;
     }
 
-    private HttpRequestMessage CreateRequest(object content)
-    {
-      var requestBuilder = new HttpRequestMessageBuilder(method, url);
-      if (ParametersValidator.IsContentRequired(method))
-        requestBuilder.AppendContent(content);
-      if (httpMethod == HttpMethod.Post)
-        requestMessageBuilder.AppendContent(content);
-
->>>>>
-
-      return requestMessageBuilder.Result;
-    }
-
     public string ResponseContent { get; private set; }
+
+    #region fabric method
 
     public static Request Create(RequestMethod method, string url)
     {
+      ParametersValidator.ValidateRequestMethod(method);
+
       var httpMethod = new HttpMethod(method.ToString().ToUpperInvariant());
       return new Request(httpMethod, url);
     }
+
+    #endregion
   }
 }
- 

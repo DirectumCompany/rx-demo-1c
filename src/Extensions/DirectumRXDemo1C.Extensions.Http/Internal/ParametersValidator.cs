@@ -5,16 +5,27 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
 {
   internal static class ParametersValidator
   {
-    public static void Invoke(HttpMethod method, object content)
+    public static void ValidateRequestMethod(RequestMethod method)
+    {
+      if (!Enum.IsDefined(typeof(RequestMethod), method))
+        throw new ArgumentOutOfRangeException(nameof(method));
+    }
+
+    public static void ValidateCredentials(string login, string password)
+    {
+      if (login == null) throw new ArgumentNullException(nameof(login));
+      if (password == null) throw new ArgumentNullException(nameof(password));
+    }
+
+    public static void ValidateContent(HttpMethod method, object content)
     {
       if (method == HttpMethod.Get && content != null)
         throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" shouldn't have a content");
 
-      if (IsContentRequired(method) && content == null)
+      if (HttpMethodHelper.IsContentRequired(method) && content == null)
         throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" must have a content");
     }
 
-    public static bool IsContentRequired(HttpMethod method) => method == HttpMethod.Post || method == HttpPatchMethodProvider.Get();
     private static string HttpMethodToUpper(HttpMethod method) => method.ToString().ToUpperInvariant();
   }
 }

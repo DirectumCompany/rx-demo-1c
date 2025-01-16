@@ -28,25 +28,17 @@ namespace Sungero.NoCodeApproval.Server
         var dto = CreateDocumentStatusDto(document, externalEntityLink);
         
         if (Sungero.Demo1C.UniversalTransferDocuments.Is(document))
-        {
-          Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
-          Sungero.ExternalSystem.PublicFunctions.Module.UpdateDocumentStatus(dto);
-        }
-        else if (Sungero.Demo1C.IncomingInvoices.Is(document) || Sungero.Demo1C.OutgoingInvoices.Is(document))
-        {
-          if (Sungero.Demo1C.IncomingInvoices.Is(document))
-            Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
-          else
-            Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
-          
-          Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
-        }
+          UpdateStatusForUniversalTransferDocument(dto);
+        else
+          CreateStatusForInvoice(document, dto);
       }
       catch (Exception ex)
       {
         Logger.ErrorFormat("NoCodeApproval.SendDocumentStatusTo1C. Error occurred while creating document status. DocumentId = {0}.", ex, document.Id);
       }
-    }
+    }    
+    
+    #region private
     
     /// <summary>
     /// Сформировать структуру данных "Статусы обмена" для 1С.
@@ -62,6 +54,24 @@ namespace Sungero.NoCodeApproval.Server
       result.Документ = externalEntityLink.ExtEntityId;
       return result;
     }
+    
+    private static void UpdateStatusForUniversalTransferDocument(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
+      Sungero.ExternalSystem.PublicFunctions.Module.UpdateDocumentStatus(dto);
+    }
+    
+    private static void CreateStatusForInvoice(Sungero.Docflow.IOfficialDocument document, Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      if (Sungero.Demo1C.IncomingInvoices.Is(document))        
+        Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
+      else
+        Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
+      
+      Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
+    }
+    
+    #endregion
     
     #endregion
   }
