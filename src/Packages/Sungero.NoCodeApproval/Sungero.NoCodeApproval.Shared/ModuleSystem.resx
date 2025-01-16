@@ -88,6 +88,12 @@
   <data name="Block_d558315214da4d99b27f90b802438d0f_Property_edfc4ad96d0d4e85a1116a907f5f3642" xml:space="preserve">
     <value>Входящий счет</value>
   </data>
+  <data name="Block_03ba03f1b7aa441e90847ff222339c94" xml:space="preserve">
+    <value>Отправка данных в 1С</value>
+  </data>
+  <data name="Block_03ba03f1b7aa441e90847ff222339c94_Property_07953d3bf91b45a789aa4c4d9d457b1f" xml:space="preserve">
+    <value>Договор</value>
+  </data>
   <data name="Block_00f5f31dd9ac49b393984708955ecc63" xml:space="preserve">
     <value>УПД. Передача в 1С</value>
   </data>
