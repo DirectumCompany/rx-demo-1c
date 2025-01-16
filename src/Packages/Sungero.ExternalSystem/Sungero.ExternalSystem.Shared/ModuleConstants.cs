@@ -24,6 +24,16 @@ namespace Sungero.ExternalSystem.Constants
       /// Идентификатор системы.
       /// </summary>      
       public const string SystemId = "1CSystemId";
+      
+      /// <summary>
+      /// Логин пользователя.
+      /// </summary>
+      public const string Login = "1СUsername";
+      
+      /// <summary>
+      /// Пароль пользователя.
+      /// </summary>
+      public const string Password = "1СPassword";
     }
   }
 }

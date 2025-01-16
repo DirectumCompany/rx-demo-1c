@@ -11,7 +11,7 @@ namespace Sungero.ExternalSystem.Server
   {
 
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
-    {    
+    {
       AddConnectionDocflowParams();
       UpdateOdataObjectsIn1C();
     }
@@ -24,6 +24,8 @@ namespace Sungero.ExternalSystem.Server
       InitializationLogger.DebugFormat("Init: Adding docflow parameters for 1C connection.");
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.ServiceUrl1C, string.Empty);
       Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.SystemId, string.Empty);
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Login, "СувороваЕА");
+      Sungero.Docflow.PublicFunctions.Module.InsertDocflowParam(Constants.Module.ConnectionParamNames.Password, string.Empty);
     }
     
     /// <summary>
@@ -33,9 +35,10 @@ namespace Sungero.ExternalSystem.Server
     {
       try
       {
-        InitializationLogger.Debug("Init: Start updating odata objects in 1C.");        
-        var request = DirectumRXDemo1C.Extensions.Http.Request.Create(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl());
-        request.Invoke();                                 
+        InitializationLogger.Debug("Init: Start updating odata objects in 1C.");
+        
+        var request = ExternalSystem.Functions.Module.CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod.Get, BuildUrl());
+        request.Invoke();
       }
       catch (Exception ex)
       {
@@ -51,7 +54,7 @@ namespace Sungero.ExternalSystem.Server
     {
       var serviceUrl = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
       if (string.IsNullOrEmpty(serviceUrl))
-        serviceUrl = Constants.Module.DefaultServiceUrl1C;      
+        serviceUrl = Constants.Module.DefaultServiceUrl1C;
       
       return string.Format("{0}/hs/handlers/UpdateListObjectsOData", serviceUrl);
     }

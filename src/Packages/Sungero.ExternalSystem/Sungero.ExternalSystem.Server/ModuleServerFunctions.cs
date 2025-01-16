@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using DirectumRXDemo1C.Extensions.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -33,7 +34,7 @@ namespace Sungero.ExternalSystem.Server
     public static string GetBusinessUnit(string tin, string trrc)
     {
       var url = BuildGetUrl("Catalog_Организации", $"ИНН eq '{tin}' and КПП eq '{trrc}'");
-      var request = Request.Create(RequestMethod.Get, url);
+      var request = CreateRequest(RequestMethod.Get, url);
       request.Invoke();
       
       var jsonDataResponse = (JObject)JsonConvert.DeserializeObject(request.ResponseContent);
@@ -65,7 +66,8 @@ namespace Sungero.ExternalSystem.Server
     public string GetEntityLink(string entityId, string entityType)
     {
       var url = string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}", GetBaseAddress(), entityId, entityType);
-      var request = Request.Create(RequestMethod.Get, url);
+      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
+      var request = CreateRequest(RequestMethod.Get, url);
       request.Invoke();
       
       return request.ResponseContent;
@@ -96,7 +98,7 @@ namespace Sungero.ExternalSystem.Server
       }
       
       var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
-      var request = Request.Create(RequestMethod.Post, url);
+      var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke(dto);
       
       return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
@@ -118,7 +120,7 @@ namespace Sungero.ExternalSystem.Server
       dto.СрокОплаты = paymentDueDate;
       
       var url = BuildPostUrl("InformationRegister_СрокиОплатыДокументов");
-      var request = Request.Create(RequestMethod.Post, url);
+      var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke(dto);
     }
     
@@ -136,11 +138,30 @@ namespace Sungero.ExternalSystem.Server
       }
       
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
-      var request = Request.Create(RequestMethod.Post, url);
+      var request = CreateRequest(RequestMethod.Post, url);
+      
+      
       request.Invoke(dto);
     }
     
     #endregion
+    
+    #region Формирование запроса
+    
+    /// <summary>
+    /// Создать запрос в 1С.
+    /// </summary>
+    /// <param name="method">Метод.</param>
+    /// <param name="url">Url.</param>
+    /// <returns></returns>
+    public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
+    {
+      var result = Request.Create(method, url);
+      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(), 
+                          Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString());
+      
+      return result;
+    }
     
     #region Формирование URL
     
@@ -188,6 +209,8 @@ namespace Sungero.ExternalSystem.Server
     {
       return Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.ServiceUrl1C).ToString();
     }
+    
+    #endregion
     
     #endregion
   }
