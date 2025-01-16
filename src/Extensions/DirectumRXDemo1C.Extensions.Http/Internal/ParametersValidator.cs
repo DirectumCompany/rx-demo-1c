@@ -21,9 +21,6 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
     {
       if (method == HttpMethod.Get && content != null)
         throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" shouldn't have a content");
-
-      if (HttpMethodHelper.IsContentRequired(method) && content == null)
-        throw new ArgumentException($"Http method \"{HttpMethodToUpper(method)}\" must have a content");
     }
 
     private static string HttpMethodToUpper(HttpMethod method) => method.ToString().ToUpperInvariant();

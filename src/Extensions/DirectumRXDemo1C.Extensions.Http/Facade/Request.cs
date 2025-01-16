@@ -41,6 +41,14 @@ namespace DirectumRXDemo1C.Extensions.Http
       this.ResponseContent = response.Content.ReadAsStringAsync().Result;
     }
 
+    private HttpRequestMessage CreateRequest(object content)
+    {
+      if (content != null)
+        requestMessageBuilder.AppendContent(content);
+
+      return requestMessageBuilder.Result;
+    }
+
     public string ResponseContent { get; private set; }
 
     #region fabric method
