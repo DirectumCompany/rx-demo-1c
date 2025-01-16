@@ -3,6 +3,16 @@
   "NameGuid": "aab93307-8945-4804-888c-773db6e1ac54",
   "Name": "UniversalTransferDocument",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "d79824b2-3ef0-427b-aa6c-0fd7210546ae",
+      "Name": "OpenEntityIn1CSungero",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_OpenEntityIn1CSungero_large_d79824b23ef0427baa6c0fd7210546ae.png",
+      "SmallIconName": "Action_OpenEntityIn1CSungero_small_d79824b23ef0427baa6c0fd7210546ae.png"
+    }
+  ],
   "BaseGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
