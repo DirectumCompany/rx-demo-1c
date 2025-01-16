@@ -45,7 +45,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     public string Комментарий { get; set; }
     
     /// <summary>
-    /// ИД в Directum RX.
+    /// Идентификатор сущности RX.
     /// </summary>
     public long rx_ID { get; set; }
     

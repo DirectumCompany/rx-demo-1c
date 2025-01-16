@@ -27,20 +27,18 @@ namespace Sungero.NoCodeApproval.Server
       {
         var dto = CreateDocumentStatusDto(document, externalEntityLink);
         
-        if (Sungero.Demo1C.IncomingInvoices.Is(document))
-          Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
-        else if (Sungero.Demo1C.OutgoingInvoices.Is(document))
-          Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
-        else if (Sungero.Demo1C.UniversalTransferDocuments.Is(document))
-          Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
-        
-        Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
+        if (Sungero.Demo1C.UniversalTransferDocuments.Is(document))
+          UpdateStatusForUniversalTransferDocument(dto);
+        else
+          CreateStatusForInvoice(document, dto);
       }
       catch (Exception ex)
       {
         Logger.ErrorFormat("NoCodeApproval.SendDocumentStatusTo1C. Error occurred while creating document status. DocumentId = {0}.", ex, document.Id);
       }
-    }
+    }    
+    
+    #region private
     
     /// <summary>
     /// Сформировать структуру данных "Статусы обмена" для 1С.
@@ -56,6 +54,35 @@ namespace Sungero.NoCodeApproval.Server
       result.Документ = externalEntityLink.ExtEntityId;
       return result;
     }
+    
+    /// <summary>
+    /// Установить статус "Подписан" для УПД в 1С. 
+    /// </summary>
+    /// <param name="dto">Структура с данными для обновления.</param>
+    /// <remarks>При создании УПД запись в статусах документа создаётся автоматически и должна обновляться.</remarks>
+    private static void UpdateStatusForUniversalTransferDocument(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.CompleteStatusInfo(dto);
+      Sungero.ExternalSystem.PublicFunctions.Module.UpdateDocumentStatus(dto);
+    }
+    
+    /// <summary>
+    /// Установить статус "Оплачен" для счета в 1C.
+    /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="dto">Структура с данными для записи.</param>
+    /// <remarks>При создании счетов запись в статусах документа не создаётся и требует добавления.</remarks>
+    private static void CreateStatusForInvoice(Sungero.Docflow.IOfficialDocument document, Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      if (Sungero.Demo1C.IncomingInvoices.Is(document))        
+        Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
+      else
+        Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
+      
+      Sungero.ExternalSystem.PublicFunctions.Module.CreateDocumentStatus(dto);
+    }
+    
+    #endregion
     
     #endregion
     

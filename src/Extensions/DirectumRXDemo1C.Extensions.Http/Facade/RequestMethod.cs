@@ -3,6 +3,7 @@
   public enum RequestMethod
   {
     Get,
+    Patch,
     Post
   }
 }
