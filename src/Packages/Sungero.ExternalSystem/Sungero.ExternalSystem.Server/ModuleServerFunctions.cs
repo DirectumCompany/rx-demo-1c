@@ -143,9 +143,7 @@ namespace Sungero.ExternalSystem.Server
         return false;
       }
       return true;
-    }
-    
-    #endregion
+    }    
     
     /// <summary>
     /// Создать срок оплаты для входящего счета.
