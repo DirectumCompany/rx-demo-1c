@@ -169,8 +169,18 @@ namespace Sungero.ExternalSystem.Server
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(dto);
     }
-    
     #endregion
+
+    /// <summary>
+    /// Синхронизировать данные документа c 1С.
+    /// </summary>
+    [Public]
+    public void SyncDocumentData()
+    {
+      var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
+      var request = Request.Create(RequestMethod.Post, url);
+      request.Invoke();
+    }
     
     #endregion
     
