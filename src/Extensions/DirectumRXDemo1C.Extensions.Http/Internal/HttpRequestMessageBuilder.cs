@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace DirectumRXDemo1C.Extensions.Http.Internal
 {

@@ -137,6 +137,18 @@
       "Name": "GetId",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "UpdateDocumentStatus",
+      "Parameters": [
+        {
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [

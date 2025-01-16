@@ -49,7 +49,7 @@ namespace Sungero.ExternalSystem.Server
 
       if (businessUnitsCount > 1)
       {
-        Logger.DebugFormat("ExternalSystem.GetBusinessUnit. There  are found {3} business units in 1C by TIN and TRRC. BusinessUnit.TIN = {0}, BusinessUnit.TRRC = {1}.", tin, trrc, businessUnitsCount);
+        Logger.DebugFormat("ExternalSystem.GetBusinessUnit. There are found {3} business units in 1C by TIN and TRRC. BusinessUnit.TIN = {0}, BusinessUnit.TRRC = {1}.", tin, trrc, businessUnitsCount);
         return null;
       }
 
@@ -76,6 +76,8 @@ namespace Sungero.ExternalSystem.Server
     #endregion
     
     #region Сохранение данных
+    
+    #region Операции с входящими счетами
     
     /// <summary>
     /// Создать входящий счет в 1С.
@@ -124,6 +126,10 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
+    #endregion
+    
+    #region Операции со статусами документов
+    
     /// <summary>
     /// Создать запись в регистре сведений "Статусы документов".
     /// </summary>
@@ -140,9 +146,31 @@ namespace Sungero.ExternalSystem.Server
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
       
-      
       request.Invoke(dto);
     }
+
+    /// <summary>
+    /// Обновить запись в регистре сведений "Статусы документов".
+    /// </summary>
+    /// <param name="dto">Структура с данными для записи.</param>
+    [Public]
+    public static void UpdateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
+    {
+      if (dto.Организация_Key == null)
+      {
+        Logger.DebugFormat("ExternalSystem.UpdateDocumentStatus. The document status is not updated in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+        return;
+      }
+      
+      var entityParameters = string.Format("(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
+      var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов{0}", entityParameters);
+      var url = BuildPatchUrl(entityNameWithParameters);
+
+      var request = CreateRequest(RequestMethod.Patch, url);
+      request.Invoke(dto);
+    }
+    
+    #endregion
     
     #endregion
     
@@ -153,7 +181,7 @@ namespace Sungero.ExternalSystem.Server
     /// </summary>
     /// <param name="method">Метод.</param>
     /// <param name="url">Url.</param>
-    /// <returns></returns>
+    /// <returns>Запрос.</returns>
     public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
     {
       var result = Request.Create(method, url);
@@ -171,9 +199,10 @@ namespace Sungero.ExternalSystem.Server
     /// <param name="entityName">Наименование сущности.</param>
     /// <param name="filterValue">Значение фильтра.</param>
     /// <returns>Url.</returns>
-    private static string BuildGetUrl(string entityName, string filterValue = null)
+    private static string BuildGetUrl(string entityName, string filterValue)
     {
-      return BuildUrl(entityName, filterValue, null);
+      var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
+      return string.Format("{0}{1}?{2}&$format=json", GetOdataUrl(), entityName, filter);
     }
     
     /// <summary>
@@ -183,22 +212,26 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>Url.</returns>
     private static string BuildPostUrl(string entityName)
     {
-      return BuildUrl(entityName, null, "*");
+      return string.Format("{0}{1}?$format=json&$expand=*", GetOdataUrl(), entityName);
     }
     
     /// <summary>
-    /// Собрать URL для запроса.
+    /// Собрать URL для PATCH запроса.
     /// </summary>
-    /// <param name="entityName">Наименование сущности.</param>
-    /// <param name="filterValue">Значение фильтра.</param>
-    /// <param name="expandValue">Значение параметра "expand".</param>
+    /// <param name="entityNameWithParameters">Наименование сущности с параметрами.</param>
     /// <returns>Url.</returns>
-    private static string BuildUrl(string entityName, string filterValue, string expandValue = null)
+    private static string BuildPatchUrl(string entityNameWithParameters)
     {
-      var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
-      var expand = expandValue != null ? string.Format("&$expand={0}", expandValue) : string.Empty;
-      
-      return string.Format("{0}/odata/standard.odata/{1}?{2}&$format=json{3}", GetBaseAddress(), entityName, filter, expand);
+      return string.Format("{0}{1}?$format=json", GetOdataUrl(), entityNameWithParameters);
+    }
+
+    /// <summary>
+    /// Собрать базовую часть URL для работы по OData.
+    /// </summary>
+    /// <returns>Url.</returns>
+    private static string GetOdataUrl()
+    {
+      return string.Format("{0}/odata/standard.odata/", GetBaseAddress());
     }
     
     /// <summary>

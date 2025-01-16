@@ -42,6 +42,9 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// </summary>
     public string Комментарий { get; set; }
     
+    /// <summary>
+    /// Идентификатор сущности RX.
+    /// </summary>
     public long rx_ID { get; set; }
     
     /// <summary>
