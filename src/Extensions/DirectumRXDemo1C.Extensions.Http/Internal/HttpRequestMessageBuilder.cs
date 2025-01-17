@@ -16,7 +16,7 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
     public void AppendContent(object content)
     {
       if (content == null)
-        throw new ArgumentNullException(nameof(content));
+       return;
 
       this.Result.Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
     }
