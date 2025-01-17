@@ -6,11 +6,6 @@ namespace Sungero.ExternalSystem.Constants
   public static class Module
   {
     /// <summary>
-    /// Локальный адрес веб-сервера по умолчанию.
-    /// </summary>
-    public const string DefaultServiceUrl1C = "https://localhost/1C_Accounting";
-    
-    /// <summary>
     /// Параметры доступа к 1С.
     /// </summary>
     public static class ConnectionParamNames
