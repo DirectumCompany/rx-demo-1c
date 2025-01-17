@@ -115,21 +115,18 @@ namespace Sungero.NoCodeApproval.Server
     #region Отправка данных в 1С
     
     /// <summary>
-    /// Отправить данные документа в 1C.
+    /// Отправить данные в 1C.
     /// </summary>
-    /// <param name="document">Документ.</param>
-    public static void SendDocumentDataTo1C()
+    public static void SendDataTo1C()
     {      
       try
       {        
-        Sungero.ExternalSystem.PublicFunctions.Module.SyncDocumentData();
+        Sungero.ExternalSystem.PublicFunctions.Module.SyncDataWith1C();
       }
       catch (Exception ex)
       {
         Logger.ErrorFormat("Error sending document data.", ex);
       }
     }
-    
-    #endregion
   }
 }

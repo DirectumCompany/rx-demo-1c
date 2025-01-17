@@ -43,7 +43,7 @@ namespace DirectumRXDemo1C.Extensions.Http
 
     private HttpRequestMessage CreateRequest(object content)
     {
-      if (content != null)
+      if (httpMethod == HttpMethod.Post)
         requestMessageBuilder.AppendContent(content);
 
       return requestMessageBuilder.Result;

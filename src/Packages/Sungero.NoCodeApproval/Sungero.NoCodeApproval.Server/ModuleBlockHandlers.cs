@@ -22,7 +22,7 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 
     public virtual void SendDataTo1CExecute()
     {
-      Sungero.NoCodeApproval.Functions.Module.SendDocumentDataTo1C();
+      Sungero.NoCodeApproval.Functions.Module.SendDataTo1C();
     }
   }
 

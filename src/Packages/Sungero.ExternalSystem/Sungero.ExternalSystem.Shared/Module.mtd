@@ -163,7 +163,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "SyncDocumentData",
+      "Name": "SyncDataWith1C",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     }

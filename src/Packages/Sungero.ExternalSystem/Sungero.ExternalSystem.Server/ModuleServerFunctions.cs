@@ -189,10 +189,10 @@ namespace Sungero.ExternalSystem.Server
     #endregion
 
     /// <summary>
-    /// Синхронизировать данные документа c 1С.
+    /// Синхронизировать данные c 1С.
     /// </summary>
     [Public]
-    public void SyncDocumentData()
+    public void SyncDataWith1C()
     {
       var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
       var request = CreateRequest(RequestMethod.Post, url);
