@@ -9,7 +9,7 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Server
-{
+{  
   public class ModuleFunctions
   {
     #region Получение данных
@@ -82,11 +82,11 @@ namespace Sungero.ExternalSystem.Server
     /// Создать счет от поставщика в 1С.
     /// </summary>
     /// <param name="dto">Структура с данными для документа.</param>
-    /// <returns>ИД созданного документа.</returns>
+    /// <returns>ИД созданного документа.</returns>    
     [Public]
     public static string CreateSupplierInvoice(Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto dto)
     {
-      const string methodName = "CreateSupplierInvoice";
+      var methodName = "CreateSupplierInvoice";
       if (!IsRequiredPropertiesAssigned(dto, methodName,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key))
@@ -131,7 +131,7 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static string CreateReceipt(Sungero.ExternalSystem.Structures.Module.IReceiptDto dto)
     {
-      const string methodName = "CreateReceipt";
+      var methodName = "CreateReceipt";
       if (!IsRequiredPropertiesAssigned(dto, methodName,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key,
@@ -156,7 +156,7 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void CreateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      const string methodName = "CreateDocumentStatus";
+      var methodName = "CreateDocumentStatus";
       if (!IsRequiredPropertiesAssigned(dto, methodName,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
@@ -174,7 +174,7 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void UpdateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      const string methodName = "UpdateDocumentStatus";
+      var methodName = "UpdateDocumentStatus";
       if (!IsRequiredPropertiesAssigned(dto, methodName,
                                         Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
@@ -204,10 +204,11 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Проверить, все ли обязательные ссылки на сущности указаны.
     /// </summary>
-    /// <param name="propertyNames">Список обязательных свойств.</param>
-    /// <param name="methodName">Вызывающий метод.</param>
     /// <param name="dto">Структура с данными.</param>
-    /// <returns>True - все обязательные свойства имеют значения.</returns>
+    /// <param name="methodName">Вызывающий метод.</param>
+    /// <param name="propertyNames">Список обязательных свойств.</param>
+    /// <returns>True - все обязательные свойства имеют значения.</returns>    
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
     private static bool IsRequiredPropertiesAssigned(object dto, string methodName, params string[] propertyNames)
     {
       var rxId = (dto.GetType().GetProperty("rx_ID") ?? 

@@ -34,6 +34,8 @@ namespace Sungero.ExternalSystem.Constants
     /// <summary>
     /// Наименования свойств.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed.")]
     public static class PropertyNames
     {
       /// <summary>

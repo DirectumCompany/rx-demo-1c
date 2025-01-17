@@ -94,7 +94,7 @@ namespace Sungero.NoCodeApproval.Server
     /// <param name="document">Универсальный передаточный документ из Directum RX.</param>
     public static void SendUniversalTransferDocumentTo1C(Sungero.Demo1C.IUniversalTransferDocument document)
     {
-      const string logMessagePrefix = "Demo1C.SendUniversalTransferDocumentTo1C.";
+      var logMessagePrefix = "Demo1C.SendUniversalTransferDocumentTo1C.";
       try
       {
         var receiptDto = Sungero.Demo1C.PublicFunctions.UniversalTransferDocument.ConvertTo1cDto(document);

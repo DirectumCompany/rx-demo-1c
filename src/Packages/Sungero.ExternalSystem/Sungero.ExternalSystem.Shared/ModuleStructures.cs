@@ -10,7 +10,8 @@ namespace Sungero.ExternalSystem.Structures.Module
   
   /// <summary>
   /// Документ "Счета от поставщиков".
-  /// </summary>
+  /// </summary>    
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class SupplierInvoiceDto
   {
@@ -47,6 +48,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// Идентификатор сущности RX.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]    
     public long rx_ID { get; set; }
     
     /// <summary>
@@ -58,6 +60,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   /// <summary>
   /// Документ "Поступление (акты, накладные, УПД)".
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class ReceiptDto
   {
@@ -94,6 +97,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// ИД в Directum RX.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public long rx_ID { get; set; }
     
     /// <summary>
@@ -102,7 +106,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     public string Ref_Key { get; set; }
     
     /// <summary>
-    /// Признак "УПД"
+    /// Признак "УПД".
     /// </summary>
     public bool ЭтоУниверсальныйДокумент { get; set; }
   }
@@ -112,6 +116,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   /// <summary>
   /// Регистр сведений "Сроки оплаты документов".
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class PaymentTermDto
   {
@@ -139,6 +144,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   /// <summary>
   /// Регистр сведений "Статусы документов".
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class DocumentStatusDto
   {
