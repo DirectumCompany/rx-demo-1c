@@ -10,6 +10,28 @@ namespace Sungero.Demo1C.Server
   partial class UniversalTransferDocumentFunctions
   {
     /// <summary>
+    /// Преобразовать в структуру данных для 1С.
+    /// </summary>
+    /// <returns>Структура данных 1С.</returns>
+    [Public]
+    public Sungero.ExternalSystem.Structures.Module.IReceiptDto ConvertTo1cDto()
+    {
+      var result = Sungero.ExternalSystem.Structures.Module.ReceiptDto.Create();
+      
+      result.НомерВходящегоДокумента = _obj.RegistrationNumber.Trim();
+      result.ДатаВходящегоДокумента = _obj.RegistrationDate.Value;
+      result.Комментарий = _obj.Note;
+      result.rx_ID = _obj.Id;
+      result.ЭтоУниверсальныйДокумент = true;
+      
+      result.Организация_Key = Sungero.ExternalSystem.PublicFunctions.Module.GetBusinessUnit(_obj.BusinessUnit?.TIN, _obj.BusinessUnit?.TRRC);
+      result.Контрагент_Key = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(_obj.Counterparty)?.ExtEntityId;
+      result.ДоговорКонтрагента_Key = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(_obj.LeadingDocument)?.ExtEntityId;
+      
+      return result;
+    }
+    
+    /// <summary>
     /// Заполнить недостающие данные для отправки статуса в 1С.
     /// </summary>
     /// <param name="status">Информация о статусе.</param>

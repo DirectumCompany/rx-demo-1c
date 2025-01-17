@@ -35,7 +35,7 @@ namespace DirectumRXDemo1C.Extensions.Http
       if (HttpMethodHelper.IsContentRequired(this.httpMethod))
         this.requestMessageBuilder.AppendContent(content);
 
-      var response = HttpClientProvider.Get().SendAsync(requestMessageBuilder.Result).Result;
+      var response = HttpClientProvider.Get().SendAsync(this.requestMessageBuilder.Result).Result;
       response.EnsureSuccessStatusCode();
 
       this.ResponseContent = response.Content.ReadAsStringAsync().Result;
