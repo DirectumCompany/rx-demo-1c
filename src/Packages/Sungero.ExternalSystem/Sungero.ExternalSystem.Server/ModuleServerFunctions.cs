@@ -129,7 +129,8 @@ namespace Sungero.ExternalSystem.Server
     /// <summary>
     /// Создать услуги для входящего счета.
     /// </summary>
-    /// <param name="key">ИД входящего счета.</param>
+    /// <param name="key">Ид входящего счета.</param>
+    /// <param name="invoice">Входящий счет.</param>
     [Public]
     public static void CreateServicesForInvoice(string key, Sungero.Demo1C.IIncomingInvoice invoice)
     {
