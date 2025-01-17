@@ -782,7 +782,7 @@
           "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
         }
       ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, System.Object>"
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Collections.Generic.List<global::Sungero.ExternalSystem.Structures.Module.IServiceDto>>"
     }
   ],
   "PublicStructures": [],

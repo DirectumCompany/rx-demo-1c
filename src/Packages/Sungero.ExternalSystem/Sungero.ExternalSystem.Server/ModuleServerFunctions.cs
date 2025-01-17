@@ -134,10 +134,13 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void CreateServicesForInvoice(string key, Sungero.Demo1C.IIncomingInvoice invoice)
     {
-      var servicesCollection = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PreparingServicesForSendTo1C(invoice);
+      var servicesCollectionFor1C = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PreparingServicesForSendTo1C(invoice);
+      if (servicesCollectionFor1C == null)
+        return;
+      
       var url = BuildPatchUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
       var request = CreateRequest(RequestMethod.Patch, url);
-      request.Invoke(servicesCollection);
+      request.Invoke(servicesCollectionFor1C);
     }
  
     #endregion
