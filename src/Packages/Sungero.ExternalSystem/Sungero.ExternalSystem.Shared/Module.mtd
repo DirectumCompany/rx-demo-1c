@@ -151,6 +151,11 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "SyncDataWith1C",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "UpdateDocumentStatus",
       "Parameters": [
         {
@@ -159,11 +164,6 @@
           "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto"
         }
       ],
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "SyncDataWith1C",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     }
