@@ -772,6 +772,17 @@
       ],
       "ReturnType": "global::Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto",
       "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto"
+    },
+    {
+      "Name": "PreparingServicesForSendTo1C",
+      "Parameters": [
+        {
+          "Name": "incomingInvoice",
+          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
+          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, System.Object>"
     }
   ],
   "PublicStructures": [],

@@ -41,5 +41,51 @@ namespace Sungero.Demo1C.Server
       status.Статус = "Оплачен";
       status.Статус_Type = "UnavailableEnums.СтатусОплатыСчета";
     }
+    
+    /// <summary>
+    /// Подготовить список услуг для передачи в 1С.
+    /// </summary>
+    /// <param name="invoice">Входящий счет.</param>
+    /// <returns>Список услуг для передачи в 1С.</returns>
+    /// <remarks>В 1С товары и услуги именуются как "Товары".</remarks>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, object> PreparingServicesForSendTo1C()
+    {
+      var servicesCollection = new List<Sungero.ExternalSystem.Structures.Module.IServiceDto>();
+      servicesCollection.AddRange(GetServicesFromXml(_obj));
+      return new Dictionary<string, object>
+      {
+        {"Товары", servicesCollection}
+      };
+    }
+    
+    /// <summary>
+    /// Получить услуги из xml-документа.
+    /// </summary>
+    /// <param name="status">Информация о статусе.</param>
+    /// <returns>Список услуг в формате для передачи в 1С.</returns>
+    private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceDto> GetServicesFromXml(Sungero.Demo1C.IIncomingInvoice invoice)
+    {
+      var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(invoice.LastVersion.Body.Read());
+      var servicesFromXml = xmlDocument.Element("Файл")?.Element("Документ")?.Element("ТаблСНО")?.Elements("СведТов");
+      
+      if (servicesFromXml == null)
+        yield break;
+      
+      var lineNumber = 1;
+      foreach (var service in servicesFromXml)
+      {
+        yield return new Sungero.ExternalSystem.Structures.Module.ServiceDto
+        {
+          LineNumber = lineNumber.ToString(),
+          Содержание = service.Attribute("НаимТов")?.Value,
+          Количество = service.Attribute("КолТов")?.Value,
+          Цена = service.Attribute("ЦенаТов")?.Value,
+          Сумма = service.Attribute("СтТовУчНал")?.Value
+        };
+        lineNumber++;
+      }
+    }
+    
   }
 }

@@ -81,6 +81,25 @@ namespace Sungero.ExternalSystem.Structures.Module
   }
   
   /// <summary>
+  /// Услуга.
+  /// </summary>
+  [Public]
+  partial class ServiceDto
+  {
+    public string LineNumber { get; set; }
+    
+    public string Содержание { get; set; }
+    
+    public string Количество { get; set; }
+    
+    public string Цена { get; set; }
+    
+    public string Сумма { get; set; }
+    
+    public string СтавкаНДС { get; set; }
+    
+  }
+  /// <summary>
   /// Регистр сведений "Статусы документов".
   /// </summary>
   [Public]

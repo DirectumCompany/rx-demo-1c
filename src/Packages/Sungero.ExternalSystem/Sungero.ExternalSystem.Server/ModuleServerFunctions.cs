@@ -126,6 +126,19 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
+    /// <summary>
+    /// Создать услуги для входящего счета.
+    /// </summary>
+    /// <param name="key">ИД входящего счета.</param>
+    [Public]
+    public static void CreateServicesForInvoice(string key, Sungero.Demo1C.IIncomingInvoice invoice)
+    {
+      var servicesCollection = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PreparingServicesForSendTo1C(invoice);
+      var url = BuildPatchUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
+      var request = CreateRequest(RequestMethod.Patch, url);
+      request.Invoke(servicesCollection);
+    }
+ 
     #endregion
     
     #region Операции со статусами документов
@@ -185,7 +198,7 @@ namespace Sungero.ExternalSystem.Server
     public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
     {
       var result = Request.Create(method, url);
-      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(), 
+      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(),
                           Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString());
       
       return result;
