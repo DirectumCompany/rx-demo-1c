@@ -53,7 +53,7 @@ namespace Sungero.ExternalSystem.Server
         return null;
       }
 
-      return businessUnits.FirstOrDefault()?["Ref_Key"].Value<string>();
+      return businessUnits.FirstOrDefault()?[Sungero.ExternalSystem.Constants.Module.PropertyNames.Ref_Key].Value<string>();
     }
     
     /// <summary>
@@ -87,14 +87,17 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static string CreateSupplierInvoice(Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto dto)
     {
-      if (!IsConterpartyAndOrganizationFound(dto.Организация_Key, dto.Контрагент_Key, "SupplierInvoice", dto.rx_ID))
+      const string methodName = "CreateSupplierInvoice";
+      if (!IsRequiredPropertiesAssigned(dto, methodName, 
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key))
         return null;
       
       var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
       var request = Request.Create(RequestMethod.Post, url);
       request.Invoke(dto);
       
-      return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
+      return ExtractRefKeyFromResponse(request.ResponseContent);
     }
     
     /// <summary>
@@ -104,45 +107,19 @@ namespace Sungero.ExternalSystem.Server
     /// <returns>ИД созданного документа.</returns>
     [Public]
     public static string CreateReceipt(Sungero.ExternalSystem.Structures.Module.IReceiptDto dto)
-    {      
-     if (!IsConterpartyAndOrganizationFound(dto.Организация_Key, dto.Контрагент_Key, "Receipt", dto.rx_ID))
+    {
+      const string methodName = "CreateReceipt";       
+      if (!IsRequiredPropertiesAssigned(dto, methodName, 
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.ДоговорКонтрагента_Key))
         return null;
-      
-      if (dto.ДоговорКонтрагента_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateReceipt. The document is not created in 1C because contract is not found. Id = {0}.", dto.rx_ID);
-        return null;
-      }
       
       var url = BuildPostUrl("Document_ПоступлениеТоваровУслуг");
       var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke(dto);
       
-      return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
-    }
-    
-    /// <summary>
-    /// Проверить найдены ли контрагент и НОР в 1С.
-    /// </summary>
-    /// <param name="businessUnit">НОР.</param>
-    /// <param name="counterparty">Контрагент.</param>
-    /// <param name="documentName">Наименование создаваемого документа.</param>
-    /// <param name="id">ИД документа в RX.</param>
-    /// <returns>True - найдены обе сущности.</returns>
-    private static bool IsConterpartyAndOrganizationFound(string businessUnit, string counterparty, string documentName, long id)
-    {
-      if (counterparty == null)
-      {
-        Logger.DebugFormat("ExternalSystem.Create{0}. The document is not created in 1C because counterparty is not found. Id = {1}.", documentName, id);
-        return false;
-      }
-      
-      if (businessUnit == null)
-      {
-        Logger.DebugFormat("ExternalSystem.Create{0}. The document is not created in 1C because business unit is not found or more than one. Id = {1}.", documentName, id);
-        return false;
-      }
-      return true;
+      return ExtractRefKeyFromResponse(request.ResponseContent);
     }    
     
     /// <summary>
@@ -176,11 +153,10 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void CreateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateDocumentStatus. The document status is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+      const string methodName = "CreateDocumentStatus";       
+      if (!IsRequiredPropertiesAssigned(dto, methodName, 
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
-      }
       
       var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
@@ -195,11 +171,10 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void UpdateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.UpdateDocumentStatus. The document status is not updated in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+      const string methodName = "UpdateDocumentStatus";       
+      if (!IsRequiredPropertiesAssigned(dto, methodName, 
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
-      }
       
       var entityParameters = string.Format("(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
       var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов{0}", entityParameters);
@@ -208,6 +183,44 @@ namespace Sungero.ExternalSystem.Server
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(dto);
     }
+    
+    #endregion
+    
+    #region Вспомагательные методы    
+    
+    /// <summary>
+    /// Извлечь ИД сущности из ответа.
+    /// </summary>
+    /// <param name="response">Ответ.</param>
+    /// <returns>ИД сущности в 1С.</returns>
+    private static string ExtractRefKeyFromResponse(string response)
+    {
+      return ((JObject)JsonConvert.DeserializeObject(response))[Sungero.ExternalSystem.Constants.Module.PropertyNames.Ref_Key].ToString();
+    }
+    
+    /// <summary>
+    /// Проверить, все ли обязательные ссылки на сущности указаны.
+    /// </summary>
+    /// <param name="propertyNames">Список обязательных свойств.</param>
+    /// <param name="methodName">Вызывающий метод.</param>
+    /// <param name="dto">Структура с данными.</param>
+    /// <returns>True - все обязательные свойства имеют значения.</returns>
+    private static bool IsRequiredPropertiesAssigned(object dto, string methodName, params string[] propertyNames)
+    {
+      var rxId = dto.GetType().GetProperty("rx_ID").GetValue(dto);
+      
+      foreach (var propertyName in propertyNames)
+      {
+        var propertyValue = dto.GetType().GetProperty(propertyName).GetValue(dto);
+        if (propertyValue == null)
+        {
+          Logger.DebugFormat("ExternalSystem.{0}. The document is not created in 1C because {1} is not assigned. RX DocumentId = {2}.", methodName, propertyName, rxId);
+          return false;
+        }
+      }
+      
+      return true;
+    }    
     
     #endregion
     
@@ -224,7 +237,7 @@ namespace Sungero.ExternalSystem.Server
     public static DirectumRXDemo1C.Extensions.Http.Request CreateRequest(DirectumRXDemo1C.Extensions.Http.RequestMethod method, string url)
     {
       var result = Request.Create(method, url);
-      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(), 
+      result.UseBasicAuth(Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString(),
                           Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Password).ToString());
       
       return result;

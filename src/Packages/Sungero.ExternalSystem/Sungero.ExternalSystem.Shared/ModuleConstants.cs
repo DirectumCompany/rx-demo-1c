@@ -35,5 +35,31 @@ namespace Sungero.ExternalSystem.Constants
       /// </summary>
       public const string Password = "1СPassword";
     }
+    
+    /// <summary>
+    /// Наименования свойств.
+    /// </summary>
+    public static class PropertyNames
+    {
+      /// <summary>
+      /// Идентификатор сущности.
+      /// </summary>
+      public const string Ref_Key = "Ref_Key";
+      
+      /// <summary>
+      /// Ссылка на организацию.
+      /// </summary>
+      public const string Организация_Key = "Организация_Key";
+      
+      /// <summary>
+      /// Ссылка на контрагента.
+      /// </summary>
+      public const string Контрагент_Key = "Контрагент_Key";
+      
+      /// <summary>
+      /// Ссылка на договор контрагента.
+      /// </summary>
+      public const string ДоговорКонтрагента_Key = "ДоговорКонтрагента_Key";
+    }
   }
 }
