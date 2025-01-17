@@ -139,6 +139,11 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "SyncDataWith1C",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "UpdateDocumentStatus",
       "Parameters": [
         {

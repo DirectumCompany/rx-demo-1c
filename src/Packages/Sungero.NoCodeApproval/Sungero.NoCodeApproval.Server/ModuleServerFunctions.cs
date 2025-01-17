@@ -85,5 +85,20 @@ namespace Sungero.NoCodeApproval.Server
     #endregion
     
     #endregion
+    
+    /// <summary>
+    /// Отправить данные в 1C.
+    /// </summary>
+    public static void SendDataTo1C()
+    {      
+      try
+      {        
+        Sungero.ExternalSystem.PublicFunctions.Module.SyncDataWith1C();
+      }
+      catch (Exception ex)
+      {
+        Logger.ErrorFormat("Error sending document data.", ex);
+      }
+    }
   }
 }

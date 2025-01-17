@@ -7,6 +7,15 @@ using Sungero.Workflow;
 
 namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 {
+  partial class SendDataTo1CHandlers
+  {
+
+    public virtual void SendDataTo1CExecute()
+    {
+      Sungero.NoCodeApproval.Functions.Module.SendDataTo1C();
+    }
+  }
+
   partial class SendIncomingInvoiceTo1CHandlers
   {
 
