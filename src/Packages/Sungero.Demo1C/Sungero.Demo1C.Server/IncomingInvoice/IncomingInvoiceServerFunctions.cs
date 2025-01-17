@@ -133,7 +133,7 @@ namespace Sungero.Demo1C.Server
         case DiadocVatRates.Vat20:
           return OneCVatRates.Vat20;
         default:
-          throw new ArgumentException($"Неизвестная ставка НДС: {vatRate}");
+          throw new ArgumentException($"ExternalSystem.ConvertVatRateFor1C. Unsupported VAT rate: {vatRate}");
       }
     }
 
