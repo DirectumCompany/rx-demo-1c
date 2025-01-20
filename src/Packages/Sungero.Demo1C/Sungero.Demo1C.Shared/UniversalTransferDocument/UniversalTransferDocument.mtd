@@ -70,6 +70,18 @@
       ],
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ConvertTo1cDto",
+      "Parameters": [
+        {
+          "Name": "universalTransferDocument",
+          "ParameterType": "global::Sungero.Demo1C.IUniversalTransferDocument",
+          "ParameterTypeFullName": "Sungero.Demo1C.IUniversalTransferDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::Sungero.ExternalSystem.Structures.Module.IReceiptDto",
+      "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.IReceiptDto"
     }
   ],
   "PublicStructures": [],

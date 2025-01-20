@@ -6,11 +6,6 @@ namespace Sungero.ExternalSystem.Constants
   public static class Module
   {
     /// <summary>
-    /// Локальный адрес веб-сервера по умолчанию.
-    /// </summary>
-    public const string DefaultServiceUrl1C = "https://localhost/1C_Accounting";
-    
-    /// <summary>
     /// Параметры доступа к 1С.
     /// </summary>
     public static class ConnectionParamNames
@@ -34,6 +29,34 @@ namespace Sungero.ExternalSystem.Constants
       /// Пароль пользователя.
       /// </summary>
       public const string Password = "1СPassword";
+    }
+    
+    /// <summary>
+    /// Наименования свойств.
+    /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed.")]
+    public static class PropertyNames
+    {
+      /// <summary>
+      /// Идентификатор сущности.
+      /// </summary>
+      public const string Ref_Key = "Ref_Key";
+      
+      /// <summary>
+      /// Ссылка на организацию.
+      /// </summary>
+      public const string Организация_Key = "Организация_Key";
+      
+      /// <summary>
+      /// Ссылка на контрагента.
+      /// </summary>
+      public const string Контрагент_Key = "Контрагент_Key";
+      
+      /// <summary>
+      /// Ссылка на договор контрагента.
+      /// </summary>
+      public const string ДоговорКонтрагента_Key = "ДоговорКонтрагента_Key";
     }
   }
 }

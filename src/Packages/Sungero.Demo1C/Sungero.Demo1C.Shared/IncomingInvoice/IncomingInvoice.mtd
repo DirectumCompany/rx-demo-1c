@@ -770,8 +770,8 @@
           "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
         }
       ],
-      "ReturnType": "global::Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto",
-      "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto"
+      "ReturnType": "global::Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto",
+      "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto"
     }
   ],
   "PublicStructures": [],
