@@ -64,18 +64,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "CreateIncomingInvoice",
-      "Parameters": [
-        {
-          "Name": "dto",
-          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto",
-          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto"
-        }
-      ],
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
       "Name": "CreatePaymentTermForInvoice",
       "Parameters": [
         {
@@ -98,21 +86,28 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "CreateServicesForInvoice",
+      "Name": "CreateReceipt",
       "Parameters": [
         {
-          "Name": "key",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        },
-        {
-          "Name": "invoice",
-          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
-          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IReceiptDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IReceiptDto"
         }
       ],
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "CreateSupplierInvoice",
+      "Parameters": [
+        {
+          "Name": "dto",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "GetBusinessUnit",
@@ -202,7 +197,34 @@
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
     },
     {
-      "Name": "IncomingInvoiceDto",
+      "Name": "PaymentTermDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Организация_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Документ_Type",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "СрокОплаты",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    },
+    {
+      "Name": "ReceiptDto",
       "IsPublic": true,
       "Properties": [
         {
@@ -243,33 +265,56 @@
           "Name": "Ref_Key",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ЭтоУниверсальныйДокумент",
+          "TypeFullName": "global::System.Boolean"
         }
       ],
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
     },
     {
-      "Name": "PaymentTermDto",
+      "Name": "SupplierInvoiceDto",
       "IsPublic": true,
       "Properties": [
+        {
+          "Name": "НомерВходящегоДокумента",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ДатаВходящегоДокумента",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
         {
           "Name": "Организация_Key",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
         {
-          "Name": "Документ",
+          "Name": "Контрагент_Key",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
         {
-          "Name": "Документ_Type",
+          "Name": "ДоговорКонтрагента_Key",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
         {
-          "Name": "СрокОплаты",
+          "Name": "Комментарий",
           "IsNullable": true,
-          "TypeFullName": "global::System.DateTime"
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "rx_ID",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Ref_Key",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
         }
       ],
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"

@@ -33,7 +33,7 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static string GetBusinessUnit(string tin, string trrc)
     {
-      var url = BuildGetUrl("Catalog_Организации", $"ИНН eq '{tin}' and КПП eq '{trrc}'");
+      var url = BuildUrl("Catalog_Организации", $"$filter=ИНН eq '{tin}' and КПП eq '{trrc}'");
       var request = CreateRequest(RequestMethod.Get, url);
       request.Invoke();
       
@@ -53,7 +53,7 @@ namespace Sungero.ExternalSystem.Server
         return null;
       }
 
-      return businessUnits.FirstOrDefault()?["Ref_Key"].Value<string>();
+      return businessUnits.FirstOrDefault()?[Sungero.ExternalSystem.Constants.Module.PropertyNames.Ref_Key].Value<string>();
     }
     
     /// <summary>
@@ -66,7 +66,6 @@ namespace Sungero.ExternalSystem.Server
     public string GetEntityLink(string entityId, string entityType)
     {
       var url = string.Format("{0}/hs/gethyperlink/GetHyperlink/{1}/{2}", GetBaseAddress(), entityId, entityType);
-      var login = Sungero.Docflow.PublicFunctions.Module.GetDocflowParamsValue(Constants.Module.ConnectionParamNames.Login).ToString();
       var request = CreateRequest(RequestMethod.Get, url);
       request.Invoke();
       
@@ -77,33 +76,27 @@ namespace Sungero.ExternalSystem.Server
     
     #region Сохранение данных
     
-    #region Операции с входящими счетами
+    #region Счета от поставщиков
     
     /// <summary>
-    /// Создать входящий счет в 1С.
+    /// Создать счет от поставщика в 1С.
     /// </summary>
     /// <param name="dto">Структура с данными для документа.</param>
     /// <returns>ИД созданного документа.</returns>
     [Public]
-    public static string CreateIncomingInvoice(Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto dto)
+    public static string CreateSupplierInvoice(Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto dto)
     {
-      if (dto.Контрагент_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because counterparty is not found. Id = {0}.", dto.rx_ID);
+      var methodName = "CreateSupplierInvoice";
+      if (!IsRequiredPropertiesAssigned(dto, methodName,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key))
         return null;
-      }
       
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateIncomingInvoice. The incoming invoice is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.rx_ID);
-        return null;
-      }
-      
-      var url = BuildPostUrl("Document_СчетНаОплатуПоставщика");
+      var url = BuildUrl("Document_СчетНаОплатуПоставщика");
       var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke(dto);
       
-      return ((JObject)JsonConvert.DeserializeObject(request.ResponseContent))["Ref_Key"].ToString();
+      return ExtractRefKeyFromResponse(request.ResponseContent);
     }
     
     /// <summary>
@@ -121,7 +114,7 @@ namespace Sungero.ExternalSystem.Server
       dto.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
       dto.СрокОплаты = paymentDueDate;
       
-      var url = BuildPostUrl("InformationRegister_СрокиОплатыДокументов");
+      var url = BuildUrl("InformationRegister_СрокиОплатыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
       request.Invoke(dto);
     }
@@ -145,6 +138,32 @@ namespace Sungero.ExternalSystem.Server
  
     #endregion
     
+    #region Поступления
+    
+    /// <summary>
+    /// Создать поступление в 1С.
+    /// </summary>
+    /// <param name="dto">Структура с данными для документа.</param>
+    /// <returns>ИД созданного документа.</returns>
+    [Public]
+    public static string CreateReceipt(Sungero.ExternalSystem.Structures.Module.IReceiptDto dto)
+    {
+      var methodName = "CreateReceipt";
+      if (!IsRequiredPropertiesAssigned(dto, methodName,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Контрагент_Key,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.ДоговорКонтрагента_Key))
+        return null;
+      
+      var url = BuildUrl("Document_ПоступлениеТоваровУслуг");
+      var request = CreateRequest(RequestMethod.Post, url);
+      request.Invoke(dto);
+      
+      return ExtractRefKeyFromResponse(request.ResponseContent);
+    }
+    
+    #endregion
+    
     #region Операции со статусами документов
     
     /// <summary>
@@ -154,13 +173,12 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void CreateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.CreateDocumentStatus. The document status is not created in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+      var methodName = "CreateDocumentStatus";
+      if (!IsRequiredPropertiesAssigned(dto, methodName,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
-      }
       
-      var url = BuildPostUrl("InformationRegister_СтатусыДокументов");
+      var url = BuildUrl("InformationRegister_СтатусыДокументов");
       var request = CreateRequest(RequestMethod.Post, url);
       
       request.Invoke(dto);
@@ -173,18 +191,71 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void UpdateDocumentStatus(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      if (dto.Организация_Key == null)
-      {
-        Logger.DebugFormat("ExternalSystem.UpdateDocumentStatus. The document status is not updated in 1C because business unit is not found or more than one. Id = {0}.", dto.Документ);
+      var methodName = "UpdateDocumentStatus";
+      if (!IsRequiredPropertiesAssigned(dto, methodName,
+                                        Sungero.ExternalSystem.Constants.Module.PropertyNames.Организация_Key))
         return;
-      }
       
-      var entityParameters = string.Format("(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
-      var entityNameWithParameters = string.Format("InformationRegister_СтатусыДокументов{0}", entityParameters);
-      var url = BuildPatchUrl(entityNameWithParameters);
+      var entityKey = string.Format("(Организация_Key=guid'{0}', Документ='{1}', Документ_Type='{2}')", dto.Организация_Key, dto.Документ, dto.Документ_Type);
+      var resourcePath = string.Format("InformationRegister_СтатусыДокументов{0}", entityKey);
+      var url = BuildUrl(resourcePath);
 
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(dto);
+    }
+    
+    #endregion
+    
+    #region Вспомагательные методы
+    
+    /// <summary>
+    /// Извлечь ИД сущности из ответа.
+    /// </summary>
+    /// <param name="response">Ответ.</param>
+    /// <returns>ИД сущности в 1С.</returns>
+    private static string ExtractRefKeyFromResponse(string response)
+    {
+      return ((JObject)JsonConvert.DeserializeObject(response))[Sungero.ExternalSystem.Constants.Module.PropertyNames.Ref_Key].ToString();
+    }
+    
+    /// <summary>
+    /// Проверить, все ли обязательные ссылки на сущности указаны.
+    /// </summary>
+    /// <param name="dto">Структура с данными.</param>
+    /// <param name="methodName">Вызывающий метод.</param>
+    /// <param name="propertyNames">Список обязательных свойств.</param>
+    /// <returns>True - все обязательные свойства имеют значения.</returns>
+    private static bool IsRequiredPropertiesAssigned(object dto, string methodName, params string[] propertyNames)
+    {
+      var entityIdForLog = GetEntityIdForLog(dto);
+      
+      foreach (var propertyName in propertyNames)
+      {
+        var propertyValue = dto.GetType().GetProperty(propertyName).GetValue(dto);
+        if (propertyValue == null)
+        {
+          
+          Logger.DebugFormat("ExternalSystem.{0}. The entity is not created/updated in 1C because {1} is not assigned. {2}.", methodName, propertyName, entityIdForLog);
+          return false;
+        }
+      }
+      
+      return true;
+    }
+    
+    /// <summary>
+    /// Сформировать часть сообщения с идентификатором сущности для журнала.
+    /// </summary>
+    /// <param name="dto">Структура данных.</param>
+    /// <returns>Сообщение.</returns>
+    private static string GetEntityIdForLog(object dto)
+    {
+      var propertyRxId = dto.GetType().GetProperty("rx_ID");
+      var property1cId = dto.GetType().GetProperty("Документ");
+      
+      return propertyRxId == null
+        ? string.Format("1С Ref_Key = {0}", property1cId.GetValue(dto))
+        : string.Format("RX DocumentId = {0}", propertyRxId.GetValue(dto));
     }
     
     #endregion
@@ -211,46 +282,18 @@ namespace Sungero.ExternalSystem.Server
     #region Формирование URL
     
     /// <summary>
-    /// Собрать URL для GET запроса.
+    /// Собрать URL.
     /// </summary>
-    /// <param name="entityName">Наименование сущности.</param>
-    /// <param name="filterValue">Значение фильтра.</param>
+    /// <param name="resourcePath">Ресурс.</param>
+    /// <param name="query">Параметры odata запроса.</param>
     /// <returns>Url.</returns>
-    private static string BuildGetUrl(string entityName, string filterValue)
+    private static string BuildUrl(string resourcePath, string query = null)
     {
-      var filter = filterValue != null ? string.Format("&$filter={0}", filterValue) : string.Empty;
-      return string.Format("{0}{1}?{2}&$format=json", GetOdataUrl(), entityName, filter);
-    }
-    
-    /// <summary>
-    /// Собрать URL для POST запроса.
-    /// </summary>
-    /// <param name="entityName">Наименование сущности.</param>
-    /// <returns>Url.</returns>
-    private static string BuildPostUrl(string entityName)
-    {
-      return string.Format("{0}{1}?$format=json&$expand=*", GetOdataUrl(), entityName);
-    }
-    
-    /// <summary>
-    /// Собрать URL для PATCH запроса.
-    /// </summary>
-    /// <param name="entityNameWithParameters">Наименование сущности с параметрами.</param>
-    /// <returns>Url.</returns>
-    private static string BuildPatchUrl(string entityNameWithParameters)
-    {
-      return string.Format("{0}{1}?$format=json", GetOdataUrl(), entityNameWithParameters);
+      var beforeFormat = query != null ? "&" : string.Empty;
+      return string.Format("{0}/odata/standard.odata/{1}?{2}{3}$format=json",
+                           GetBaseAddress(), resourcePath, query, beforeFormat);
     }
 
-    /// <summary>
-    /// Собрать базовую часть URL для работы по OData.
-    /// </summary>
-    /// <returns>Url.</returns>
-    private static string GetOdataUrl()
-    {
-      return string.Format("{0}/odata/standard.odata/", GetBaseAddress());
-    }
-    
     /// <summary>
     /// Вернуть базовый адрес.
     /// </summary>

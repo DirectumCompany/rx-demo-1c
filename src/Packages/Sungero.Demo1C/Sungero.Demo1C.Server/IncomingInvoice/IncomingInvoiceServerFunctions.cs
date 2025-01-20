@@ -16,9 +16,9 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <returns>Структура данных 1С.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.IIncomingInvoiceDto ConvertTo1cDto()
+    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto ConvertTo1cDto()
     {
-      var result = Sungero.ExternalSystem.Structures.Module.IncomingInvoiceDto.Create();
+      var result = Sungero.ExternalSystem.Structures.Module.SupplierInvoiceDto.Create();
       
       result.НомерВходящегоДокумента = _obj.Number.Trim();
       result.ДатаВходящегоДокумента = _obj.Date.Value;
