@@ -131,7 +131,7 @@ namespace Sungero.ExternalSystem.Server
       if (servicesCollectionFor1C == null)
         return;
       
-      var url = BuildPatchUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
+      var url = BuildUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(servicesCollectionFor1C);
     }

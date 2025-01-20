@@ -47,7 +47,6 @@ namespace Sungero.Demo1C.Server
     /// <summary>
     /// Подготовить список услуг для передачи в 1С.
     /// </summary>
-    /// <param name="invoice">Входящий счет.</param>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
     /// <remarks>В 1С товары и услуги именуются как "Товары".</remarks>
     [Public]
@@ -61,7 +60,7 @@ namespace Sungero.Demo1C.Server
       
       return new Dictionary<string, List<Sungero.ExternalSystem.Structures.Module.IServiceDto>>
       {
-        {"Товары", servicesCollection}
+        { "Товары", servicesCollection }
       };
     }
     

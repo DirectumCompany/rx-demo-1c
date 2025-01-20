@@ -8,6 +8,7 @@ namespace Sungero.Demo1C.Constants.Contracts
     /// <summary>
     /// Ставки НДС в Диадок.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed.")]
     public static class VatRatesFromDiadoc
     {
       public const string NoVat = "без НДС";
@@ -27,6 +28,7 @@ namespace Sungero.Demo1C.Constants.Contracts
     /// <summary>
     /// Ставки НДС в 1С.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed.")]
     public static class VatRatesFrom1C
     {
       public const string NoVat = "БезНДС";

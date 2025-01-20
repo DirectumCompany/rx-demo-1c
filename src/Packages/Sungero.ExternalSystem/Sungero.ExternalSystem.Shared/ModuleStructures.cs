@@ -10,7 +10,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   
   /// <summary>
   /// Документ "Счета от поставщиков".
-  /// </summary>    
+  /// </summary>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class SupplierInvoiceDto
@@ -48,7 +48,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// Идентификатор сущности RX.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]    
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public long rx_ID { get; set; }
     
     /// <summary>
@@ -144,6 +144,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   /// <summary>
   /// Услуга.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class ServiceDto
   {
