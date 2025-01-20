@@ -9,7 +9,7 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Server
-{  
+{
   public class ModuleFunctions
   {
     #region Получение данных
@@ -82,7 +82,7 @@ namespace Sungero.ExternalSystem.Server
     /// Создать счет от поставщика в 1С.
     /// </summary>
     /// <param name="dto">Структура с данными для документа.</param>
-    /// <returns>ИД созданного документа.</returns>    
+    /// <returns>ИД созданного документа.</returns>
     [Public]
     public static string CreateSupplierInvoice(Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto dto)
     {
@@ -207,24 +207,38 @@ namespace Sungero.ExternalSystem.Server
     /// <param name="dto">Структура с данными.</param>
     /// <param name="methodName">Вызывающий метод.</param>
     /// <param name="propertyNames">Список обязательных свойств.</param>
-    /// <returns>True - все обязательные свойства имеют значения.</returns>    
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed.")]
+    /// <returns>True - все обязательные свойства имеют значения.</returns>
     private static bool IsRequiredPropertiesAssigned(object dto, string methodName, params string[] propertyNames)
     {
-      var rxId = (dto.GetType().GetProperty("rx_ID") ?? 
-        dto.GetType().GetProperty("Документ")).GetValue(dto);
+      var entityIdForLog = GetEntityIdForLog(dto);
       
       foreach (var propertyName in propertyNames)
       {
         var propertyValue = dto.GetType().GetProperty(propertyName).GetValue(dto);
         if (propertyValue == null)
         {
-          Logger.DebugFormat("ExternalSystem.{0}. The document is not created in 1C because {1} is not assigned. RX DocumentId = {2}.", methodName, propertyName, rxId);
+          
+          Logger.DebugFormat("ExternalSystem.{0}. The entity is not created/updated in 1C because {1} is not assigned. {2}.", methodName, propertyName, entityIdForLog);
           return false;
         }
       }
       
       return true;
+    }
+    
+    /// <summary>
+    /// Сформировать часть сообщения с идентификатором сущности для журнала.
+    /// </summary>
+    /// <param name="dto">Структура данных.</param>
+    /// <returns>Сообщение.</returns>
+    private static string GetEntityIdForLog(object dto)
+    {
+      var propertyRxId = dto.GetType().GetProperty("rx_ID");
+      var property1cId = dto.GetType().GetProperty("Документ");
+      
+      return propertyRxId == null
+        ? string.Format("1С Ref_Key = {0}", property1cId.GetValue(dto))
+        : string.Format("RX DocumentId = {0}", propertyRxId.GetValue(dto));
     }
     
     #endregion
@@ -259,9 +273,9 @@ namespace Sungero.ExternalSystem.Server
     private static string BuildUrl(string resourcePath, string query = null)
     {
       var beforeFormat = query != null ? "&" : string.Empty;
-      return string.Format("{0}/odata/standard.odata/{1}?{2}{3}$format=json", 
+      return string.Format("{0}/odata/standard.odata/{1}?{2}{3}$format=json",
                            GetBaseAddress(), resourcePath, query, beforeFormat);
-    }    
+    }
 
     /// <summary>
     /// Вернуть базовый адрес.
