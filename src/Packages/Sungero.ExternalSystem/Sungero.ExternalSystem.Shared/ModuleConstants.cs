@@ -8,7 +8,7 @@ namespace Sungero.ExternalSystem.Constants
     /// <summary>
     /// Локальный адрес веб-сервера по умолчанию.
     /// </summary>
-    public const string DefaultServiceUrl1C = "https://localhost/1C_Accounting";
+    public const string DefaultServiceUrl1C = "https://localhost/AccEtalon";
     
     /// <summary>
     /// Идентификатор системы.
