@@ -35,7 +35,8 @@ namespace Sungero.Demo1C.Server
         if (createdDtoKey == null)
           return false;
         
-        Sungero.ExternalSystem.PublicFunctions.Module.CreateServicesForInvoice(createdDtoKey, invoice);
+        var servicesFor1C = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PrepareServicesForSendTo1C(invoice);
+        Sungero.ExternalSystem.PublicFunctions.Module.CreateServicesForInvoice(createdDtoKey, servicesFor1C);
         
         if (invoice.PaymentDueDate.HasValue)
           Sungero.ExternalSystem.PublicFunctions.Module.CreatePaymentTermForInvoice(createdDtoKey, invoiceDto.Организация_Key, invoice.PaymentDueDate.Value);

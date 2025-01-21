@@ -4,8 +4,6 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Demo1C.IncomingInvoice;
-using DiadocVatRates = Sungero.Demo1C.Constants.Contracts.IncomingInvoice.VatRatesFromDiadoc;
-using OneCVatRates = Sungero.Demo1C.Constants.Contracts.IncomingInvoice.VatRatesFrom1C;
 
 namespace Sungero.Demo1C.Server
 {
@@ -50,18 +48,10 @@ namespace Sungero.Demo1C.Server
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
     /// <remarks>В 1С товары и услуги именуются как "Товары".</remarks>
     [Public]
-    public System.Collections.Generic.Dictionary<string, List<Sungero.ExternalSystem.Structures.Module.IServiceDto>> PreparingServicesForSendTo1C()
+    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] PrepareServicesForSendTo1C()
     {
-      var servicesCollection = new List<Sungero.ExternalSystem.Structures.Module.IServiceDto>();
-      servicesCollection.AddRange(GetServicesFromXml(_obj));
-      
-      if (!servicesCollection.Any())
-        return null;
-      
-      return new Dictionary<string, List<Sungero.ExternalSystem.Structures.Module.IServiceDto>>
-      {
-        { "Товары", servicesCollection }
-      };
+      var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
+      return GetServicesFromXml(xmlDocument).ToArray();
     }
     
     #region private
@@ -69,28 +59,23 @@ namespace Sungero.Demo1C.Server
     /// <summary>
     /// Получить услуги из xml-документа.
     /// </summary>
-    /// <param name="invoice">Входящий счет.</param>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
-    private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceDto> GetServicesFromXml(Sungero.Demo1C.IIncomingInvoice invoice)
+    private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceLineDto> GetServicesFromXml(System.Xml.Linq.XDocument xmlDocument)
     {
-      var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(invoice.LastVersion.Body.Read());
-      var servicesFromXml = xmlDocument.Element("Файл")?.Element("Документ")?.Element("ТаблСНО")?.Elements("СведТов");
-      
-      if (servicesFromXml == null)
-        yield break;
-      
+      var servicesFromXml = xmlDocument.Element("Файл").Element("Документ").Element("ТаблСНО").Elements("СведТов");
+ 
       var lineNumber = 1;
       foreach (var service in servicesFromXml)
       {
-        yield return new Sungero.ExternalSystem.Structures.Module.ServiceDto
+        yield return new Sungero.ExternalSystem.Structures.Module.ServiceLineDto
         {
           LineNumber = lineNumber.ToString(),
-          Содержание = service.Attribute("НаимТов")?.Value,
-          Количество = service.Attribute("КолТов")?.Value,
-          Цена = service.Attribute("ЦенаТов")?.Value,
-          Сумма = service.Attribute("СтТовБезНДС")?.Value,
-          СтавкаНДС = ConvertVatRateFor1C(service.Attribute("НалСт")?.Value),
-          СуммаНДС = GetVatSum(service)
+          Содержание = service.Attribute("НаимТов").Value,
+          Количество = service.Attribute("КолТов").Value,
+          Цена = service.Attribute("ЦенаТов").Value,
+          Сумма = service.Attribute("СтТовБезНДС").Value,
+          СтавкаНДС = ConvertVatRateFor1C(service.Attribute("НалСт").Value),
+          СуммаНДС = GetVatSumOrNull(service)
         };
         lineNumber++;
       }
@@ -105,48 +90,22 @@ namespace Sungero.Demo1C.Server
     /// <returns>Преобразованная ставка НДС.</returns>
     private static string ConvertVatRateFor1C(string vatRate)
     {
-      switch (vatRate)
-      {
-        case DiadocVatRates.NoVat:
-          return OneCVatRates.NoVat;
-        case DiadocVatRates.Vat0:
-          return OneCVatRates.Vat0;
-        case DiadocVatRates.Vat5:
-          return OneCVatRates.Vat5;
-        case DiadocVatRates.Vat5_105:
-          return OneCVatRates.Vat5_105;
-        case DiadocVatRates.Vat7:
-          return OneCVatRates.Vat7;
-        case DiadocVatRates.Vat7_107:
-          return OneCVatRates.Vat7_107;
-        case DiadocVatRates.Vat10:
-          return OneCVatRates.Vat10;
-        case DiadocVatRates.Vat10_110:
-          return OneCVatRates.Vat10_110;
-        case DiadocVatRates.Vat18:
-          return OneCVatRates.Vat18;
-        case DiadocVatRates.Vat18_118:
-          return OneCVatRates.Vat18_118;
-        case DiadocVatRates.Vat20_120:
-          return OneCVatRates.Vat20_120;
-        case DiadocVatRates.Vat20:
-          return OneCVatRates.Vat20;
-        default:
-          throw new ArgumentException($"ExternalSystem.ConvertVatRateFor1C. Unsupported VAT rate: {vatRate}");
-      }
+      if (vatRate == "без НДС")
+        return "БезНДС";
+      
+      return "НДС" + vatRate.Replace("%", "").Replace("/", "_");
     }
 
     /// <summary>
     /// Получить сумму НДС.
     /// </summary>
     /// <param name="service">Xml-представление услуги.</param>
-    /// <returns>Сумма НДС.</returns>
-    private static string GetVatSum(System.Xml.Linq.XElement service)
+    /// <returns>Если у услуги есть НДС, указана сумма; иначе — null.</returns>
+    private static string GetVatSumOrNull(System.Xml.Linq.XElement service)
     {
-      if (service.Attribute("НалСт")?.Value == DiadocVatRates.NoVat || service.Attribute("НалСт")?.Value == DiadocVatRates.Vat0)
-        return null;
-      
-      return service.Element("СумНал")?.Value;
+      return service.Attribute("НалСт").Value == "без НДС" || service.Attribute("НалСт").Value == "0%"
+        ? null
+        : service.Element("СумНал").Value;
     }
     
     #endregion

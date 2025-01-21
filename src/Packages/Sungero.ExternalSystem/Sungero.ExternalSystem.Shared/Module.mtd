@@ -106,9 +106,9 @@
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "invoice",
-          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
-          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+          "Name": "servicesFor1C",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IServiceLineDto[]",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IServiceLineDto"
         }
       ],
       "ReturnType": "void",
@@ -291,7 +291,7 @@
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
     },
     {
-      "Name": "ServiceDto",
+      "Name": "ServiceLineDto",
       "IsPublic": true,
       "Properties": [
         {

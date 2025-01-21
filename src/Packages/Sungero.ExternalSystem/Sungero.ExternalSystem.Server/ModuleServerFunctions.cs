@@ -120,20 +120,17 @@ namespace Sungero.ExternalSystem.Server
     }
     
     /// <summary>
-    /// Создать услуги для входящего счета.
+    /// Создать услуги для счета от поставщика.
     /// </summary>
-    /// <param name="key">Ид входящего счета.</param>
-    /// <param name="invoice">Входящий счет.</param>
+    /// <param name="key">Ид счета.</param>
+    /// <param name="servicesFor1C">Список услуг для передачи в 1С.</param>
     [Public]
-    public static void CreateServicesForInvoice(string key, Sungero.Demo1C.IIncomingInvoice invoice)
+    public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] servicesFor1C)
     {
-      var servicesCollectionFor1C = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PreparingServicesForSendTo1C(invoice);
-      if (servicesCollectionFor1C == null)
-        return;
-      
+      var wrapperWithServices = new Dictionary<string, object>{ { "Товары", servicesFor1C } };
       var url = BuildUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
       var request = CreateRequest(RequestMethod.Patch, url);
-      request.Invoke(servicesCollectionFor1C);
+      request.Invoke(wrapperWithServices);
     }
  
     #endregion
@@ -206,7 +203,7 @@ namespace Sungero.ExternalSystem.Server
     
     #endregion
     
-    #region Вспомагательные методы
+    #region Вспомогательные методы
     
     /// <summary>
     /// Извлечь ИД сущности из ответа.
@@ -234,7 +231,6 @@ namespace Sungero.ExternalSystem.Server
         var propertyValue = dto.GetType().GetProperty(propertyName).GetValue(dto);
         if (propertyValue == null)
         {
-          
           Logger.DebugFormat("ExternalSystem.{0}. The entity is not created/updated in 1C because {1} is not assigned. {2}.", methodName, propertyName, entityIdForLog);
           return false;
         }

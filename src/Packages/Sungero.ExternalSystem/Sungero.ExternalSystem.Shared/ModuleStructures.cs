@@ -142,14 +142,14 @@ namespace Sungero.ExternalSystem.Structures.Module
   }
   
   /// <summary>
-  /// Услуга.
+  /// Строка с данными об услуге для счета от поставщика в 1С.
   /// </summary>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
-  partial class ServiceDto
+  partial class ServiceLineDto
   {
     /// <summary>
-    /// Номер услуги в таблице.
+    /// Порядковый номер услуги в таблице счета.
     /// </summary>
     public string LineNumber { get; set; }
     
