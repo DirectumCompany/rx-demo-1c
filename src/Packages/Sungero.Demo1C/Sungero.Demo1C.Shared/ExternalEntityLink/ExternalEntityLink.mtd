@@ -58,6 +58,25 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.Demo1C.IExternalEntityLink",
       "ReturnTypeFullName": "Sungero.Demo1C.IExternalEntityLink, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetForEntityIn1C",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "extEntityType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Demo1C.IExternalEntityLink",
+      "ReturnTypeFullName": "Sungero.Demo1C.IExternalEntityLink, Sungero.Domain.Interfaces"
     }
   ],
   "PublicStructures": [],

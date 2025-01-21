@@ -17,13 +17,35 @@ namespace Sungero.Demo1C.Server
     [Public, Remote(IsPure = true)]
     public static IExternalEntityLink GetForEntityIn1C(Sungero.Domain.Shared.IEntity entity)
     {
+      return GetEntitiesIn1C(entity).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Получить связь сущности с внешней системой (1С).
+    /// </summary>
+    /// <param name="entity">Запись Directum RX.</param>
+    /// <param name="extEntityType">Тип сущности в 1C.</param>
+    /// <returns>Связь сущности с внешней системой. Если не найдена, то null.</returns>
+    [Public, Remote(IsPure = true)]
+    public static IExternalEntityLink GetForEntityIn1C(Sungero.Domain.Shared.IEntity entity, string extEntityType)
+    {
+      return GetEntitiesIn1C(entity).Where(x => x.ExtEntityType.Equals(extEntityType)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Получить связи сущностей с внешней системой (1С).
+    /// </summary>
+    /// <param name="entity">Запись Directum RX.</param>
+    /// <returns>Связи сущностей с внешней системой. Если не найдена, то null.</returns>
+    private static IQueryable<IExternalEntityLink> GetEntitiesIn1C(Sungero.Domain.Shared.IEntity entity)
+    {
       var typeGuid = entity.TypeDiscriminator.ToString();
       var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
-
+      
       return ExternalEntityLinks.GetAll()
         .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
                x.EntityId == entity.Id &&
-               x.ExtSystemId == extSystemId).FirstOrDefault();
+               x.ExtSystemId == extSystemId);
     }
     
     /// <summary>
