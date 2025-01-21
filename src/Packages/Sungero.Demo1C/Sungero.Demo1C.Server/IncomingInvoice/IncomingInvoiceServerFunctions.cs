@@ -59,6 +59,7 @@ namespace Sungero.Demo1C.Server
     /// <summary>
     /// Получить услуги из xml-документа.
     /// </summary>
+    /// <param name="xmlDocument">Xml-документ.</param>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
     private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceLineDto> GetServicesFromXml(System.Xml.Linq.XDocument xmlDocument)
     {
@@ -93,7 +94,7 @@ namespace Sungero.Demo1C.Server
       if (vatRate == "без НДС")
         return "БезНДС";
       
-      return "НДС" + vatRate.Replace("%", "").Replace("/", "_");
+      return "НДС" + vatRate.Replace("%", string.Empty).Replace("/", "_");
     }
 
     /// <summary>
