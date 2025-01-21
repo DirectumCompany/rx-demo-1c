@@ -9,7 +9,8 @@ namespace Sungero.RuleBasedApproval.Server
 {
   partial class SendIncomingInvoiceTo1CStageFunctions
   {
-/// <summary>
+    
+    /// <summary>
     /// Создание входящего счета в 1С.
     /// </summary>
     /// <param name="approvalTask">Задача на согласование по регламенту.</param>

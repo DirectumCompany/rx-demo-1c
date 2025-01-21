@@ -103,8 +103,8 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <param name="service">Xml-представление услуги.</param>
     /// <returns>Если у услуги есть НДС, указана сумма; иначе — null.</returns>
-    /// <remarks>Если ставка НДС указана как "без НДС", элемент "СумНал"
-    /// в XML содержит элемент "БезНДС", значение которого некорректно для поля "НДС" в 1С.</remarks>
+    /// <remarks>Если ставка НДС указана как "без НДС", элемент "СумНал" в XML включает
+    /// элемент "БезНДС", значение которого не подходит для заполнения поля "НДС" в 1С.</remarks>
     private static string GetVatSumOrNull(System.Xml.Linq.XElement service)
     {
       return service.Attribute("НалСт").Value == "без НДС"
