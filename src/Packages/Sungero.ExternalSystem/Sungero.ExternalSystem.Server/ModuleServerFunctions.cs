@@ -127,13 +127,13 @@ namespace Sungero.ExternalSystem.Server
     [Public]
     public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] servicesFor1C)
     {
-      var wrapperWithServices = new Dictionary<string, object>
+      var servicesCollection = new Dictionary<string, object>
       {
         { "Товары", servicesFor1C } 
       };
       var url = BuildUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
       var request = CreateRequest(RequestMethod.Patch, url);
-      request.Invoke(wrapperWithServices);
+      request.Invoke(servicesCollection);
     }
  
     #endregion

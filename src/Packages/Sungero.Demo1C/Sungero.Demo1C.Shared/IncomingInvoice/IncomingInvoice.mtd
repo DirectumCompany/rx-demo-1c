@@ -762,7 +762,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "ConvertTo1cDto",
+      "Name": "PrepareSupplierInvoiceFor1C",
       "Parameters": [
         {
           "Name": "incomingInvoice",
@@ -774,7 +774,7 @@
       "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto"
     },
     {
-      "Name": "PrepareServicesForSendTo1C",
+      "Name": "PrepareSupplierInvoiceServicesFor1C",
       "Parameters": [
         {
           "Name": "incomingInvoice",

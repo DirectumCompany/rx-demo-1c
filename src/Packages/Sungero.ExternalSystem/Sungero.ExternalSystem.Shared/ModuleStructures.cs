@@ -151,7 +151,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// Порядковый номер услуги в таблице счета.
     /// </summary>
-    public string LineNumber { get; set; }
+    public string Number { get; set; }
     
     /// <summary>
     /// Содержание.

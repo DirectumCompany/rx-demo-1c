@@ -9,12 +9,14 @@ namespace Sungero.Demo1C.Server
 {
   partial class IncomingInvoiceFunctions
   {
+    #region Подготовка данных для 1С
+    
     /// <summary>
-    /// Преобразовать в структуру данных для 1С.
+    /// Подготовить данные счета для передачи в 1С.
     /// </summary>
     /// <returns>Структура данных 1С.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto ConvertTo1cDto()
+    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto PrepareSupplierInvoiceFor1C()
     {
       var result = Sungero.ExternalSystem.Structures.Module.SupplierInvoiceDto.Create();
       
@@ -46,31 +48,28 @@ namespace Sungero.Demo1C.Server
     /// Подготовить список услуг для передачи в 1С.
     /// </summary>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
-    /// <remarks>В 1С товары и услуги именуются как "Товары".</remarks>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] PrepareServicesForSendTo1C()
+    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] PrepareSupplierInvoiceServicesFor1C()
     {
       var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
       return GetServicesFromXml(xmlDocument).ToArray();
     }
     
-    #region private
-    
     /// <summary>
-    /// Получить услуги из xml-документа.
+    /// Получить услуги из xml-документа в совместимом с 1С формате.
     /// </summary>
     /// <param name="xmlDocument">Xml-документ.</param>
-    /// <returns>Список услуг в совместимом с 1С формате.</returns>
+    /// <returns>Список услуг.</returns>
     private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceLineDto> GetServicesFromXml(System.Xml.Linq.XDocument xmlDocument)
     {
       var servicesFromXml = xmlDocument.Element("Файл").Element("Документ").Element("ТаблСНО").Elements("СведТов");
- 
+      
       var lineNumber = 1;
       foreach (var service in servicesFromXml)
       {
         yield return new Sungero.ExternalSystem.Structures.Module.ServiceLineDto
         {
-          LineNumber = lineNumber.ToString(),
+          Number = lineNumber.ToString(),
           Содержание = service.Attribute("НаимТов").Value,
           Количество = service.Attribute("КолТов").Value,
           Цена = service.Attribute("ЦенаТов").Value,
@@ -81,6 +80,8 @@ namespace Sungero.Demo1C.Server
         lineNumber++;
       }
     }
+    
+    #endregion
     
     #region Операции с НДС
     
@@ -102,15 +103,15 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <param name="service">Xml-представление услуги.</param>
     /// <returns>Если у услуги есть НДС, указана сумма; иначе — null.</returns>
+    /// <remarks>Если ставка НДС указана как "без НДС", элемент "СумНал"
+    /// в XML содержит элемент "БезНДС", значение которого некорректно для поля "НДС" в 1С.</remarks>
     private static string GetVatSumOrNull(System.Xml.Linq.XElement service)
     {
-      return service.Attribute("НалСт").Value == "без НДС" || service.Attribute("НалСт").Value == "0%"
+      return service.Attribute("НалСт").Value == "без НДС"
         ? null
         : service.Element("СумНал").Value;
     }
-    
-    #endregion
-    
+
     #endregion
     
   }

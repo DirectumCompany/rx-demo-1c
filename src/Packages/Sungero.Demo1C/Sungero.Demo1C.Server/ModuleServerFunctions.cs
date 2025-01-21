@@ -29,14 +29,14 @@ namespace Sungero.Demo1C.Server
     {
       try
       {
-        var invoiceDto = Sungero.Demo1C.PublicFunctions.IncomingInvoice.ConvertTo1cDto(invoice);
+        var invoiceDto = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PrepareSupplierInvoiceFor1C(invoice);
         var createdDtoKey = Sungero.ExternalSystem.PublicFunctions.Module.CreateSupplierInvoice(invoiceDto);
         
         if (createdDtoKey == null)
           return false;
         
-        var servicesFor1C = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PrepareServicesForSendTo1C(invoice);
-        Sungero.ExternalSystem.PublicFunctions.Module.CreateServicesForInvoice(createdDtoKey, servicesFor1C);
+        var services = Sungero.Demo1C.PublicFunctions.IncomingInvoice.PrepareSupplierInvoiceServicesFor1C(invoice);
+        Sungero.ExternalSystem.PublicFunctions.Module.CreateServicesForInvoice(createdDtoKey, services);
         
         if (invoice.PaymentDueDate.HasValue)
           Sungero.ExternalSystem.PublicFunctions.Module.CreatePaymentTermForInvoice(createdDtoKey, invoiceDto.Организация_Key, invoice.PaymentDueDate.Value);
