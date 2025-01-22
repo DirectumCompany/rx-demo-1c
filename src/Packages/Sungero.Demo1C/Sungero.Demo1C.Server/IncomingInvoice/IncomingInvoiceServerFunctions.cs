@@ -9,14 +9,14 @@ namespace Sungero.Demo1C.Server
 {
   partial class IncomingInvoiceFunctions
   {
-    #region Подготовка данных для 1С
+    #region Подготовка данных счета для 1С
     
     /// <summary>
     /// Подготовить данные счета для передачи в 1С.
     /// </summary>
     /// <returns>Структура данных 1С.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto PrepareSupplierInvoiceFor1C()
+    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto ConvertTo1cHeaderDto()
     {
       var result = Sungero.ExternalSystem.Structures.Module.SupplierInvoiceDto.Create();
       
@@ -33,23 +33,11 @@ namespace Sungero.Demo1C.Server
     }
     
     /// <summary>
-    /// Заполнить недостающие данные для отправки статуса в 1С.
-    /// </summary>
-    /// <param name="status">Информация о статусе.</param>
-    [Public]
-    public static void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
-    {
-      status.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
-      status.Статус = "Оплачен";
-      status.Статус_Type = "UnavailableEnums.СтатусОплатыСчета";
-    }
-    
-    /// <summary>
     /// Подготовить список услуг для передачи в 1С.
     /// </summary>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] PrepareSupplierInvoiceServicesFor1C()
+    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] ConvertTo1cServicesDtos()
     {
       var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
       return GetServicesFromXml(xmlDocument).ToArray();
@@ -80,8 +68,6 @@ namespace Sungero.Demo1C.Server
         lineNumber++;
       }
     }
-    
-    #endregion
     
     #region Операции с НДС
     
@@ -114,5 +100,18 @@ namespace Sungero.Demo1C.Server
 
     #endregion
     
+    #endregion
+    
+    /// <summary>
+    /// Заполнить недостающие данные для отправки статуса в 1С.
+    /// </summary>
+    /// <param name="status">Информация о статусе.</param>
+    [Public]
+    public static void CompleteStatusInfo(Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto status)
+    {
+      status.Документ_Type = "StandardODATA.Document_СчетНаОплатуПоставщика";
+      status.Статус = "Оплачен";
+      status.Статус_Type = "UnavailableEnums.СтатусОплатыСчета";
+    }
   }
 }
