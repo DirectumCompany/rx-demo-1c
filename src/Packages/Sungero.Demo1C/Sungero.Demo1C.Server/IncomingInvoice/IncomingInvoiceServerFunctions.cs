@@ -69,7 +69,7 @@ namespace Sungero.Demo1C.Server
       {
         yield return new Sungero.ExternalSystem.Structures.Module.ServiceLineDto
         {
-          Number = lineNumber.ToString(),
+          LineNumber = lineNumber.ToString(),
           Содержание = service.Attribute("НаимТов").Value,
           Количество = service.Attribute("КолТов").Value,
           Цена = service.Attribute("ЦенаТов").Value,

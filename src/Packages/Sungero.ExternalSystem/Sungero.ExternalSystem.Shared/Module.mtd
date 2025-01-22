@@ -295,7 +295,7 @@
       "IsPublic": true,
       "Properties": [
         {
-          "Name": "Number",
+          "Name": "LineNumber",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
         },
