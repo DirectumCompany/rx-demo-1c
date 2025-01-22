@@ -10,7 +10,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   
   /// <summary>
   /// Документ "Счета от поставщиков".
-  /// </summary>    
+  /// </summary>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
   partial class SupplierInvoiceDto
@@ -48,7 +48,7 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// <summary>
     /// Идентификатор сущности RX.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]    
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public long rx_ID { get; set; }
     
     /// <summary>
@@ -139,6 +139,49 @@ namespace Sungero.ExternalSystem.Structures.Module
     /// Срок оплаты.
     /// </summary>
     public DateTime СрокОплаты { get; set; }
+  }
+  
+  /// <summary>
+  /// Услуга в табличной части счета от поставщика.
+  /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
+  [Public]
+  partial class ServiceLineDto
+  {
+    /// <summary>
+    /// Порядковый номер услуги в таблице счета.
+    /// </summary>
+    public string LineNumber { get; set; }
+    
+    /// <summary>
+    /// Содержание.
+    /// </summary>
+    public string Содержание { get; set; }
+    
+    /// <summary>
+    /// Количество.
+    /// </summary>
+    public string Количество { get; set; }
+    
+    /// <summary>
+    /// Цена.
+    /// </summary>
+    public string Цена { get; set; }
+    
+    /// <summary>
+    /// Сумма.
+    /// </summary>
+    public string Сумма { get; set; }
+    
+    /// <summary>
+    /// Ставка НДС.
+    /// </summary>
+    public string СтавкаНДС { get; set; }
+    
+    /// <summary>
+    /// Сумма НДС.
+    /// </summary>
+    public string СуммаНДС { get; set; }
   }
   
   /// <summary>

@@ -98,6 +98,23 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "CreateServicesForInvoice",
+      "Parameters": [
+        {
+          "Name": "key",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "services",
+          "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IServiceLineDto[]",
+          "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IServiceLineDto"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "CreateSupplierInvoice",
       "Parameters": [
         {
@@ -269,6 +286,48 @@
         {
           "Name": "ЭтоУниверсальныйДокумент",
           "TypeFullName": "global::System.Boolean"
+        }
+      ],
+      "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
+    },
+    {
+      "Name": "ServiceLineDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "LineNumber",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Содержание",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Количество",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Цена",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Сумма",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "СтавкаНДС",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "СуммаНДС",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
         }
       ],
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"

@@ -9,12 +9,14 @@ namespace Sungero.Demo1C.Server
 {
   partial class IncomingInvoiceFunctions
   {
+    #region Подготовка данных счета для 1С
+    
     /// <summary>
-    /// Преобразовать в структуру данных для 1С.
+    /// Подготовить данные счета для передачи в 1С.
     /// </summary>
     /// <returns>Структура данных 1С.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto ConvertTo1cDto()
+    public Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto ConvertTo1cHeaderDto()
     {
       var result = Sungero.ExternalSystem.Structures.Module.SupplierInvoiceDto.Create();
       
@@ -29,6 +31,76 @@ namespace Sungero.Demo1C.Server
       
       return result;
     }
+    
+    /// <summary>
+    /// Подготовить список услуг для передачи в 1С.
+    /// </summary>
+    /// <returns>Список услуг в совместимом с 1С формате.</returns>
+    [Public]
+    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] ConvertTo1cServicesDtos()
+    {
+      var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
+      return GetServicesFromXml(xmlDocument).ToArray();
+    }
+    
+    /// <summary>
+    /// Получить услуги из xml-документа в совместимом с 1С формате.
+    /// </summary>
+    /// <param name="xmlDocument">Xml-документ.</param>
+    /// <returns>Список услуг.</returns>
+    private static System.Collections.Generic.IEnumerable<Sungero.ExternalSystem.Structures.Module.IServiceLineDto> GetServicesFromXml(System.Xml.Linq.XDocument xmlDocument)
+    {
+      var servicesFromXml = xmlDocument.Element("Файл").Element("Документ").Element("ТаблСНО").Elements("СведТов");
+      
+      var lineNumber = 1;
+      foreach (var service in servicesFromXml)
+      {
+        yield return new Sungero.ExternalSystem.Structures.Module.ServiceLineDto
+        {
+          LineNumber = lineNumber.ToString(),
+          Содержание = service.Attribute("НаимТов").Value,
+          Количество = service.Attribute("КолТов").Value,
+          Цена = service.Attribute("ЦенаТов").Value,
+          Сумма = service.Attribute("СтТовБезНДС").Value,
+          СтавкаНДС = ConvertVatRateFor1C(service.Attribute("НалСт").Value),
+          СуммаНДС = GetVatSumOrNull(service)
+        };
+        lineNumber++;
+      }
+    }
+    
+    #region Операции с НДС
+    
+    /// <summary>
+    /// Преобразовать формат ставки НДС для передачи в 1С.
+    /// </summary>
+    /// <param name="vatRate">Ставка НДС.</param>
+    /// <returns>Преобразованная ставка НДС.</returns>
+    private static string ConvertVatRateFor1C(string vatRate)
+    {
+      if (vatRate == "без НДС")
+        return "БезНДС";
+      
+      return "НДС" + vatRate.Replace("%", string.Empty).Replace("/", "_");
+    }
+
+    /// <summary>
+    /// Получить сумму НДС.
+    /// </summary>
+    /// <param name="service">Xml-представление услуги.</param>
+    /// <returns>Если у услуги есть НДС, указана сумма; иначе — null.</returns>
+    /// <remarks>Если ставка НДС указана как "без НДС", элемент "СумНал" в XML включает
+    /// элемент "БезНДС", значение которого не подходит для заполнения поля "НДС" в 1С.</remarks>
+    private static string GetVatSumOrNull(System.Xml.Linq.XElement service)
+    {
+      return service.Attribute("НалСт").Value == "без НДС"
+        ? null
+        : service.Element("СумНал").Value;
+    }
+
+    #endregion
+    
+    #endregion
     
     /// <summary>
     /// Заполнить недостающие данные для отправки статуса в 1С.

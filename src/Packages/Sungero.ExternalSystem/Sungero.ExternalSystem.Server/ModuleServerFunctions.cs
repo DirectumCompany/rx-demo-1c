@@ -119,6 +119,24 @@ namespace Sungero.ExternalSystem.Server
       request.Invoke(dto);
     }
     
+    /// <summary>
+    /// Создать услуги для счета от поставщика.
+    /// </summary>
+    /// <param name="key">Ид счета.</param>
+    /// <param name="services">Список услуг для передачи в 1С.</param>
+    /// <remarks>В 1С товары и услуги хранятся в коллекции "Товары".</remarks>
+    [Public]
+    public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] services)
+    {
+      var servicesCollection = new Dictionary<string, object>
+      {
+        { "Товары", services }
+      };
+      var url = BuildUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
+      var request = CreateRequest(RequestMethod.Patch, url);
+      request.Invoke(servicesCollection);
+    }
+    
     #endregion
     
     #region Поступления
@@ -189,7 +207,7 @@ namespace Sungero.ExternalSystem.Server
     
     #endregion
     
-    #region Вспомагательные методы
+    #region Вспомогательные методы
     
     /// <summary>
     /// Извлечь ИД сущности из ответа.
@@ -217,7 +235,6 @@ namespace Sungero.ExternalSystem.Server
         var propertyValue = dto.GetType().GetProperty(propertyName).GetValue(dto);
         if (propertyValue == null)
         {
-          
           Logger.DebugFormat("ExternalSystem.{0}. The entity is not created/updated in 1C because {1} is not assigned. {2}.", methodName, propertyName, entityIdForLog);
           return false;
         }
