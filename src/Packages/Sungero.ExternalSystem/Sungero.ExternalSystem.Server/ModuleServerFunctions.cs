@@ -123,20 +123,20 @@ namespace Sungero.ExternalSystem.Server
     /// Создать услуги для счета от поставщика.
     /// </summary>
     /// <param name="key">Ид счета.</param>
-    /// <param name="servicesFor1C">Список услуг для передачи в 1С.</param>
+    /// <param name="services">Список услуг для передачи в 1С.</param>
     /// <remarks>В 1С товары и услуги хранятся в коллекции "Товары".</remarks>
     [Public]
-    public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] servicesFor1C)
+    public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] services)
     {
       var servicesCollection = new Dictionary<string, object>
       {
-        { "Товары", servicesFor1C } 
+        { "Товары", services }
       };
       var url = BuildUrl($"Document_СчетНаОплатуПоставщика(guid'{key}')");
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(servicesCollection);
     }
- 
+    
     #endregion
     
     #region Поступления

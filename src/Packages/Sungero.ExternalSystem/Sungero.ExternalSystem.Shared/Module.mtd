@@ -106,7 +106,7 @@
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "servicesFor1C",
+          "Name": "services",
           "ParameterType": "global::Sungero.ExternalSystem.Structures.Module.IServiceLineDto[]",
           "ParameterTypeFullName": "Sungero.ExternalSystem.Structures.Module.IServiceLineDto"
         }

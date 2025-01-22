@@ -142,7 +142,7 @@ namespace Sungero.ExternalSystem.Structures.Module
   }
   
   /// <summary>
-  /// Строка с данными об услуге для счета от поставщика в 1С.
+  /// Услуга в табличной части счета от поставщика.
   /// </summary>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("AppliedStylecopNamingRules.ApiNamingAnalyzer", "CR0001:ApiNamesMustNotContainCyrillic", Justification = "Reviewed.")]
   [Public]
