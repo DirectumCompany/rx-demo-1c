@@ -124,6 +124,7 @@ namespace Sungero.ExternalSystem.Server
     /// </summary>
     /// <param name="key">Ид счета.</param>
     /// <param name="servicesFor1C">Список услуг для передачи в 1С.</param>
+    /// <remarks>В 1С товары и услуги хранятся в коллекции "Товары".</remarks>
     [Public]
     public static void CreateServicesForInvoice(string key, Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] servicesFor1C)
     {
