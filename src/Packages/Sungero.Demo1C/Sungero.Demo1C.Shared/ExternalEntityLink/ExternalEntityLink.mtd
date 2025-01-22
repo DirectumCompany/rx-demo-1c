@@ -22,6 +22,16 @@
   "IconResourcesKeys": [],
   "LayeredFromGuid": "4346363e-39b9-40eb-9c12-64f0cf48d87f",
   "OperationsClass": "",
+  "PublicConstants": [
+    {
+      "Name": "typeCounterparties",
+      "ParentClasses": [
+        "ExternalEntityLink"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"Контрагенты\""
+    }
+  ],
   "PublicFunctions": [
     {
       "Name": "CreateNew",

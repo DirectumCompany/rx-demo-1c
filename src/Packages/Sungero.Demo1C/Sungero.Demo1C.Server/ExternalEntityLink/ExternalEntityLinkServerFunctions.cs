@@ -33,22 +33,6 @@ namespace Sungero.Demo1C.Server
     }
     
     /// <summary>
-    /// Получить связи сущностей с внешней системой (1С).
-    /// </summary>
-    /// <param name="entity">Запись Directum RX.</param>
-    /// <returns>Связи сущностей с внешней системой. Если не найдена, то null.</returns>
-    private static IQueryable<IExternalEntityLink> GetEntitiesIn1C(Sungero.Domain.Shared.IEntity entity)
-    {
-      var typeGuid = entity.TypeDiscriminator.ToString();
-      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
-      
-      return ExternalEntityLinks.GetAll()
-        .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
-               x.EntityId == entity.Id &&
-               x.ExtSystemId == extSystemId);
-    }
-    
-    /// <summary>
     /// Создать связь сущности с внешней системой (1С).
     /// </summary>
     /// <param name="entity">Сущность.</param>
@@ -64,6 +48,22 @@ namespace Sungero.Demo1C.Server
       externalEntityLink.ExtEntityType = externalEntityType;
       externalEntityLink.ExtSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
       externalEntityLink.Save();
+    }
+    
+    /// <summary>
+    /// Получить связи сущностей с внешней системой (1С).
+    /// </summary>
+    /// <param name="entity">Запись Directum RX.</param>
+    /// <returns>Связи сущностей с внешней системой. Если не найдена, то null.</returns>
+    private static IQueryable<IExternalEntityLink> GetEntitiesIn1C(Sungero.Domain.Shared.IEntity entity)
+    {
+      var typeGuid = entity.TypeDiscriminator.ToString();
+      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
+      
+      return ExternalEntityLinks.GetAll()
+        .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
+               x.EntityId == entity.Id &&
+               x.ExtSystemId == extSystemId);
     }
   }
 }
