@@ -12,13 +12,13 @@ namespace Sungero.NoCodeApproval.Server
 
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
-      CreateOutgoingInvoiceExternalLinkIfNotExist();
+      CreateOutgoingInvoiceExternalLink();
     }
     
     /// <summary>
     /// Создать внешнюю ссылку (ExternalLink) для исходящего счета, если она не существует.
     /// </summary>
-    private void CreateOutgoingInvoiceExternalLinkIfNotExist()
+    private void CreateOutgoingInvoiceExternalLink()
     {
       InitializationLogger.Debug("Init: Create OutgoingInvoice document type external link");
       var documentType = Docflow.PublicInitializationFunctions.Module.GetDocumentTypeByTypeGuid(Constants.Module.OutgoingInvoiceTypeGuid);
