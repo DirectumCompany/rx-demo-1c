@@ -1,0 +1,205 @@
+{
+  "Approved_ActionName_SE_2": {
+    "en-US": "Approve",
+    "ru-RU": "Согласовать"
+  },
+  "Description": {
+    "en-US": "Default process of financial document approval that includes sending documents to a counterparty and requesting their signature",
+    "ru-RU": "Процесс согласования входящих УПД с последующим созданием в 1С",
+    "hash": "19077417eafc5c50c279d5b4abc892af"
+  },
+  "Description_0161f2d0-ee9a-465b-bf74-4df5807d993e": {
+    "en-US": "Delivery method selected for document sending",
+    "ru-RU": "Способ доставки, который указан для передачи документа"
+  },
+  "Description_0f7312f0-95dc-4adb-90f0-41575cc843ea": {
+    "en-US": "Employee who sent assignment for rework to the assignee",
+    "ru-RU": "Сотрудник, который направил задание на доработку исполнителю"
+  },
+  "Description_becbee70-7e0e-4912-a4b3-43e1501f14c1": {
+    "en-US": "Employees who must approve documents within the current task",
+    "ru-RU": "Сотрудники, с которыми необходимо согласовать документ в рамках текущей задачи"
+  },
+  "Description_e5a4bbde-41a5-4b19-8a7d-3666a21a6001": {
+    "en-US": "Employees who must receive notices about sending the document to the next approval stage",
+    "ru-RU": "Сотрудники, которым необходимо отправить уведомление при отправке документа на повторное согласование"
+  },
+  "Description_f159f2e4-25db-4009-b670-07977eaf8b15": {
+    "en-US": "Document exchange service specified for document sending",
+    "ru-RU": "Сервис обмена, который указан для передачи документа"
+  },
+  "Forward_ActionName_SE_2": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Forward_ActionName_SE_3": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Forward_ActionName_SE_9": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Name": {
+    "en-US": "Default process of financial document approval",
+    "ru-RU": "Процесс согласования входящих УПД (интеграция с 1С)",
+    "hash": "bbb805292aa85d6ac26a30b928295272"
+  },
+  "Name_0161f2d0-ee9a-465b-bf74-4df5807d993e": {
+    "en-US": "Delivery method",
+    "ru-RU": "Способ доставки"
+  },
+  "Name_0f7312f0-95dc-4adb-90f0-41575cc843ea": {
+    "en-US": "Initiator of assignment for rework",
+    "ru-RU": "Отправитель задания на доработку"
+  },
+  "Name_becbee70-7e0e-4912-a4b3-43e1501f14c1": {
+    "en-US": "Additional approvers",
+    "ru-RU": "Дополнительные согласующие"
+  },
+  "Name_e5a4bbde-41a5-4b19-8a7d-3666a21a6001": {
+    "en-US": "Recipients of notice on new approval stage",
+    "ru-RU": "Получатели уведомлений при повторном согласовании"
+  },
+  "Name_f159f2e4-25db-4009-b670-07977eaf8b15": {
+    "en-US": "Document exchange service",
+    "ru-RU": "Сервис обмена"
+  },
+  "Reject_ActionName_SE_9": {
+    "en-US": "Reject",
+    "ru-RU": "Отказать"
+  },
+  "Sign_ActionName_SE_9": {
+    "en-US": "Sign",
+    "ru-RU": "Подписать"
+  },
+  "Subject_SE_1": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}",
+    "hash": "76fe31b1d36124615ad5f4b3d8701635"
+  },
+  "Subject_SE_2": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}",
+    "hash": "76fe31b1d36124615ad5f4b3d8701635"
+  },
+  "Subject_SE_3": {
+    "en-US": "Rework: {0}",
+    "ru-RU": "Доработайте: {0}",
+    "hash": "ca276ccb9ced9ddaeab9d482049bfc7e"
+  },
+  "Subject_SE_44": {
+    "en-US": "Document signed: {0}",
+    "ru-RU": "Подписан документ: {0}",
+    "hash": "39337435edb954506972a385bf1a86ad"
+  },
+  "Subject_SE_48": {
+    "en-US": "Post document in accounting system: {0}",
+    "ru-RU": "Проверить в 1С сформированное поступление, принять к учету: {0}",
+    "hash": "ed6a54bb8870d0b5c2cad093e590441f"
+  },
+  "Subject_SE_49": {
+    "en-US": "Notice of sending document for reapproval: {0}",
+    "ru-RU": "Отправлен на повторное согласование: {0}",
+    "hash": "51fa4b62ed52e57c53671ed21d15f1b6"
+  },
+  "Subject_SE_50": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}"
+  },
+  "Subject_SE_9": {
+    "en-US": "Sign: {0}",
+    "ru-RU": "Подпишите: {0}",
+    "hash": "93e350663060bc255a72037dad5d266a"
+  },
+  "ThreadSubject_SE_1": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование",
+    "hash": "feb26211dbd381f3d806ef6ccbe3eaf7"
+  },
+  "ThreadSubject_SE_2": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование",
+    "hash": "feb26211dbd381f3d806ef6ccbe3eaf7"
+  },
+  "ThreadSubject_SE_3": {
+    "en-US": "Rework",
+    "ru-RU": "Доработка",
+    "hash": "ab0eb9f9d0631491a8c038217f7d36b6"
+  },
+  "ThreadSubject_SE_44": {
+    "en-US": "Document signed notice",
+    "ru-RU": "Подписан документ",
+    "hash": "79c7a18ec392b91fd5a4a363bafcdbe4"
+  },
+  "ThreadSubject_SE_48": {
+    "en-US": "Post document",
+    "ru-RU": "Проведение документа",
+    "hash": "c22901c3d5d2d134670007cd45d34134"
+  },
+  "ThreadSubject_SE_49": {
+    "en-US": "Notice of sending document for reapproval",
+    "ru-RU": "Отправлен на повторное согласование",
+    "hash": "ce860780b5fae1f2ef61c4da7dfc2137"
+  },
+  "ThreadSubject_SE_50": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование"
+  },
+  "ThreadSubject_SE_9": {
+    "en-US": "Signing",
+    "ru-RU": "Подписание",
+    "hash": "6016c3b3d47608357d93ac07ff36433c"
+  },
+  "Title_SE_1": {
+    "en-US": "Approve by manager",
+    "ru-RU": "Согласование с руководителем ответственного за контрагента"
+  },
+  "Title_SE_12": {
+    "en-US": "Skip approval by manager?",
+    "ru-RU": "Пропустить согласование с руководителем?",
+    "hash": "63170d98a33cecccc9fa7cf17e260a24"
+  },
+  "Title_SE_2": {
+    "en-US": "Approve by additional approvers",
+    "ru-RU": "Согласование с доп. согласующими"
+  },
+  "Title_SE_3": {
+    "en-US": "Rework",
+    "ru-RU": "Доработка"
+  },
+  "Title_SE_44": {
+    "en-US": "Notice to initatior about document signing",
+    "ru-RU": "Уведомление ответственных о подписании о подписании"
+  },
+  "Title_SE_48": {
+    "en-US": "Post document in accounting system",
+    "ru-RU": "Проверка поступления в 1С и проведение документа",
+    "hash": "f2567c4ed1f723f52892fb40035b9497"
+  },
+  "Title_SE_49": {
+    "en-US": "Notice of new approval stage beginning",
+    "ru-RU": "Уведомление о новом круге согласования",
+    "hash": "3a38345d171fccadbb4e3152a3338247"
+  },
+  "Title_SE_50": {
+    "en-US": "Approve by manager",
+    "ru-RU": "Согласование с ответственным за контрагента"
+  },
+  "Title_SE_51": {
+    "en-US": "УПД. Передача в 1С",
+    "ru-RU": "Создание поступления в 1С"
+  },
+  "Title_SE_9": {
+    "en-US": "Signing",
+    "ru-RU": "Подписание"
+  },
+  "WithSuggestions_ActionName_SE_2": {
+    "en-US": "Approve with suggestions",
+    "ru-RU": "Согласовать с замечаниями"
+  },
+  "WithSuggestions_ActionName_SE_50": {
+    "en-US": "Approve with suggestions",
+    "ru-RU": "Согласовать с замечаниями"
+  }
+}

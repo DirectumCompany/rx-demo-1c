@@ -1,0 +1,13 @@
+{
+  "$type": "System.Collections.Generic.List`1[[Sungero.NoCode.Settings.Models.SettingsLayerImage, Sungero.NoCode.Settings.Interfaces]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "Sungero.NoCode.Settings.Models.SettingsLayerImage, Sungero.NoCode.Settings.Interfaces",
+      "Name": "e8781481-efef-e59e-1af8-c686edee4d12.svg",
+      "Data": {
+        "$type": "System.Byte[], System.Private.CoreLib",
+        "$value": "PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHRpdGxlPkFib3J0dGFzazwvdGl0bGU+PHBhdGggZD0iTTgsMGE4LDgsMCwxLDAsOCw4QTgsOCwwLDAsMCw4LDBaTTEuMyw4YTYuNyw2LjcsMCwwLDEsMTEtNS4xN0wyLjgzLDEyLjI1QTYuNjcsNi42NywwLDAsMSwxLjMsOFpNOCwxNC43YTYuNjcsNi42NywwLDAsMS00LjI1LTEuNTNsOS40My05LjQzQTYuNyw2LjcsMCwwLDEsOCwxNC43WiIgZmlsbD0iI2Q2NTYzMyIvPjwvc3ZnPg=="
+      }
+    }
+  ]
+}
