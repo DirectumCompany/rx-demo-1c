@@ -106,7 +106,7 @@
     },
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
-      "NameGuid": "b8f1d879-2bdb-4374-a199-e764a20ab928",
+      "NameGuid": "e59febb9-9233-4d94-8c1d-1b12db9cd537",
       "Name": "SendContractTo1C",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [

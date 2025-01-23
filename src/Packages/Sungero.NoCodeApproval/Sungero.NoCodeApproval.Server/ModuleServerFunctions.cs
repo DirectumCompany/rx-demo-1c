@@ -113,13 +113,13 @@ namespace Sungero.NoCodeApproval.Server
     #endregion
         
     /// <summary>
-    /// Отправить данные в 1C.
+    /// Отправить данные договора в 1C.
     /// </summary>
     public static void SendContractTo1C()
     {      
       try
       {        
-        Sungero.ExternalSystem.PublicFunctions.Module.SendContractTo1C();
+        Sungero.ExternalSystem.PublicFunctions.Module.SendContractWithCustomer();
       }
       catch (Exception ex)
       {

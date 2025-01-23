@@ -147,6 +147,23 @@ namespace Sungero.ExternalSystem.Server
     
     #endregion
     
+    #region Договоры с покупателем
+    
+    /// <summary>
+    /// Отправить данные для договора с покупателем.
+    /// </summary>
+    /// <remarks>Данный метод не принимает никаких параметров потому что для обновления связанных данных
+    /// используется POST-запрос без тела, данный HACK продиктован бизнесом.</remarks>
+    [Public]
+    public void SendContractWithCustomer()
+    {
+      var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
+      var request = CreateRequest(RequestMethod.Post, url);
+      request.Invoke(new object());
+    }
+    
+    #endregion
+    
     #region Операции со статусами документов
     
     /// <summary>
@@ -186,18 +203,8 @@ namespace Sungero.ExternalSystem.Server
       var request = CreateRequest(RequestMethod.Patch, url);
       request.Invoke(dto);
     }
+    
     #endregion
-
-    /// <summary>
-    /// Синхронизировать данные c 1С.
-    /// </summary>
-    [Public]
-    public void SendContractTo1C()
-    {
-      var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
-      var request = CreateRequest(RequestMethod.Post, url);
-      request.Invoke();
-    }
     
     #region Вспомагательные методы
     

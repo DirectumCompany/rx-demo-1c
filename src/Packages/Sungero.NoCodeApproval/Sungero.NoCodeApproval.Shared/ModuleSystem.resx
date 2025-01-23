@@ -103,4 +103,7 @@
   <data name="Block_b8f1d8792bdb4374a199e764a20ab928" xml:space="preserve">
     <value>Отправить договор в 1С</value>
   </data>
+  <data name="Block_e59febb992334d948c1d1b12db9cd537" xml:space="preserve">
+    <value>Договор. Передача в 1С</value>
+  </data>
 </root>

@@ -151,7 +151,7 @@
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "SendContractTo1C",
+      "Name": "SendContractWithCustomer",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     },
