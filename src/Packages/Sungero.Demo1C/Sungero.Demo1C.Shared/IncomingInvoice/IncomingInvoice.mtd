@@ -774,7 +774,7 @@
       "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.ISupplierInvoiceDto"
     },
     {
-      "Name": "ConvertTo1cServicesDtos",
+      "Name": "ConvertTo1cServiceDtoS",
       "Parameters": [
         {
           "Name": "incomingInvoice",

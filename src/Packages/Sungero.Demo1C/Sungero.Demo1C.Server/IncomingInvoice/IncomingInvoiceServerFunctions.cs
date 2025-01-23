@@ -37,7 +37,7 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <returns>Список услуг в совместимом с 1С формате.</returns>
     [Public]
-    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] ConvertTo1cServicesDtos()
+    public Sungero.ExternalSystem.Structures.Module.IServiceLineDto[] ConvertTo1cServiceDtoS()
     {
       var xmlDocument = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
       return GetServicesFromXml(xmlDocument).ToArray();
@@ -63,7 +63,7 @@ namespace Sungero.Demo1C.Server
           Цена = service.Attribute("ЦенаТов").Value,
           Сумма = service.Attribute("СтТовБезНДС").Value,
           СтавкаНДС = ConvertVatRateFor1C(service.Attribute("НалСт").Value),
-          СуммаНДС = GetVatSumOrNull(service)
+          СуммаНДС = service.Element("СумНал")?.Value
         };
         lineNumber++;
       }
@@ -82,20 +82,6 @@ namespace Sungero.Demo1C.Server
         return "БезНДС";
       
       return "НДС" + vatRate.Replace("%", string.Empty).Replace("/", "_");
-    }
-
-    /// <summary>
-    /// Получить сумму НДС.
-    /// </summary>
-    /// <param name="service">Xml-представление услуги.</param>
-    /// <returns>Если у услуги есть НДС, указана сумма; иначе — null.</returns>
-    /// <remarks>Если ставка НДС указана как "без НДС", элемент "СумНал" в XML включает
-    /// элемент "БезНДС", значение которого не подходит для заполнения поля "НДС" в 1С.</remarks>
-    private static string GetVatSumOrNull(System.Xml.Linq.XElement service)
-    {
-      return service.Attribute("НалСт").Value == "без НДС"
-        ? null
-        : service.Element("СумНал").Value;
     }
 
     #endregion
