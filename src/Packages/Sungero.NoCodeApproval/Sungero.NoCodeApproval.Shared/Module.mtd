@@ -106,11 +106,11 @@
     },
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
-      "NameGuid": "03ba03f1-b7aa-441e-9084-7ff222339c94",
-      "Name": "SendDataTo1C",
+      "NameGuid": "b8f1d879-2bdb-4374-a199-e764a20ab928",
+      "Name": "SendContractTo1C",
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
-        "SendDataTo1CExecute"
+        "SendContractTo1CExecute"
       ],
       "ProcessStagesDisplayMode": "Hide"
     }

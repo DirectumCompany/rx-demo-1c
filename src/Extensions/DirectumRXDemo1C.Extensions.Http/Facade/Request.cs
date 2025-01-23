@@ -32,7 +32,7 @@ namespace DirectumRXDemo1C.Extensions.Http
     {
       ParametersValidator.ValidateContent(this.httpMethod, content);
 
-      if (HttpMethodHelper.IsContentRequired(this.httpMethod) && content != null)
+      if (HttpMethodHelper.IsContentRequired(this.httpMethod))
         this.requestMessageBuilder.AppendContent(content);
 
       var response = HttpClientProvider.Get().SendAsync(this.requestMessageBuilder.Result).Result;

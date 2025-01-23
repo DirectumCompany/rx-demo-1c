@@ -111,17 +111,15 @@ namespace Sungero.NoCodeApproval.Server
     }
     
     #endregion
-    
-    #region Отправка данных в 1С
-    
+        
     /// <summary>
     /// Отправить данные в 1C.
     /// </summary>
-    public static void SendDataTo1C()
+    public static void SendContractTo1C()
     {      
       try
       {        
-        Sungero.ExternalSystem.PublicFunctions.Module.SyncDataWith1C();
+        Sungero.ExternalSystem.PublicFunctions.Module.SendContractTo1C();
       }
       catch (Exception ex)
       {

@@ -13,8 +13,13 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
     public void AppendBasicAuthHeader(string basicAuthToken) =>
       this.Result.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", basicAuthToken);
 
-    public void AppendContent(object content) =>
+    public void AppendContent(object content)
+    {
+      if (content == null)
+        throw new ArgumentNullException(nameof(content));
+
       this.Result.Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+    }
 
     public HttpRequestMessage Result { get; }
   }

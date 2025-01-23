@@ -100,4 +100,7 @@
   <data name="Block_00f5f31dd9ac49b393984708955ecc63_Property_51357b6bef254d6ca474564992be934e" xml:space="preserve">
     <value>Универсальный передаточный документ</value>
   </data>
+  <data name="Block_b8f1d8792bdb4374a199e764a20ab928" xml:space="preserve">
+    <value>Отправить договор в 1С</value>
+  </data>
 </root>

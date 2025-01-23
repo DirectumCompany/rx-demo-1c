@@ -192,7 +192,7 @@ namespace Sungero.ExternalSystem.Server
     /// Синхронизировать данные c 1С.
     /// </summary>
     [Public]
-    public void SyncDataWith1C()
+    public void SendContractTo1C()
     {
       var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
       var request = CreateRequest(RequestMethod.Post, url);

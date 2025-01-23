@@ -151,7 +151,7 @@
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "SyncDataWith1C",
+      "Name": "SendContractTo1C",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     },

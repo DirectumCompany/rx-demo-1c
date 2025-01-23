@@ -9,6 +9,6 @@ namespace DirectumRXDemo1C.Extensions.Http.Internal
     public static HttpMethod GetPatch() => Patch;
 
     public static bool IsContentRequired(HttpMethod method) => 
-      method == Patch;
+      method == HttpMethod.Post || method == Patch;
   }
 }

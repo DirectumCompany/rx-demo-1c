@@ -7,7 +7,6 @@ using Sungero.Workflow;
 
 namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
 {
-  partial class SendDataTo1CHandlers
   partial class SendUniversalTransferDocumentTo1CHandlers
   {
 
@@ -20,9 +19,9 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
   partial class SendContractTo1CHandlers
   {
 
-    public virtual void SendDataTo1CExecute()
+    public virtual void SendContractTo1CExecute()
     {
-      Sungero.NoCodeApproval.Functions.Module.SendDataTo1C();
+      Sungero.NoCodeApproval.Functions.Module.SendContractTo1C();
     }
   }
 
