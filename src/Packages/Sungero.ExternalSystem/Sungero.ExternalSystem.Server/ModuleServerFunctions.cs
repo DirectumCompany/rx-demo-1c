@@ -150,12 +150,15 @@ namespace Sungero.ExternalSystem.Server
     #region Договоры с покупателем
     
     /// <summary>
-    /// Отправить данные для договора с покупателем.
+    /// Создать договор с покупателем.
     /// </summary>
-    /// <remarks>Данный метод не принимает никаких параметров потому что для обновления связанных данных
-    /// используется POST-запрос без тела, данный HACK продиктован бизнесом.</remarks>
+    /// <remarks>
+    /// По факту данный метод выполняет отправку данных из RX в 1С, и наоборот.
+    /// Причем, это относится не к договорам, а ко всем сущностям, определенным на стороне 1С в правилах синхронизации (модуль "DirectumRX").
+    /// Данный HACK продиктован бизнесом.
+    /// </remarks>
     [Public]
-    public void SendContractWithCustomer()
+    public void CreateCustomerContract()
     {
       var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
       var request = CreateRequest(RequestMethod.Post, url);
