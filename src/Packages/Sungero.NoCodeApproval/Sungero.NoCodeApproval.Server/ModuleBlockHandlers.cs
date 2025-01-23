@@ -16,6 +16,15 @@ namespace Sungero.NoCodeApproval.Server.NoCodeApprovalBlocks
     }
   }
 
+  partial class SendContractTo1CHandlers
+  {
+
+    public virtual void SendContractTo1CExecute()
+    {
+      Sungero.NoCodeApproval.Functions.Module.SendContractTo1C();
+    }
+  }
+
   partial class SendIncomingInvoiceTo1CHandlers
   {
 

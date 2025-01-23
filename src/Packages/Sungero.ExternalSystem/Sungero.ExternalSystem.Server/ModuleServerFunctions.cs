@@ -165,6 +165,26 @@ namespace Sungero.ExternalSystem.Server
     
     #endregion
     
+    #region Договоры с покупателем
+    
+    /// <summary>
+    /// Создать договор с покупателем.
+    /// </summary>
+    /// <remarks>
+    /// По факту данный метод выполняет отправку данных из RX в 1С, и наоборот.
+    /// Причем, это относится не к договорам, а ко всем сущностям, определенным на стороне 1С в правилах синхронизации (модуль "DirectumRX").
+    /// Данный HACK продиктован бизнесом.
+    /// </remarks>
+    [Public]
+    public void CreateCustomerContract()
+    {
+      var url = string.Format("{0}/hs/p/PushAndPull", GetBaseAddress());
+      var request = CreateRequest(RequestMethod.Post, url);
+      request.Invoke(new object());
+    }
+    
+    #endregion
+    
     #region Операции со статусами документов
     
     /// <summary>

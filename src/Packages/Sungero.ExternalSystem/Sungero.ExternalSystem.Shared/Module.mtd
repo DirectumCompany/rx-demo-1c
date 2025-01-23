@@ -52,6 +52,11 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CreateCustomerContract",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "CreateDocumentStatus",
       "Parameters": [
         {

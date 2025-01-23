@@ -103,6 +103,16 @@
           "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
         }
       ]
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e59febb9-9233-4d94-8c1d-1b12db9cd537",
+      "Name": "SendContractTo1C",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendContractTo1CExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide"
     }
   ],
   "ClientAssemblyName": "Sungero.NoCodeApproval.Client",

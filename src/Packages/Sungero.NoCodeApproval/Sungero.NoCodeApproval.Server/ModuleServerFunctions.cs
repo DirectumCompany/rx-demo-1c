@@ -36,7 +36,7 @@ namespace Sungero.NoCodeApproval.Server
       {
         Logger.ErrorFormat("NoCodeApproval.SendDocumentStatusTo1C. Error occurred while creating document status. DocumentId = {0}.", ex, document.Id);
       }
-    }    
+    }
     
     #region private
     
@@ -56,7 +56,7 @@ namespace Sungero.NoCodeApproval.Server
     }
     
     /// <summary>
-    /// Установить статус "Подписан" для УПД в 1С. 
+    /// Установить статус "Подписан" для УПД в 1С.
     /// </summary>
     /// <param name="dto">Структура с данными для обновления.</param>
     /// <remarks>При создании УПД запись в статусах документа создаётся автоматически и должна обновляться.</remarks>
@@ -74,7 +74,7 @@ namespace Sungero.NoCodeApproval.Server
     /// <remarks>При создании счетов запись в статусах документа не создаётся и требует добавления.</remarks>
     private static void CreateStatusForInvoice(Sungero.Docflow.IOfficialDocument document, Sungero.ExternalSystem.Structures.Module.IDocumentStatusDto dto)
     {
-      if (Sungero.Demo1C.IncomingInvoices.Is(document))        
+      if (Sungero.Demo1C.IncomingInvoices.Is(document))
         Sungero.Demo1C.PublicFunctions.IncomingInvoice.CompleteStatusInfo(dto);
       else
         Sungero.Demo1C.PublicFunctions.OutgoingInvoice.CompleteStatusInfo(dto);
@@ -111,5 +111,23 @@ namespace Sungero.NoCodeApproval.Server
     }
     
     #endregion
+    
+    /// <summary>
+    /// Отправить договор в 1C.
+    /// </summary>
+    public static void SendContractTo1C()
+    {
+      var logMessagePrefix = "Demo1C.SendContractTo1C.";
+      
+      try
+      {       
+        Sungero.ExternalSystem.PublicFunctions.Module.CreateCustomerContract();
+        Logger.DebugFormat("{0} Demo1C.SendContractTo1C. The contract is successfully sent to 1C.", logMessagePrefix);
+      }
+      catch (Exception ex)
+      {
+        Logger.ErrorFormat("{0} Error while sending contract to 1C.", logMessagePrefix, ex);
+      }
+    }
   }
 }
