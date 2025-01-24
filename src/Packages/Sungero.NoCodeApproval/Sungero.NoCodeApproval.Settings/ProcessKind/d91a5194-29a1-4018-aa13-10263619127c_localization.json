@@ -1,0 +1,220 @@
+{
+  "13ef1c29-7e7a-1f0d-6763-3f6e05355dba_Name": {
+    "en-US": "Set invoice status to \"Paid\"",
+    "ru-RU": "Установить состояние счета \"Оплачен\"",
+    "hash": "b76f92acd07444f53de1aafb740a78a9"
+  },
+  "9d30157a-41e7-b839-3b75-c4bca45a8488_Name": {
+    "en-US": "Set status of related invoices to \"Paid\"",
+    "ru-RU": "Установить состояние счетов-приложений \"Оплачен\""
+  },
+  "Approved_ActionName_SE_2": {
+    "en-US": "Approve",
+    "ru-RU": "Согласовать"
+  },
+  "Approved_ActionName_SE_53": {
+    "en-US": "Approve",
+    "ru-RU": "Согласовать"
+  },
+  "Description": {
+    "en-US": "Default process of incoming invoice approval that includes carrying out payments ",
+    "ru-RU": "Процесс согласования входящего счета с последующей передачей на оплату и созданием в 1С",
+    "hash": "3f2691799c4d2ea252562be62d92334a"
+  },
+  "Description_1f4ee3e7-f2eb-4991-9890-1c14d73e9633": {
+    "en-US": "Employees who must approve documents within the current task",
+    "ru-RU": "Сотрудники, с которыми необходимо согласовать документ в рамках текущей задачи",
+    "hash": "811a7ed81e7585513a75be7a7a192638"
+  },
+  "Description_8757e7ed-638c-4cb7-be81-e1e4624e9f2a": {
+    "en-US": "Employee who sent assignment for rework to the assignee",
+    "ru-RU": "Сотрудник, который направил задание на доработку исполнителю",
+    "hash": "abad29740492883c186fbb5f39e2e36f"
+  },
+  "Description_895810cc-df4a-46a9-8411-03a266c396bc": {
+    "en-US": "Employees who must receive notices about sending the document to the next approval stage",
+    "ru-RU": "Сотрудники, которым необходимо отправить уведомление при отправке документа на повторное согласование",
+    "hash": "ed821876d28c137362b8407a808b2abf"
+  },
+  "ForRework_ActionName_SE_2": {
+    "en-US": "For Rework",
+    "ru-RU": "На доработку"
+  },
+  "Forward_ActionName_SE_2": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Forward_ActionName_SE_25": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Forward_ActionName_SE_53": {
+    "en-US": "Forward",
+    "ru-RU": "Переадресовать"
+  },
+  "Instruction_SE_47": {
+    "en-US": "The document has not been converted to PDF. Convert it manually:\n1. In the document card, in the \"Sign\" dropdown list, select \"Create PDF with Marks\".\n2. In the dialog box, in the \"Position\" dropdown list, select one of the following options:\n\"According to template\" – if you want the system to place the mark in a predefined position.\n\"By coordinates\" – if you want to specify the registration mark coordinates manually.\n3. Click \"Create\".",
+    "ru-RU": "Не удалось преобразовать документ в PDF. Преобразуйте его вручную. Для этого:\n1. В карточке документа в выпадающем списке \"Подписание\" выберите пункт \"Создать PDF с отметками\".\n2. В открывшемся окне в выпадающем списке \"Расположение\" выберите один из вариантов:\n\"По шаблону\" — чтобы система автоматически расположила отметку о регистрации в заданном месте документа.\n\"По координатам\" — чтобы самостоятельно указать координаты расположения отметки о регистрации.\n3. Нажмите кнопку \"Создать\"."
+  },
+  "Instruction_SE_53": {
+    "en-US": "1. Откройте счет от поставщика в 1С. \n2. Укажите необходимые элементы номенклатуры в таблице \"Товары и услуги\".\n3. Сохраните изменения и выполните свое задание."
+  },
+  "Name": {
+    "en-US": "Default process of incoming invoice approval",
+    "ru-RU": "Процесс согласования входящих счетов (интеграция с 1С)",
+    "hash": "e662a3f7168ea790f28becc8eed9e7ea"
+  },
+  "Name_1f4ee3e7-f2eb-4991-9890-1c14d73e9633": {
+    "en-US": "Additional approvers",
+    "ru-RU": "Дополнительные согласующие",
+    "hash": "2079c6b972005587e6476fafd96783d4"
+  },
+  "Name_8757e7ed-638c-4cb7-be81-e1e4624e9f2a": {
+    "en-US": "Initiator of assignment for rework",
+    "ru-RU": "Отправитель задания на доработку",
+    "hash": "34297b4801de3d202d7a51583eb622ef"
+  },
+  "Name_895810cc-df4a-46a9-8411-03a266c396bc": {
+    "en-US": "Recipients of notice on new approval stage",
+    "ru-RU": "Получатели уведомлений при повторном согласовании",
+    "hash": "d7d45efcf7becdabf04e5b3634526648"
+  },
+  "Subject_SE_1": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}",
+    "hash": "76fe31b1d36124615ad5f4b3d8701635"
+  },
+  "Subject_SE_2": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}",
+    "hash": "76fe31b1d36124615ad5f4b3d8701635"
+  },
+  "Subject_SE_25": {
+    "en-US": "Rework: {0}",
+    "ru-RU": "Доработайте: {0}",
+    "hash": "ca276ccb9ced9ddaeab9d482049bfc7e"
+  },
+  "Subject_SE_28": {
+    "en-US": "Pay: {0}",
+    "ru-RU": "Оплатите: {0}",
+    "hash": "97f9b2ff120857a8a91204a3a2f8d23b"
+  },
+  "Subject_SE_36": {
+    "en-US": "Invoice paid: {0}",
+    "ru-RU": "Счет оплачен: {0}",
+    "hash": "39337435edb954506972a385bf1a86ad"
+  },
+  "Subject_SE_44": {
+    "en-US": "Notice of sending document for reapproval: {0}",
+    "ru-RU": "Отправлен на повторное согласование: {0}",
+    "hash": "51fa4b62ed52e57c53671ed21d15f1b6"
+  },
+  "Subject_SE_47": {
+    "en-US": "Convert to PDF: {0}",
+    "ru-RU": "Преобразуйте в PDF: {0}"
+  },
+  "Subject_SE_53": {
+    "en-US": "Approve: {0}",
+    "ru-RU": "Согласуйте: {0}"
+  },
+  "ThreadSubject_SE_1": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование",
+    "hash": "feb26211dbd381f3d806ef6ccbe3eaf7"
+  },
+  "ThreadSubject_SE_2": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование",
+    "hash": "feb26211dbd381f3d806ef6ccbe3eaf7"
+  },
+  "ThreadSubject_SE_25": {
+    "en-US": "Rework",
+    "ru-RU": "Доработка",
+    "hash": "ab0eb9f9d0631491a8c038217f7d36b6"
+  },
+  "ThreadSubject_SE_28": {
+    "en-US": "Payment",
+    "ru-RU": "Оплата",
+    "hash": "82c60ddb93f262168bf35e34fa0e7595"
+  },
+  "ThreadSubject_SE_36": {
+    "en-US": "Invoice paid",
+    "ru-RU": "Счет оплачен",
+    "hash": "79c7a18ec392b91fd5a4a363bafcdbe4"
+  },
+  "ThreadSubject_SE_44": {
+    "en-US": "Notice of sending document for reapproval",
+    "ru-RU": "Отправлен на повторное согласование",
+    "hash": "ce860780b5fae1f2ef61c4da7dfc2137"
+  },
+  "ThreadSubject_SE_47": {
+    "en-US": "Convert to PDF",
+    "ru-RU": "Преобразование в PDF"
+  },
+  "ThreadSubject_SE_53": {
+    "en-US": "Аpproval",
+    "ru-RU": "Согласование"
+  },
+  "Title_SE_1": {
+    "en-US": "Approve by manager",
+    "ru-RU": "Согласование с руководителем ответственного за контрагента"
+  },
+  "Title_SE_12": {
+    "en-US": "Skip approval by manager?",
+    "ru-RU": "Пропустить согласование с руководителем?",
+    "hash": "63170d98a33cecccc9fa7cf17e260a24"
+  },
+  "Title_SE_2": {
+    "en-US": "Approve by additional approvers",
+    "ru-RU": "Согласование с доп. согласующими"
+  },
+  "Title_SE_25": {
+    "en-US": "Rework",
+    "ru-RU": "Доработка"
+  },
+  "Title_SE_28": {
+    "en-US": "Pay invoice",
+    "ru-RU": "Оплата счета"
+  },
+  "Title_SE_36": {
+    "en-US": "Notice to initiator about invoice payment",
+    "ru-RU": "Уведомление ответственных об оплате счета"
+  },
+  "Title_SE_44": {
+    "en-US": "Notice of new approval stage beginning",
+    "ru-RU": "Уведомление о новом круге согласования",
+    "hash": "3a38345d171fccadbb4e3152a3338247"
+  },
+  "Title_SE_45": {
+    "en-US": "Convert to PDF",
+    "ru-RU": "Преобразование в PDF"
+  },
+  "Title_SE_46": {
+    "en-US": "Is document in paper form?",
+    "ru-RU": "Документ в бумажной форме?"
+  },
+  "Title_SE_47": {
+    "en-US": "Convert to PDF",
+    "ru-RU": "Преобразование в PDF"
+  },
+  "Title_SE_52": {
+    "en-US": "Входящий счет. Передача в 1С статуса \"Оплачен\"",
+    "ru-RU": "Передача статуса оплаты в 1С"
+  },
+  "Title_SE_53": {
+    "en-US": "Approve by manager",
+    "ru-RU": "Согласование с ответственным за контрагента"
+  },
+  "Title_SE_54": {
+    "en-US": "Входящий счет. Передача в 1С",
+    "ru-RU": "Создание счета от поставщика в 1С"
+  },
+  "WithSuggestions_ActionName_SE_2": {
+    "en-US": "Approve with suggestions",
+    "ru-RU": "Согласовать с замечаниями"
+  },
+  "WithSuggestions_ActionName_SE_53": {
+    "en-US": "Approve with suggestions",
+    "ru-RU": "Согласовать с замечаниями"
+  }
+}
