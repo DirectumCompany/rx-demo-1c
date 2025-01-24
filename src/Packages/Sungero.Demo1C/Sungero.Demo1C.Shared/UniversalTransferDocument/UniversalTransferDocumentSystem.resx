@@ -73,4 +73,7 @@
   <data name="Action_OpenEntityIn1CSungeroConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Ribbon_IntegrationGroup_1a4909d4625541959282adcda6502ad3" xml:space="preserve">
+    <value>IntegrationGroup</value>
+  </data>
 </root>
