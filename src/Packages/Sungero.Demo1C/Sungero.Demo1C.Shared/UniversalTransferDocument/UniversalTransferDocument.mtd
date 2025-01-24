@@ -30,6 +30,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
   "OpenCardByDefaultInCollection": true,
@@ -90,8 +103,27 @@
     "NameGuid": "5e1b67c7-0979-467c-9665-2de87a192619",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
-    "Groups": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "d86ad0e9-1e8a-47dd-847d-6c53cc7b5041",
+        "Name": "ActionButtonSungero",
+        "ActionGuid": "d79824b2-3ef0-427b-aa6c-0fd7210546ae",
+        "ButtonSize": "Large",
+        "Index": 0,
+        "ParentGuid": "1a4909d4-6255-4195-9282-adcda6502ad3"
+      }
+    ],
+    "Groups": [
+      {
+        "NameGuid": "1a4909d4-6255-4195-9282-adcda6502ad3",
+        "Name": "IntegrationGroup",
+        "IconName": null,
+        "Index": 13,
+        "ParentGuid": "1f08362f-6a13-44cb-9590-5a5b51c85c30",
+        "SmallIconName": null
+      }
+    ],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"
