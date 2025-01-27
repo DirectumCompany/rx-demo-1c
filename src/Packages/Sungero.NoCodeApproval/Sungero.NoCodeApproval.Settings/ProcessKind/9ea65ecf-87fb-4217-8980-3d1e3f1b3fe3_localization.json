@@ -16,35 +16,35 @@
     "ru-RU": "Процесс согласования договоров и дополнительных соглашений с отправкой контрагенту и созданием в 1С",
     "hash": "3d19647ab733e07ca99ee1eda95a9003"
   },
-  "Description_045b8d04-9138-4776-8048-51d27cc53ce8": {
-    "en-US": "Employees who must receive notices about sending the document to the next approval stage",
-    "ru-RU": "Сотрудники, которым необходимо отправить уведомление при отправке документа на повторное согласование",
-    "hash": "ed821876d28c137362b8407a808b2abf"
-  },
-  "Description_14565d14-b931-4c0c-9fd3-254c9b82094e": {
+  "Description_0bd2f31e-22e8-4ec7-ac8a-addbdc7bcfae": {
     "en-US": "Delivery method selected for document sending",
     "ru-RU": "Способ доставки, который указан для передачи документа",
     "hash": "8c60ee86b62e65c0ad5012c7adab3573"
   },
-  "Description_18ca8d5c-7fa2-4ec2-a744-dc50fea6af21": {
+  "Description_1be6eb6f-11ac-46e5-90ed-296d066279b8": {
+    "en-US": "Employees who must receive notices about sending the document to the next approval stage",
+    "ru-RU": "Сотрудники, которым необходимо отправить уведомление при отправке документа на повторное согласование",
+    "hash": "ed821876d28c137362b8407a808b2abf"
+  },
+  "Description_46bc700f-6e2f-4951-8e56-7c49333ae176": {
+    "en-US": "Document exchange service specified for document sending",
+    "ru-RU": "Сервис обмена, который указан для передачи документа",
+    "hash": "0e90c17a77fa16234e1c18d6889290ae"
+  },
+  "Description_7dbedea1-b167-4264-a503-eeeb7b85cef6": {
     "en-US": "Employee who received the assignment for rework",
     "ru-RU": "Сотрудник, которому направили задание на доработку",
     "hash": "c7e0ddb79f36abc6b95db600b12b7e1d"
   },
-  "Description_3c84d0f4-db5d-4b36-8ec0-53d2a9571a29": {
+  "Description_d9f07eb5-9cf9-4898-9e9a-ad5c22bd9a1c": {
     "en-US": "Employee who sent assignment for rework to the assignee",
     "ru-RU": "Сотрудник, который направил задание на доработку исполнителю",
     "hash": "abad29740492883c186fbb5f39e2e36f"
   },
-  "Description_cb861828-01bd-4903-bfc3-c31ef89ab503": {
+  "Description_f2f9a9dd-1dd2-49e1-a636-3dd503be9940": {
     "en-US": "Employees who must approve documents within the current task",
     "ru-RU": "Сотрудники, с которыми необходимо согласовать документ в рамках текущей задачи",
     "hash": "811a7ed81e7585513a75be7a7a192638"
-  },
-  "Description_df00d164-b5dd-4722-af63-0b1d68df5ff9": {
-    "en-US": "Document exchange service specified for document sending",
-    "ru-RU": "Сервис обмена, который указан для передачи документа",
-    "hash": "0e90c17a77fa16234e1c18d6889290ae"
   },
   "Forward_ActionName_SE_2": {
     "en-US": "Forward",
@@ -63,35 +63,35 @@
     "ru-RU": "Процесс согласования договорных документов (интеграция с 1С)",
     "hash": "ac8491f56bdfc0db244c3a9193fe9682"
   },
-  "Name_045b8d04-9138-4776-8048-51d27cc53ce8": {
-    "en-US": "Recipients of notice on new approval stage",
-    "ru-RU": "Получатели уведомлений при повторном согласовании",
-    "hash": "d7d45efcf7becdabf04e5b3634526648"
-  },
-  "Name_14565d14-b931-4c0c-9fd3-254c9b82094e": {
+  "Name_0bd2f31e-22e8-4ec7-ac8a-addbdc7bcfae": {
     "en-US": "Delivery method",
     "ru-RU": "Способ доставки",
     "hash": "df8412dcd5417253644ca87359cc8593"
   },
-  "Name_18ca8d5c-7fa2-4ec2-a744-dc50fea6af21": {
+  "Name_1be6eb6f-11ac-46e5-90ed-296d066279b8": {
+    "en-US": "Recipients of notice on new approval stage",
+    "ru-RU": "Получатели уведомлений при повторном согласовании",
+    "hash": "d7d45efcf7becdabf04e5b3634526648"
+  },
+  "Name_46bc700f-6e2f-4951-8e56-7c49333ae176": {
+    "en-US": "Document exchange service",
+    "ru-RU": "Сервис обмена",
+    "hash": "e2af359486e9476f34822bb75969ebfb"
+  },
+  "Name_7dbedea1-b167-4264-a503-eeeb7b85cef6": {
     "en-US": "Responsible for rework",
     "ru-RU": "Ответственный за доработку",
     "hash": "ceaa9a4d3bef7fa2502ff38535b9ef13"
   },
-  "Name_3c84d0f4-db5d-4b36-8ec0-53d2a9571a29": {
+  "Name_d9f07eb5-9cf9-4898-9e9a-ad5c22bd9a1c": {
     "en-US": "Initiator of assignment for rework",
     "ru-RU": "Отправитель задания на доработку",
     "hash": "34297b4801de3d202d7a51583eb622ef"
   },
-  "Name_cb861828-01bd-4903-bfc3-c31ef89ab503": {
+  "Name_f2f9a9dd-1dd2-49e1-a636-3dd503be9940": {
     "en-US": "Additional approvers",
     "ru-RU": "Дополнительные согласующие",
     "hash": "2079c6b972005587e6476fafd96783d4"
-  },
-  "Name_df00d164-b5dd-4722-af63-0b1d68df5ff9": {
-    "en-US": "Document exchange service",
-    "ru-RU": "Сервис обмена",
-    "hash": "e2af359486e9476f34822bb75969ebfb"
   },
   "NotSigned_ActionName_SE_29": {
     "en-US": "Not Signed",
@@ -321,6 +321,10 @@
     "en-US": "Notice of new approval stage beginning",
     "ru-RU": "Уведомление о новом круге согласования",
     "hash": "3a38345d171fccadbb4e3152a3338247"
+  },
+  "Title_SE_75": {
+    "en-US": "Договор. Передача в 1С",
+    "ru-RU": "Договор. Передача в 1С"
   },
   "Title_SE_9": {
     "en-US": "Signing",

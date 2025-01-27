@@ -784,6 +784,18 @@
       ],
       "ReturnType": "global::Sungero.ExternalSystem.Structures.Module.IServiceLineDto[]",
       "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.IServiceLineDto"
+    },
+    {
+      "Name": "IsInvoiceDiadocFormalized",
+      "Parameters": [
+        {
+          "Name": "incomingInvoice",
+          "ParameterType": "global::Sungero.Demo1C.IIncomingInvoice",
+          "ParameterTypeFullName": "Sungero.Demo1C.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [],
