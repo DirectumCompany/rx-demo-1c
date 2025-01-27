@@ -105,7 +105,7 @@ namespace Sungero.Demo1C.Server
     /// </summary>
     /// <returns>True - является; иначе - False</returns>
     [Public]
-    public bool IsFormalizedDiadocInvoice()
+    public bool IsInvoiceDiadocFormalized()
     {
       var xml = Sungero.Docflow.PublicFunctions.Module.GetNullableXmlDocument(_obj.LastVersion.Body.Read());
       return Exchange.PublicFunctions.Module.GetInvoiceType(xml, null) == Sungero.Exchange.PublicConstants.Module.InvoiceTypes.DiadocFormalized;

@@ -35,7 +35,7 @@ namespace Sungero.Demo1C.Server
         if (createdDtoKey == null)
           return false;
         
-        if (Sungero.Demo1C.PublicFunctions.IncomingInvoice.IsFormalizedDiadocInvoice(invoice))
+        if (Sungero.Demo1C.PublicFunctions.IncomingInvoice.IsInvoiceDiadocFormalized(invoice))
         {
           var services = Sungero.Demo1C.PublicFunctions.IncomingInvoice.ConvertTo1cServiceDtoS(invoice);
           Sungero.ExternalSystem.PublicFunctions.Module.CreateServicesForInvoice(createdDtoKey, services);

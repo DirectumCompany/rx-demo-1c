@@ -786,7 +786,7 @@
       "ReturnTypeFullName": "Sungero.ExternalSystem.Structures.Module.IServiceLineDto"
     },
     {
-      "Name": "IsFormalizedDiadocInvoice",
+      "Name": "IsInvoiceDiadocFormalized",
       "Parameters": [
         {
           "Name": "incomingInvoice",
