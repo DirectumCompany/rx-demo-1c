@@ -23,6 +23,7 @@ namespace Sungero.Demo1C.Server
       result.Комментарий = _obj.Note;
       result.rx_ID = _obj.Id;
       result.ЭтоУниверсальныйДокумент = true;
+      result.ВидОперации = "Услуги";
       
       result.Организация_Key = Sungero.ExternalSystem.PublicFunctions.Module.GetBusinessUnit(_obj.BusinessUnit?.TIN, _obj.BusinessUnit?.TRRC);
       result.Контрагент_Key = Sungero.Demo1C.PublicFunctions.ExternalEntityLink.Remote.GetForEntityIn1C(_obj.Counterparty)?.ExtEntityId;

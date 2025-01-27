@@ -291,6 +291,11 @@
         {
           "Name": "ЭтоУниверсальныйДокумент",
           "TypeFullName": "global::System.Boolean"
+        },
+        {
+          "Name": "ВидОперации",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
         }
       ],
       "StructureNamespace": "Sungero.ExternalSystem.Structures.Module"
