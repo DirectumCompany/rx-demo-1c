@@ -7,7 +7,6 @@
 
 ## Описание решения
 ### No-code блоки 
-
 В решении представлены no-code блоки из модуля NoCodeApproval: 
 + "Исходящий счет. Передача в 1С статуса "Оплачен"";
 + "Входящий счет. Передача в 1С статуса "Оплачен"";
@@ -38,7 +37,6 @@
 **Точка входа:** действие **OpenEntity1CSungero** соответствующего документа.
 
 ### Этапы регламента
- 
 + Этап регламента "Создание входящего счета в 1С". В рамках данного этапа создается входящий счет в 1С на основе данных входящего счета Directum RX.
   
 **Точка входа:** серверный метод [Execute](https://github.com/DirectumCompany/rx-demo-1c/blob/master/src/Packages/Sungero.RuleBasedApproval/Sungero.RuleBasedApproval.Server/SendIncomingInvoiceTo1CStage/SendIncomingInvoiceTo1CStageServerFunctions.cs#L18-L61) справочника ApprovalCreateIncInvoice1CStage. 
