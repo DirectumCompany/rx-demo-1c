@@ -107,6 +107,10 @@
     "en-US": "Approve: {0}",
     "ru-RU": "Согласуйте: {0}"
   },
+  "Subject_SE_52": {
+    "en-US": "Sending: {0}",
+    "ru-RU": "Отправьте контрагенту: {0}"
+  },
   "Subject_SE_9": {
     "en-US": "Sign: {0}",
     "ru-RU": "Подпишите: {0}",
@@ -145,6 +149,10 @@
   "ThreadSubject_SE_50": {
     "en-US": "Аpproval",
     "ru-RU": "Согласование"
+  },
+  "ThreadSubject_SE_52": {
+    "en-US": "Send to counterparty",
+    "ru-RU": "Отправка контрагенту"
   },
   "ThreadSubject_SE_9": {
     "en-US": "Signing",
@@ -189,6 +197,10 @@
   "Title_SE_51": {
     "en-US": "УПД. Передача в 1С",
     "ru-RU": "Создание поступления в 1С"
+  },
+  "Title_SE_52": {
+    "en-US": "Process document",
+    "ru-RU": "Отправка контрагенту"
   },
   "Title_SE_9": {
     "en-US": "Signing",
