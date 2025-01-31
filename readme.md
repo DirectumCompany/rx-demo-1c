@@ -6,7 +6,7 @@
 + Демонстрация типовых бизнес-процессов на примере:
     - От заключения договора с покупателем до реализации товаров и услуг;
     - От заключения договора с поставщиком до поступления товаров и услуг.
-+ Предоставление примеров кода для разработчиков, которые демонстрируют возможности интеграции с системой 1С-Бухгалтерия.
++ Предоставление примеров кода для разработчиков, которые реализуют возможности интеграции с системой 1С-Бухгалтерия.
  
 ## Описание решения
 
@@ -56,7 +56,7 @@
 
 Пример для договора - [OpenEntityIn1CSungero](https://github.com/DirectumCompany/rx-demo-1c/blob/master/src/Packages/Sungero.Demo1C/Sungero.Demo1C.ClientBase/Contract/ContractActions.cs#L12-L22).
 
- Пример для входящего счета - [OpenEntityIn1CSungero](https://github.com/DirectumCompany/rx-demo-1c/blob/master/src/Packages/Sungero.Demo1C/Sungero.Demo1C.ClientBase/IncomingInvoice/IncomingInvoiceActions.cs#L12-L22). 
+Пример для входящего счета - [OpenEntityIn1CSungero](https://github.com/DirectumCompany/rx-demo-1c/blob/master/src/Packages/Sungero.Demo1C/Sungero.Demo1C.ClientBase/IncomingInvoice/IncomingInvoiceActions.cs#L12-L22). 
 
 Реалзиация для других типов документов производится аналогичным образом.
 ### Пример создания сущности в формате 1С
