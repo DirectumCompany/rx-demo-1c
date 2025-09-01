@@ -44,3 +44,6 @@ _ConfigSettings.xml
 
 *.csproj
 *.sln
+
+
+Libraries.json
