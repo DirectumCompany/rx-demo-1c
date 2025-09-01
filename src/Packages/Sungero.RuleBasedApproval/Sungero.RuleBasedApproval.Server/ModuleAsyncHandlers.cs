@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.RuleBasedApproval.Server
 {
-  public class ModuleAsyncHandlers
+  public partial class ModuleAsyncHandlers
   {
 
   }

@@ -17,6 +17,7 @@
     "Controls": [],
     "IsAncestorMetadata": true
   },
+  "FormViewUuid": "311f68f4-fde5-46b8-b45c-882ed6ce2e74",
   "IconResourcesKeys": [],
   "IntegrationServiceName": "RuleBasedApprovalSendIncomingInvoiceTo1CStage",
   "OperationsClass": "",

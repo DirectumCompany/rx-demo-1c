@@ -36,7 +36,6 @@
   "HandledEvents": [
     "InitializingServer"
   ],
-  "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "Sungero.ExternalSystem",
@@ -391,7 +390,6 @@
   ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.ExternalSystem",
-  "ResourcesKeys": [],
   "ServerAssemblyName": "Sungero.ExternalSystem.Server",
   "ServerNamespace": "Sungero.ExternalSystem.Server",
   "SharedAssemblyName": "Sungero.ExternalSystem.Shared",
@@ -402,7 +400,7 @@
   "Versions": [
     {
       "Type": "ModuleMetadata",
-      "Number": 8
+      "Number": 11
     },
     {
       "Type": "DomainApi",
