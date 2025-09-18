@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.Demo1C.Client
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     /// <summary>
     /// Открыть документ в 1С.

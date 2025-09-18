@@ -8,7 +8,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "a17e0a4f-8b16-46ee-a6f1-122c647f3ce0",
       "Name": "SendStatusPaidTo1CForOutgoingInvoice",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendStatusPaidTo1CForOutgoingInvoiceExecute"
       ],
@@ -28,7 +27,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "462a1330-5661-4031-bc1a-2e664f27f5ee",
       "Name": "SendStatusPaidTo1CForIncomingInvoice",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendStatusPaidTo1CForIncomingInvoiceExecute"
       ],
@@ -48,7 +46,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "b637c495-d6c6-4b46-a765-4f778a1aba21",
       "Name": "SendPropertySignedTo1CForUniversalTransferDocument",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendPropertySignedTo1CForUniversalTransferDocumentExecute"
       ],
@@ -68,7 +65,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "d5583152-14da-4d99-b27f-90b802438d0f",
       "Name": "SendIncomingInvoiceTo1C",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendIncomingInvoiceTo1CExecute"
       ],
@@ -88,7 +84,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "00f5f31d-d9ac-49b3-9398-4708955ecc63",
       "Name": "SendUniversalTransferDocumentTo1C",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendUniversalTransferDocumentTo1CExecute"
       ],
@@ -108,7 +103,6 @@
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "e59febb9-9233-4d94-8c1d-1b12db9cd537",
       "Name": "SendContractTo1C",
-      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendContractTo1CExecute"
       ],
@@ -148,7 +142,6 @@
   "HandledEvents": [
     "InitializingServer"
   ],
-  "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "Sungero.NoCodeApproval",
@@ -158,7 +151,6 @@
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.NoCodeApproval",
-  "ResourcesKeys": [],
   "ServerAssemblyName": "Sungero.NoCodeApproval.Server",
   "ServerNamespace": "Sungero.NoCodeApproval.Server",
   "SharedAssemblyName": "Sungero.NoCodeApproval.Shared",
@@ -169,7 +161,7 @@
   "Versions": [
     {
       "Type": "ModuleMetadata",
-      "Number": 8
+      "Number": 11
     },
     {
       "Type": "DomainApi",

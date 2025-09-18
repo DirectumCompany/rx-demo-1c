@@ -10,7 +10,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Server
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     #region Получение данных
     
