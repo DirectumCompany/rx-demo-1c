@@ -18,13 +18,13 @@ namespace Sungero.Demo1C.Server
     [Public, Remote(IsPure = true)]
     public static IExternalEntityLink GetForEntityIn1C(Sungero.Domain.Shared.IEntity entity)
     {
-      var typeGuid = entity.GetType().GetOriginalType().GetTypeGuid().ToString();
-      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
-
-      return ExternalEntityLinks.GetAll()
-        .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
-               x.EntityId == entity.Id &&
-               x.ExtSystemId == extSystemId).FirstOrDefault();
+      var entityExtLinks = Sungero.Commons.PublicFunctions.ExternalEntityLink
+        .GetExternalByEntityType(entity.TypeDiscriminator.GetTypeByGuid());
+      
+      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();     
+      var extEntityLink = entityExtLinks.FirstOrDefault(x => x.EntityId == entity.Id && x.ExtSystemId == extSystemId);
+      
+      return ExternalEntityLinks.As(extEntityLink);
     }
     
     /// <summary>
