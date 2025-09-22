@@ -10,5 +10,5 @@ BEGIN TRY
 	  AND eel.extsystemid = @extsystemid;
 END TRY
 BEGIN CATCH
-	PRINT 'Ошибка при обновлении:' + CONVERT(VARCHAR, ERROR_NUMBER()) + ':' + ERROR_MESSAGE();
+	PRINT 'Ошибка при обновлении УПД / Счетов на оплату:' + CONVERT(VARCHAR, ERROR_NUMBER()) + ':' + ERROR_MESSAGE();
 END CATCH;
