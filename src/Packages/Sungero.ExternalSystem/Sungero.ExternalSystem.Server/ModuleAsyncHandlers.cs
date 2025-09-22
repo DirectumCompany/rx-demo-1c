@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Server
 {
-  public class ModuleAsyncHandlers
+  public partial class ModuleAsyncHandlers
   {
 
   }

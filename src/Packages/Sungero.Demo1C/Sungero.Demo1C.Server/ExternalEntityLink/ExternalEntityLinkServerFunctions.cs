@@ -4,6 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Demo1C.ExternalEntityLink;
+using Sungero.Domain.Shared;
 
 namespace Sungero.Demo1C.Server
 {
@@ -17,13 +18,13 @@ namespace Sungero.Demo1C.Server
     [Public, Remote(IsPure = true)]
     public static IExternalEntityLink GetForEntityIn1C(Sungero.Domain.Shared.IEntity entity)
     {
-      var typeGuid = entity.TypeDiscriminator.ToString();
-      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();
-
-      return ExternalEntityLinks.GetAll()
-        .Where(x => string.Equals(x.EntityType, typeGuid, StringComparison.OrdinalIgnoreCase) &&
-               x.EntityId == entity.Id &&
-               x.ExtSystemId == extSystemId).FirstOrDefault();
+      var entityExtLinks = Sungero.Commons.PublicFunctions.ExternalEntityLink
+        .GetExternalByEntityType(entity.TypeDiscriminator.GetTypeByGuid());
+      
+      var extSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();     
+      var extEntityLink = entityExtLinks.FirstOrDefault(x => x.EntityId == entity.Id && x.ExtSystemId == extSystemId);
+      
+      return ExternalEntityLinks.As(extEntityLink);
     }
     
     /// <summary>
@@ -37,7 +38,7 @@ namespace Sungero.Demo1C.Server
     {
       var externalEntityLink = ExternalEntityLinks.Create();
       externalEntityLink.EntityId = entity.Id;
-      externalEntityLink.EntityType = entity.TypeDiscriminator.ToString();
+      externalEntityLink.EntityType = entity.GetType().GetOriginalType().GetTypeGuid().ToString();
       externalEntityLink.ExtEntityId = externalEntityId;
       externalEntityLink.ExtEntityType = externalEntityType;
       externalEntityLink.ExtSystemId = Sungero.ExternalSystem.PublicFunctions.Module.GetId();

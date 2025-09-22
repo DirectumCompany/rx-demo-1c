@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ExternalSystem.Client
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
 
   }

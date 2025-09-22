@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.Demo1C.Server
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     /// <summary>
     /// Сгенерировать pdf тело для формализованного документа.

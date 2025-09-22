@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.NoCodeApproval.Server
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     #region Отправка статуса в 1С
     
