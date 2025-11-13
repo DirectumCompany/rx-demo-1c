@@ -395,7 +395,7 @@
   "SharedAssemblyName": "Sungero.ExternalSystem.Shared",
   "SharedNamespace": "Sungero.ExternalSystem.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.0",
+  "Version": "1.0.0.0",
   "Widgets": [],
   "Versions": [
     {

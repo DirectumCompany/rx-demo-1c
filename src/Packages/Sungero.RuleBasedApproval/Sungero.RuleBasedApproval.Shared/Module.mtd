@@ -59,7 +59,7 @@
   "SharedAssemblyName": "Sungero.RuleBasedApproval.Shared",
   "SharedNamespace": "Sungero.RuleBasedApproval.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.0",
+  "Version": "1.0.0.0",
   "Widgets": [],
   "Versions": [
     {
