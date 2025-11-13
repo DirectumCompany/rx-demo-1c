@@ -156,7 +156,7 @@
   "SharedAssemblyName": "Sungero.NoCodeApproval.Shared",
   "SharedNamespace": "Sungero.NoCodeApproval.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.0",
+  "Version": "1.0.0.0",
   "Widgets": [],
   "Versions": [
     {
