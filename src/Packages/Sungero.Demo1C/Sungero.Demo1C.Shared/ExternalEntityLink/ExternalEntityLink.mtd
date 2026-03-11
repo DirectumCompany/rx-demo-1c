@@ -22,6 +22,7 @@
   "FormViewUuid": "22fd45f1-ce37-48d3-8008-2589b1c9c252",
   "IconResourcesKeys": [],
   "LayeredFromGuid": "4346363e-39b9-40eb-9c12-64f0cf48d87f",
+  "ListViewUuid": "191d63d0-8d59-479a-8786-dbbab82c5da0",
   "OperationsClass": "",
   "PublicFunctions": [
     {
@@ -85,7 +86,7 @@
   "Versions": [
     {
       "Type": "EntityMetadata",
-      "Number": 13
+      "Number": 14
     }
   ]
 }

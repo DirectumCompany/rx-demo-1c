@@ -46,6 +46,7 @@
   "FormViewUuid": "b644d857-c6c9-46dc-82c1-5c01c726fd89",
   "IconResourcesKeys": [],
   "LayeredFromGuid": "58ad01fb-6805-426b-9152-4de16d83b258",
+  "ListViewUuid": "26aca553-6b95-487d-a617-b4312a7ae8e1",
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
@@ -133,7 +134,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 13
+      "Number": 14
     }
   ]
 }

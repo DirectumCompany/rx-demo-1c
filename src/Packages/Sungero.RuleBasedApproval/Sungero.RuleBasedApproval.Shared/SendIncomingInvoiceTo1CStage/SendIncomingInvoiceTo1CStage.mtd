@@ -20,6 +20,7 @@
   "FormViewUuid": "6c7babf5-17ea-4861-8fd7-96e431bcdd07",
   "IconResourcesKeys": [],
   "IntegrationServiceName": "RuleBasedApprovalSendIncomingInvoiceTo1CStage",
+  "ListViewUuid": "26ae5b19-51d4-4acf-9d5a-753f9b786556",
   "OperationsClass": "",
   "PublicStructures": [],
   "ResourcesKeys": [],
@@ -45,7 +46,7 @@
   "Versions": [
     {
       "Type": "EntityMetadata",
-      "Number": 13
+      "Number": 14
     }
   ]
 }

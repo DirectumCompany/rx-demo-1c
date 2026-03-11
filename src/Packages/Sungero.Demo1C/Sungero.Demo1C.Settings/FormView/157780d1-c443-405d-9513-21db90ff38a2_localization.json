@@ -1,0 +1,63 @@
+{
+  "AccountSungero_Caption_86bc6ac8f1014c25b56262751b8e5223": {
+    "en-US": "Invoice",
+    "ru-RU": "Счет"
+  },
+  "AdditionalSungero_Caption_b8017e2288d643da8d6d8d11917b1dd6": {
+    "en-US": "Additional",
+    "ru-RU": "Дополнительно"
+  },
+  "CompanySungero_Caption_51f9d51559f74999bb6187796e7a87cb": {
+    "en-US": "Company",
+    "ru-RU": "Наша сторона"
+  },
+  "CounterpartySungero_Caption_a549655787f44e62a0975a9e48878e5c": {
+    "en-US": "Counterparty",
+    "ru-RU": "Контрагент"
+  },
+  "Description": {},
+  "FileSungero_Caption_696a8bb83e1244c8927a37d955cfbf0f": {
+    "en-US": "Retention",
+    "ru-RU": "Хранение"
+  },
+  "HorizontalGroupSungero_Caption_03fde41782544f08950cd543871033a8": {
+    "en-US": "Horizontal Group",
+    "ru-RU": "Горизонтальная группа"
+  },
+  "LeftGroupSungero_Caption_01dd99f5db49480eb69928488f2653fb": {
+    "en-US": "Left Group",
+    "ru-RU": "Левая группа"
+  },
+  "LocationStateSungero_Caption_72e492251e834e65bb33ea838a458e43": {
+    "en-US": "Location",
+    "ru-RU": "Местонахождение"
+  },
+  "MainSungero_Caption_406e14dc17444a7f85d8f6eef8abaa3f": {
+    "en-US": "Main",
+    "ru-RU": "Основное"
+  },
+  "Name": {
+    "en-US": "Document",
+    "ru-RU": "Документ"
+  },
+  "NotesSungero_Caption_42612188cf984a66a4cc5c674787d208": {
+    "en-US": "Notes",
+    "ru-RU": "Примечание"
+  },
+  "RegistrationSungero_Caption_4e1d78fc6f6c4c81bf9aa1fa2031a46b": {
+    "en-US": "Date and Number",
+    "ru-RU": "Дата и номер"
+  },
+  "RightGroupSungero_Caption_28a6d4a8a26a467b8fe6da426092ec4a": {
+    "en-US": "Right Group",
+    "ru-RU": "Правая группа"
+  },
+  "Search_Caption_1f08362f6a1344cb95905a5b51c85c30": {
+    "en-US": "Search",
+    "ru-RU": "Поиск"
+  },
+  "StateSungero_Caption_1b194ce3c44048879f0d1cdc4303c583": {
+    "en-US": "Lifecycle",
+    "ru-RU": "Жизненный цикл"
+  }
+}
